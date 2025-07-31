@@ -37,6 +37,49 @@
   --nav-dropdown-hover-color: #18d26e; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
+/* Custom Tooltip for Navigation */
+.navmenu a[title] {
+  position: relative;
+  overflow: visible !important;
+}
+
+.navmenu a[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.navmenu a[title]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.9);
+  z-index: 1001;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
@@ -162,6 +205,13 @@ h6 {
   margin-right: 8px;
 }
 
+.header .logo .logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
 .header .logo h1 {
   font-size: 30px;
   margin: 0;
@@ -188,6 +238,7 @@ h6 {
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
+    overflow: visible !important;
   }
 
   .navmenu ul {
@@ -1068,6 +1119,241 @@ section,
 
 .about .about-images img {
   border-radius: 10px;
+}
+
+/*--------------------------------------------------------------
+# Tech Stack Section
+--------------------------------------------------------------*/
+.tech-stack {
+  position: relative;
+}
+
+.tech-stack .tech-intro h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.tech-stack .tech-intro .lead {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.tech-stack .tech-category {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.tech-stack .tech-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+.tech-stack .category-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.tech-stack .category-header i {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.tech-stack .category-header h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0;
+}
+
+.tech-stack .tech-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tech-stack .tech-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tech-stack .tech-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+/* Expertise Items */
+.tech-stack .tech-expertise {
+  margin-bottom: 20px;
+}
+
+.tech-stack .expertise-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tech-stack .expertise-item:last-child {
+  border-bottom: none;
+}
+
+.tech-stack .expertise-item i {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-right: 15px;
+}
+
+.tech-stack .expertise-item span {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.tech-stack .tech-icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.tech-stack .tech-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.tech-stack .tech-description {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Impact Metrics */
+.tech-stack .tech-impact {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+}
+
+.tech-stack .tech-impact h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.tech-stack .impact-item {
+  padding: 20px;
+}
+
+.tech-stack .impact-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  display: inline-block;
+}
+
+.tech-stack .impact-unit {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.tech-stack .impact-item p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Work Process */
+.tech-stack .work-process {
+  margin-top: 30px;
+}
+
+.tech-stack .process-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.tech-stack .process-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--accent-color), #15b85b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.tech-stack .process-item:hover .process-icon {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(24, 210, 110, 0.3);
+}
+
+.tech-stack .process-icon i {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.tech-stack .process-item h5 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+.tech-stack .process-item p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.tech-stack .tech-quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  margin-top: 30px;
+  padding: 20px;
+  border-left: 4px solid var(--accent-color);
+  background: #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tech-stack .tech-items {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-stack .impact-number {
+    font-size: 2.5rem;
+  }
+  
+  .tech-stack .impact-unit {
+    font-size: 1.5rem;
+  }
 }
 
 /*--------------------------------------------------------------
