@@ -1071,6 +1071,181 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Culture Section
+--------------------------------------------------------------*/
+.culture {
+  position: relative;
+  /* Background handled by light-background class */
+}
+
+.culture .culture-intro h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.culture .culture-intro .lead {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.culture .culture-item {
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 20px;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.culture .culture-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.culture .culture-item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.culture .culture-item:hover::after {
+  opacity: 1;
+  width: 100px;
+}
+
+.culture .culture-item .icon-box {
+  width: 80px;
+  height: 80px;
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  transition: all 0.3s ease;
+}
+
+.culture .culture-item:hover .icon-box {
+  background: var(--accent-color);
+}
+
+.culture .culture-item .icon-box i {
+  font-size: 36px;
+  color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.culture .culture-item:hover .icon-box i {
+  color: var(--contrast-color);
+}
+
+.culture .culture-item h4 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.culture .culture-item p {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.culture .culture-gallery {
+  margin-top: 30px;
+}
+
+.culture .gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.culture .gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* 반응형 이미지 높이 조정 */
+@media (max-width: 991px) {
+  .culture .gallery-item img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 575px) {
+  .culture .gallery-item img {
+    height: 200px;
+  }
+}
+
+.culture .gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.culture .gallery-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.culture .gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.culture .overlay-content {
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+}
+
+.culture .gallery-item:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.culture .overlay-content h5 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.culture .overlay-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/*--------------------------------------------------------------
 # Stats Section
 --------------------------------------------------------------*/
 .stats .stats-item {
@@ -1099,40 +1274,55 @@ section,
 --------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
-  padding: 30px;
+  padding: 40px 30px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   transition: 0.3s;
+  text-align: center;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
 }
 
 .services .service-item .icon {
-  font-size: 36px;
-  line-height: 0;
-  margin-right: 30px;
-  color: var(--accent-color);
+  margin-bottom: 25px;
 }
 
-.services .service-item .title {
+.services .service-item .icon i {
+  font-size: 48px;
+  line-height: 0;
+  color: var(--accent-color);
+  transition: 0.3s;
+}
+
+.services .service-item h3 {
   font-weight: 700;
   margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.services .service-item .title a {
+  font-size: 22px;
   color: var(--heading-color);
 }
 
-.services .service-item .description {
+.services .service-item p {
   line-height: 24px;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
 .services .service-item:hover {
   border-color: var(--accent-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.services .service-item:hover .title a {
-  color: var(--accent-color);
+.services .service-item:hover .icon i {
+  color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.services .service-item .badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 /*--------------------------------------------------------------
