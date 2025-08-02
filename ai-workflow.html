@@ -6,10 +6,11 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="업무 효율 300% 향상시키는 AI 자동화 플랫폼 - 제이앤디소프트">
+  <meta name="description" content="AWOP - A Wave Of Process | 업무가 물 흐르듯 자연스럽게, 차세대 워크플로우 자동화 플랫폼">
   <meta name="author" content="jndsoft">
+  <meta name="keywords" content="워크플로우 자동화, 비즈니스 프로세스 자동화, 워크플로우 엔진, 업무 자동화 플랫폼, API 워크플로우, AWOP">
 
-  <title>AI 워크플로우 자동화 플랫폼 - 제이앤디소프트</title>
+  <title>AWOP - A Wave Of Process | 워크플로우 자동화 플랫폼 - 제이앤디소프트</title>
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -32,17 +33,23 @@
 
   <style>
     .page-title.ai-workflow {
-      background-image: url('assets/img/hero-carousel/ai-workflow.png');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
       position: relative;
+      overflow: hidden;
     }
     .page-title.ai-workflow::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1;
+      width: 200%;
+      height: 200%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,192C960,192,1056,128,1152,106.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      bottom: -50px;
+      left: 0;
+      animation: wave 20s linear infinite;
+    }
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .page-title.ai-workflow .container {
       position: relative;
@@ -72,6 +79,89 @@
       border-radius: 25px;
       margin-bottom: 30px;
       font-weight: 600;
+    }
+    .awop-logo {
+      font-size: 4rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 0;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .awop-subtitle {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    .nav-tabs {
+      border-bottom: 2px solid #e9ecef;
+      margin-bottom: 3rem;
+    }
+    .nav-tabs .nav-link {
+      color: #666;
+      border: none;
+      padding: 1rem 2rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #0066cc;
+      background: none;
+    }
+    .nav-tabs .nav-link.active {
+      color: #0066cc;
+      background: none;
+      border-bottom: 3px solid #0066cc;
+    }
+    .feature-card {
+      padding: 2rem;
+      border: 1px solid #e9ecef;
+      border-radius: 10px;
+      transition: all 0.3s;
+      height: 100%;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #0066cc;
+    }
+    .process-step {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .process-step-number {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      background: #0066cc;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    .stats-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #0066cc;
+      margin-bottom: 0.5rem;
+    }
+    .philosophy-card {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .philosophy-card h4 {
+      color: #0066cc;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
@@ -103,12 +193,14 @@
   <!-- Page Title -->
   <div class="page-title dark-background ai-workflow">
     <div class="container position-relative">
-      <h1>AI 워크플로우 자동화 플랫폼</h1>
-      <p>업무 효율을 획기적으로 향상시키는 차세대 AI 솔루션</p>
+      <h1 class="awop-logo">AWOP</h1>
+      <p class="awop-subtitle">A Wave Of Process</p>
+      <h2 style="font-size: 2rem; margin-bottom: 1rem;">업무가 물 흐르듯 자연스럽게</h2>
+      <p>복잡한 비즈니스 프로세스를 하나의 아름다운 흐름으로 만드는 차세대 워크플로우 자동화 플랫폼</p>
       <nav class="breadcrumbs">
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li class="current">AI 워크플로우 자동화 플랫폼</li>
+          <li class="current">AWOP - 워크플로우 자동화 플랫폼</li>
         </ol>
       </nav>
     </div>
@@ -120,46 +212,254 @@
       
       <div class="coming-soon-container">
         <div class="coming-soon-content" data-aos="fade-up">
-          <i class="bi bi-robot coming-soon-icon"></i>
+          <i class="bi bi-tsunami coming-soon-icon"></i>
           <div class="coming-soon-badge">Coming Soon</div>
-          <h2 class="mb-4">서비스 준비중입니다</h2>
+          <h2 class="mb-4">파도가 밀려옵니다</h2>
           <p class="lead mb-4">
-            혁신적인 AI 기술로 업무 프로세스를 자동화하고<br>
-            생산성을 극대화하는 플랫폼을 준비하고 있습니다.
+            업무의 물결을 타고 더 높이 날아오를<br>
+            혁신적인 워크플로우 자동화 플랫폼을 준비하고 있습니다.
           </p>
           <p class="text-muted">
             곧 만나보실 수 있습니다. 기대해 주세요!
           </p>
           
           <div class="mt-5">
-            <a href="index.html#contact" class="btn btn-primary">문의하기</a>
+            <a href="index.html#contact" class="btn btn-primary">파도 타기 신청</a>
             <a href="index.html#services" class="btn btn-outline-primary ms-2">다른 서비스 보기</a>
           </div>
         </div>
       </div>
 
-      <!-- Features Preview -->
-      <div class="row mt-5 gy-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-4">
-          <div class="text-center p-4">
-            <i class="bi bi-lightning-charge fs-1 text-primary mb-3 d-block"></i>
-            <h4>빠른 자동화</h4>
-            <p class="text-muted">복잡한 업무 프로세스를 AI가 자동으로 처리합니다</p>
+      <!-- Tab Navigation -->
+      <div class="mt-5">
+        <ul class="nav nav-tabs justify-content-center" id="awopTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="philosophy-tab" data-bs-toggle="tab" data-bs-target="#philosophy" type="button" role="tab">브랜드 철학</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="process-tab" data-bs-toggle="tab" data-bs-target="#process" type="button" role="tab">완벽한 워크플로우</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab">핵심 기능</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="target-tab" data-bs-toggle="tab" data-bs-target="#target" type="button" role="tab">타겟별 솔루션</button>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content mt-5" id="awopTabContent">
+          
+          <!-- Philosophy Tab -->
+          <div class="tab-pane fade show active" id="philosophy" role="tabpanel">
+            <div class="text-center mb-5" data-aos="fade-up">
+              <h2>Why Wave?</h2>
+              <p class="lead">왜 물결인가요?</p>
+            </div>
+            
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-6">
+                <div class="philosophy-card">
+                  <h4>🌊 자연스러운 흐름 (Natural Flow)</h4>
+                  <h5>억지로 밀어붙이지 않습니다</h5>
+                  <p>자연의 법칙처럼, 업무 프로세스가 가장 효율적인 경로로 자연스럽게 흘러가도록 설계했습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="philosophy-card">
+                  <h4>🔗 연결의 힘 (Power of Connection)</h4>
+                  <h5>작은 물방울이 거대한 파도가 됩니다</h5>
+                  <p>개별 태스크들이 하나로 연결되어 조직 전체를 변화시키는 강력한 워크플로우가 됩니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="philosophy-card">
+                  <h4>⚡ 지속적인 움직임 (Continuous Motion)</h4>
+                  <h5>멈추지 않고 계속 흘러갑니다</h5>
+                  <p>24/7 중단 없는 자동화로 비즈니스가 쉬지 않고 성장할 수 있도록 돕습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="philosophy-card">
+                  <h4>🎯 적응력 (Adaptability)</h4>
+                  <h5>장애물을 만나면 우회합니다</h5>
+                  <p>예외 상황이나 변화에 유연하게 대응하며, 최적의 결과를 위해 스스로 적응합니다.</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="text-center p-4">
-            <i class="bi bi-graph-up-arrow fs-1 text-primary mb-3 d-block"></i>
-            <h4>생산성 향상</h4>
-            <p class="text-muted">반복 작업을 줄이고 핵심 업무에 집중할 수 있습니다</p>
+
+          <!-- Process Tab -->
+          <div class="tab-pane fade" id="process" role="tabpanel">
+            <div class="text-center mb-5" data-aos="fade-up">
+              <h2>The Perfect Wave</h2>
+              <p class="lead">완벽한 워크플로우를 만드는 방법</p>
+            </div>
+            
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-4">
+                <div class="process-step">
+                  <div class="process-step-number">1</div>
+                  <h4>Design Your Flow</h4>
+                  <h5>워크플로우를 그려보세요</h5>
+                  <p>직관적인 드래그 앤 드롭으로 업무 흐름을 시각화하고 설계합니다. 복잡한 프로세스도 간단한 블록 연결로 완성됩니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="process-step">
+                  <div class="process-step-number">2</div>
+                  <h4>Connect Everything</h4>
+                  <h5>시스템들을 하나로 이어주세요</h5>
+                  <p>REST API, 데이터베이스, 외부 서비스까지 모든 것을 연결합니다. 각각 따로 있던 시스템들이 하나의 흐름 속에서 함께 움직입니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="process-step">
+                  <div class="process-step-number">3</div>
+                  <h4>Let It Flow</h4>
+                  <h5>흘러가게 두세요</h5>
+                  <p>한 번 설정하면 24/7 자동으로 실행됩니다. 실시간 모니터링으로 모든 흐름을 한눈에 확인하세요.</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="text-center p-4">
-            <i class="bi bi-shield-check fs-1 text-primary mb-3 d-block"></i>
-            <h4>안전한 처리</h4>
-            <p class="text-muted">기업 데이터를 안전하게 보호하며 업무를 처리합니다</p>
+
+          <!-- Features Tab -->
+          <div class="tab-pane fade" id="features" role="tabpanel">
+            <div class="text-center mb-5" data-aos="fade-up">
+              <h2>Ride the Wave</h2>
+              <p class="lead">파도를 타듯 쉽고 강력하게</p>
+            </div>
+            
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-palette feature-icon"></i>
+                  <h4>시각적 워크플로우 빌더</h4>
+                  <p>코딩 없이도 복잡한 업무 프로세스를 드래그 앤 드롭으로 쉽게 만들 수 있습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-lightning-charge feature-icon"></i>
+                  <h4>혁신적 성능 엔진</h4>
+                  <p>최신 동시 처리 기술로 기존 대비 100배 빠른 처리 속도와 99% 메모리 효율성을 실현했습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-plug feature-icon"></i>
+                  <h4>확장 가능한 노드 시스템</h4>
+                  <p>표준 노드부터 커스텀 노드까지, 필요한 기능을 자유롭게 추가할 수 있습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-graph-up feature-icon"></i>
+                  <h4>실시간 모니터링</h4>
+                  <p>모든 워크플로우의 실행 상태를 실시간으로 추적하고 문제 발생 시 즉시 알림을 받습니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-shield-check feature-icon"></i>
+                  <h4>엔터프라이즈급 격리</h4>
+                  <p>혁신적인 격리 기술로 수만 개 워크플로우가 서로 영향 없이 안전하게 동시 실행됩니다.</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="feature-card text-center">
+                  <i class="bi bi-cloud feature-icon"></i>
+                  <h4>클라우드 & 온프레미스</h4>
+                  <p>클라우드와 온프레미스 환경 모두 지원하여 기업의 인프라 정책에 맞게 배포할 수 있습니다.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance Stats -->
+            <div class="text-center mt-5 pt-5" data-aos="fade-up">
+              <h3 class="mb-4">Create Your Success Wave</h3>
+              <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="stats-number">99%</div>
+                  <p>메모리 효율성 달성</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="stats-number">100x</div>
+                  <p>기존 대비 빠른 처리 속도</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="stats-number">500+</div>
+                  <p>연동 가능한 서비스</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                  <div class="stats-number">∞</div>
+                  <p>수만 개 워크플로우 동시 실행</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Target Tab -->
+          <div class="tab-pane fade" id="target" role="tabpanel">
+            <div class="row gy-5" data-aos="fade-up">
+              <div class="col-lg-4">
+                <div class="text-center">
+                  <i class="bi bi-code-slash feature-icon"></i>
+                  <h3>For Developers</h3>
+                  <p class="lead mb-3">개발자가 사랑하는 워크플로우 플랫폼</p>
+                  <ul class="list-unstyled text-start">
+                    <li class="mb-2">✨ 차세대 동시 처리 기술로 99% 메모리 효율성 달성</li>
+                    <li class="mb-2">✨ REST API 우선 설계로 완벽한 통합</li>
+                    <li class="mb-2">✨ 확장 가능한 아키텍처로 무제한 성장</li>
+                    <li class="mb-2">✨ 완전 격리된 실행 환경으로 안전성 보장</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="text-center">
+                  <i class="bi bi-briefcase feature-icon"></i>
+                  <h3>For Business Leaders</h3>
+                  <p class="lead mb-3">조직의 생산성을 혁신하세요</p>
+                  <ul class="list-unstyled text-start">
+                    <li class="mb-2">💼 혁신적 성능 기술로 99% 운영비용 절감</li>
+                    <li class="mb-2">💼 24/7 중단 없는 대용량 프로세스 처리</li>
+                    <li class="mb-2">💼 실시간 모니터링으로 투명한 운영</li>
+                    <li class="mb-2">💼 무제한 확장으로 비즈니스 성장 지원</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="text-center">
+                  <i class="bi bi-gear feature-icon"></i>
+                  <h3>For IT Administrators</h3>
+                  <p class="lead mb-3">안전하고 관리하기 쉬운 플랫폼</p>
+                  <ul class="list-unstyled text-start">
+                    <li class="mb-2">🛡️ 엔터프라이즈급 보안 및 권한 관리</li>
+                    <li class="mb-2">🛡️ 클라우드/온프레미스 하이브리드 지원</li>
+                    <li class="mb-2">🛡️ 중앙 집중식 모니터링 및 로그 관리</li>
+                    <li class="mb-2">🛡️ 백업 및 재해 복구 시스템 내장</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="text-center mt-5 pt-5 pb-5" style="background: #f8f9fa; border-radius: 10px;" data-aos="fade-up">
+              <h2 class="mb-3">지금 바로 워크플로우의 물결을 시작하세요</h2>
+              <p class="lead mb-4">복잡한 업무 프로세스를 자연스러운 흐름으로 바꿔보세요</p>
+              <div class="mb-4">
+                <a href="#" class="btn btn-primary btn-lg me-3">무료로 시작하기</a>
+                <a href="#" class="btn btn-outline-primary btn-lg">데모 요청하기</a>
+              </div>
+              <div class="row justify-content-center text-muted">
+                <div class="col-auto">💡 설치 시간: 5분 이내</div>
+                <div class="col-auto">💡 신용카드 불필요</div>
+                <div class="col-auto">💡 전문가 온보딩 지원</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
