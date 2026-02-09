@@ -86,21 +86,37 @@ jndsoft-homepage/
 
 ## 🎯 배포
 
-### Netlify / Vercel (권장)
+### AWS Amplify (CI/CD)
 
-1. GitHub 저장소와 연결
-2. 빌드 명령: `npm run build`
-3. 출력 디렉토리: `dist`
-4. 자동 배포 활성화
+`master` 브랜치에 push하면 자동으로 빌드 및 배포됩니다.
 
-### 수동 배포 (가비아 호스팅)
+| 항목 | 값 |
+|------|-----|
+| Amplify App ID | `d7qdyhs6yw351` |
+| 빌드 브랜치 | `master` |
+| 빌드 명령 | `npm ci` → `npm run build` |
+| 출력 디렉토리 | `dist` |
+| Amplify 도메인 | `d7qdyhs6yw351.amplifyapp.com` |
 
-1. `npm run build` 실행
-2. `dist/` 폴더의 모든 파일을 FTP로 업로드
+### 도메인 구성
+
+| 도메인 | 설명 |
+|--------|------|
+| `jndsoft.co.kr` | 루트 도메인 (→ www 리다이렉트) |
+| `www.jndsoft.co.kr` | 메인 서비스 도메인 |
+
+### AWS 인프라 구성
+
+| 서비스 | 리소스 | 용도 |
+|--------|--------|------|
+| **Amplify** | `d7qdyhs6yw351` | CI/CD + 호스팅 |
+| **CloudFront** | `dg7wafkaujk4q.cloudfront.net` | CDN (Amplify 관리형) |
+| **Route53** | Hosted Zone `Z08148612VEYGM375O3K3` | DNS 관리 |
+| **GitHub** | `jnd-junho/jndsoft-homepage` | 소스 코드 저장소 |
 
 ## 📝 라이선스
 
-Copyright © 2024 JnDSOFT Inc. All Rights Reserved.
+Copyright © 2025 JnDSOFT Inc. All Rights Reserved.
 
 ## 📧 문의
 
