@@ -7,7 +7,6 @@ const projects: ProjectCard[] = [
     title: '금융그룹 ESG 시스템',
     description: 'ESG 데이터 관리 및 분석 시스템 구축. 지속 가능한 경영을 위한 종합 관리 플랫폼을 개발했습니다.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
-    techStack: ['Java', 'Spring', 'Oracle', 'React'],
     category: '금융'
   },
   {
@@ -15,7 +14,6 @@ const projects: ProjectCard[] = [
     title: '중공업 LCA 시스템',
     description: '전과정평가(Life Cycle Assessment) 시스템 개발. 제품의 전 생애주기에 걸친 환경 영향을 평가합니다.',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop',
-    techStack: ['Python', 'Django', 'PostgreSQL', 'Vue'],
     category: '중공업'
   },
   {
@@ -23,7 +21,6 @@ const projects: ProjectCard[] = [
     title: '화학기업 ESG 시스템',
     description: '탄소 배출 모니터링 및 관리 시스템. 실시간 데이터 수집과 분석으로 효율적인 탄소 관리를 지원합니다.',
     image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format&fit=crop',
-    techStack: ['React', 'Node.js', 'MongoDB', 'TypeScript'],
     category: '화학'
   },
   {
@@ -31,7 +28,6 @@ const projects: ProjectCard[] = [
     title: '대기업 이커머스몰',
     description: '대규모 쇼핑몰 운영 및 고도화. 수백만 사용자를 위한 안정적이고 확장 가능한 플랫폼을 구축했습니다.',
     image: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&auto=format&fit=crop',
-    techStack: ['Vue', 'Nuxt', 'MySQL', 'Redis'],
     category: '이커머스'
   }
 ]
@@ -90,17 +86,6 @@ const projects: ProjectCard[] = [
             <p class="text-gray-600 mb-4 leading-relaxed">
               {{ project.description }}
             </p>
-            
-            <!-- Tech Stack -->
-            <div class="flex flex-wrap gap-2">
-              <span
-                v-for="tech in project.techStack"
-                :key="tech"
-                class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-              >
-                {{ tech }}
-              </span>
-            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,6 @@ export interface ProjectCard {
   title: string
   description: string
   image: string
-  techStack: string[]
   category: string
 }
 

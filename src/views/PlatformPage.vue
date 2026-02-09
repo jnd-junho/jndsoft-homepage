@@ -19,7 +19,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
         :initial="{ opacity: 0, y: 30 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tight">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-green-200">
           확장형 BackOffice 플랫폼
         </h1>
         <p class="text-xl sm:text-2xl mb-4 font-light opacity-95">
@@ -184,7 +184,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-gray-800 to-gray-900 text-white text-center">
+    <section class="py-20 bg-gradient-to-br from-primary to-[#15b862] text-white text-center">
       <div
         class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
         v-motion
