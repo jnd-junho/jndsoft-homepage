@@ -77,7 +77,7 @@ const currentYear = new Date().getFullYear()
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p>© {{ currentYear }} JnDSOFT Inc. All Rights Reserved</p>
           <p class="text-xs">
-            사업자등록번호: [등록번호]
+            사업자등록번호: 757-88-02437
           </p>
         </div>
       </div>

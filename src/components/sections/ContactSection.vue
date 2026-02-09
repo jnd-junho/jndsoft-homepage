@@ -62,7 +62,7 @@ import { MapPin, Mail } from 'lucide-vue-next'
         class="rounded-2xl overflow-hidden shadow-card"
       >
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.0701816395274!2d126.84976531531156!3d37.52997847980484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9c3e5b5f5555%3A0x5555555555555555!2z7ISc7Jq47Yq567OE7Iuc7IucIOqwleyEnOq1rCDslpHsspzroZwgNDI0!5e0!3m2!1sko!2skr!4v1650000000000!5m2!1sko!2skr"
+          src="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B0%95%EC%84%9C%EA%B5%AC+%EC%96%91%EC%B2%9C%EB%A1%9C+424+%EB%8D%B0%EC%8B%9C%EC%95%99%ED%94%8C%EB%A0%89%EC%8A%A4+%EC%A7%80%EC%8B%9D%EC%82%B0%EC%97%85%EC%84%BC%ED%84%B0&output=embed"
           width="100%"
           height="450"
           style="border:0;"

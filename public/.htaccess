@@ -1,0 +1,30 @@
+# MIME 타입 강제 설정 (3중 방어)
+<IfModule mod_mime.c>
+  RemoveType .js
+  AddType application/javascript .js .mjs
+  AddType text/css .css
+</IfModule>
+
+<FilesMatch "\.js$">
+  ForceType application/javascript
+</FilesMatch>
+
+<FilesMatch "\.css$">
+  ForceType text/css
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.js$">
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+</IfModule>
+
+# SPA Fallback - 모든 경로를 index.html로
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
