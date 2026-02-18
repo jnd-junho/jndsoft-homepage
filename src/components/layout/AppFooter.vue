@@ -63,6 +63,13 @@ const currentYear = new Date().getFullYear()
               Projects
             </a>
             <a
+              href="https://jndsoft-dev.tistory.com"
+              target="_blank"
+              class="block text-sm text-gray-400 hover:text-primary transition-colors"
+            >
+              Tech Blog
+            </a>
+            <a
               href="#contact"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >

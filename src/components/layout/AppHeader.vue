@@ -20,6 +20,7 @@ const navItems = [
   { id: 'competitiveness', label: '경쟁력', labelEn: 'Competitiveness', href: '#competitiveness' },
   { id: 'culture', label: '조직문화', labelEn: 'Culture', href: '#culture' },
   { id: 'journey', label: '연혁', labelEn: 'Journey', href: '#journey' },
+  { id: 'blog', label: '기술블로그', labelEn: 'Tech Blog', href: 'https://jndsoft-dev.tistory.com', external: true },
   { id: 'contact', label: '문의하기', labelEn: 'Contact', href: '#contact' }
 ]
 
@@ -47,6 +48,13 @@ const handleScroll = () => {
 const smoothScroll = async (e: Event, href: string) => {
   e.preventDefault()
   
+  // Handle external links
+  if (href.startsWith('http')) {
+    window.open(href, '_blank')
+    isMobileMenuOpen.value = false
+    return
+  }
+
   // Handle absolute paths (like /platform)
   if (href.startsWith('/')) {
     isMobileMenuOpen.value = false
