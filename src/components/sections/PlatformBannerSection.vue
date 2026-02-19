@@ -24,7 +24,7 @@ const highlights = [
 </script>
 
 <template>
-  <section class="py-16 md:py-24 bg-gradient-to-br from-primary to-[#15b862] relative overflow-hidden">
+  <section class="py-16 md:py-24 bg-linear-to-br from-primary to-[#15b862] relative overflow-hidden">
     <!-- Background Decoration -->
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -translate-y-1/2 translate-x-1/2" />

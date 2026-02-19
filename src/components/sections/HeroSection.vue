@@ -44,7 +44,7 @@ onUnmounted(() => {
           class="w-full h-full object-cover"
         />
       </div>
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/80 to-gray-900/70" />
+      <div class="absolute inset-0 bg-linear-to-br from-gray-900/90 via-gray-900/80 to-gray-900/70" />
     </div>
     
     <!-- Content -->

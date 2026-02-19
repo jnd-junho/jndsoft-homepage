@@ -88,7 +88,7 @@ const getIconComponent = (iconName: string) => {
               class="relative flex gap-6 md:gap-8"
             >
               <!-- Icon -->
-              <div class="flex-shrink-0">
+              <div class="shrink-0">
                 <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white shadow-lg relative z-10">
                   <component :is="getIconComponent(item.icon)" :size="28" :stroke-width="1.5" />
                 </div>

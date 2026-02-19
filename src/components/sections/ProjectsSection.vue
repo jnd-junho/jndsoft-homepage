@@ -68,7 +68,7 @@ const projects: ProjectCard[] = [
               :alt="project.title"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
+            <div class="absolute inset-0 bg-linear-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
             
             <!-- Category Badge -->
             <div class="absolute top-4 right-4">

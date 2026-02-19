@@ -5,7 +5,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
 <template>
   <main>
     <!-- Hero Section -->
-    <section class="relative py-32 bg-gradient-to-br from-primary to-[#15b862] overflow-hidden">
+    <section class="relative py-32 bg-linear-to-br from-primary to-[#15b862] overflow-hidden">
       <!-- Wave Animation -->
       <div class="absolute inset-0 opacity-10">
         <svg class="absolute bottom-0 w-full h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -19,7 +19,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
         :initial="{ opacity: 0, y: 30 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-green-200">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tight bg-clip-text text-transparent bg-linear-to-r from-white to-green-200">
           확장형 BackOffice 플랫폼
         </h1>
         <p class="text-xl sm:text-2xl mb-4 font-light opacity-95">
@@ -129,7 +129,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
             :visible-once="{ opacity: 1, x: 0, transition: { duration: 600, delay: index * 100 } }"
             class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border-l-4 border-primary"
           >
-            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <div class="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
               <component :is="benefit.icon" :size="24" :stroke-width="1.5" />
             </div>
             <div>
@@ -184,7 +184,7 @@ import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Awa
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-primary to-[#15b862] text-white text-center">
+    <section class="py-20 bg-linear-to-br from-primary to-[#15b862] text-white text-center">
       <div
         class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
         v-motion

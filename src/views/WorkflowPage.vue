@@ -5,7 +5,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
 <template>
   <main>
     <!-- Hero Section -->
-    <section class="relative py-32 bg-gradient-to-br from-blue-600 to-blue-800 overflow-hidden">
+    <section class="relative py-32 bg-linear-to-br from-blue-600 to-blue-800 overflow-hidden">
       <!-- Wave Animation -->
       <div class="absolute inset-0 opacity-10">
         <svg class="absolute bottom-0 w-full h-32 animate-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -19,7 +19,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
         :initial="{ opacity: 0, y: 30 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-4 tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-4 tracking-wider bg-clip-text text-transparent bg-linear-to-r from-white to-blue-200">
           AWOP
         </h1>
         <p class="text-xl sm:text-2xl mb-6 font-light tracking-wide text-blue-100">A Wave Of Process</p>
@@ -43,7 +43,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
           <span class="inline-block px-6 py-2 bg-blue-600 text-white rounded-full font-semibold mb-8">
             Coming Soon
           </span>
-          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-6">파도가 밀려옵니다</h2>
+          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500 mb-6">파도가 밀려옵니다</h2>
           <p class="text-xl text-gray-700 mb-4">
             업무의 물결을 타고 더 높이 날아오를<br />
             혁신적인 워크플로우 자동화 플랫폼을 준비하고 있습니다.
@@ -77,7 +77,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
           :initial="{ opacity: 0, y: 30 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
         >
-          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-4">Why Wave?</h2>
+          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500 mb-4">Why Wave?</h2>
           <p class="text-lg text-gray-600">왜 물결인가요?</p>
         </div>
 
@@ -107,7 +107,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
           :initial="{ opacity: 0, y: 30 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
         >
-          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-4">Ride the Wave</h2>
+          <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500 mb-4">Ride the Wave</h2>
           <p class="text-lg text-gray-600">파도를 타듯 쉽고 강력하게</p>
         </div>
 
@@ -133,7 +133,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
           :initial="{ opacity: 0, y: 20 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
         >
-          <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-8">Create Your Success Wave</h3>
+          <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500 mb-8">Create Your Success Wave</h3>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div v-for="stat in stats" :key="stat.id">
               <div class="text-4xl sm:text-5xl font-black text-blue-600 mb-2">{{ stat.value }}</div>
@@ -161,7 +161,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
             <p class="text-lg text-gray-700 mb-6">{{ target.subtitle }}</p>
             <ul class="text-left space-y-3">
               <li v-for="(item, i) in target.features" :key="i" class="flex items-start gap-2 text-gray-600">
-                <span class="text-blue-600 flex-shrink-0">{{ target.emoji }}</span>
+                <span class="text-blue-600 shrink-0">{{ target.emoji }}</span>
                 <span>{{ item }}</span>
               </li>
             </ul>
@@ -175,7 +175,7 @@ import { Waves, Palette, Zap, Plug, TrendingUp, Shield, Cloud, Code, Briefcase, 
           :initial="{ opacity: 0, y: 30 }"
           :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
         >
-          <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-4">지금 바로 워크플로우의 물결을 시작하세요</h2>
+          <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-cyan-500 mb-4">지금 바로 워크플로우의 물결을 시작하세요</h2>
           <p class="text-xl text-gray-700 mb-8">복잡한 업무 프로세스를 자연스러운 흐름으로 바꿔보세요</p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <a href="#" class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700 transition-all">

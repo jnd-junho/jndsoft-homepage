@@ -22,14 +22,14 @@ const currentYear = new Date().getFullYear()
           <h4 class="text-lg font-semibold mb-4">Contact</h4>
           <div class="space-y-3">
             <div class="flex items-start gap-3 text-sm text-gray-400">
-              <MapPin :size="20" class="flex-shrink-0 mt-0.5" />
+              <MapPin :size="20" class="shrink-0 mt-0.5" />
               <div>
                 <p>서울특별시 강서구 양천로 424 (등촌동)</p>
                 <p>데시앙플렉스 지식산업센터 630호</p>
               </div>
             </div>
             <div class="flex items-center gap-3 text-sm text-gray-400">
-              <Mail :size="20" class="flex-shrink-0" />
+              <Mail :size="20" class="shrink-0" />
               <a
                 href="mailto:business@jndsoft.co.kr"
                 class="hover:text-primary transition-colors"

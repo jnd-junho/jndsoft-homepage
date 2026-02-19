@@ -120,7 +120,7 @@ const getIconComponent = (iconName: string) => {
             :alt="image.title"
             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
+          <div class="absolute inset-0 bg-linear-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
             <div class="text-center text-white">
               <h5 class="text-xl font-semibold mb-2">{{ image.title }}</h5>
               <p class="text-sm text-gray-200">{{ image.description }}</p>
