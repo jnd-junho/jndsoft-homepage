@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Boxes, Bot, Globe, ArrowRight } from 'lucide-vue-next'
+import { Boxes, Bot, Globe } from 'lucide-vue-next'
 
 const highlights = [
   {
