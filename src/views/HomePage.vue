@@ -2,7 +2,6 @@
 import { onMounted } from 'vue'
 import HeroSection from '../components/sections/HeroSection.vue'
 import ServicesSection from '../components/sections/ServicesSection.vue'
-import PlatformBannerSection from '../components/sections/PlatformBannerSection.vue'
 import ProjectsSection from '../components/sections/ProjectsSection.vue'
 import CompetitivenessSection from '../components/sections/CompetitivenessSection.vue'
 import CultureSection from '../components/sections/CultureSection.vue'
@@ -18,7 +17,6 @@ onMounted(() => {
   <main>
     <HeroSection />
     <ServicesSection />
-    <PlatformBannerSection />
     <ProjectsSection />
     <CompetitivenessSection />
     <CultureSection />

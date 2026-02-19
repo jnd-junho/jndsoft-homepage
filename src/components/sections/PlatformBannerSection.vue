@@ -46,13 +46,11 @@ const highlights = [
             SI 프로젝트부터 스타트업 MVP까지, 모든 서비스의 공통 기반.<br class="hidden sm:block" />
             검증된 컴포넌트와 AI 품질 검증으로 개발 생산성을 극대화합니다.
           </p>
-          <router-link
-            to="/platform"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg"
+          <span
+            class="inline-flex items-center gap-2 px-8 py-4 bg-white/60 text-primary/70 rounded-lg font-semibold shadow-lg cursor-default"
           >
-            플랫폼 자세히 보기
-            <ArrowRight :size="20" />
-          </router-link>
+            준비중
+          </span>
         </div>
 
         <!-- Key Highlights -->

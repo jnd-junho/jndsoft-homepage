@@ -26,8 +26,7 @@ const services: ServiceCard[] = [
     title: 'AWOP Platform',
     icon: 'Bot',
     description: 'BackOffice 플랫폼 & AI 워크플로우. 개발 생산성을 3배 향상시키는 AI 기반 플랫폼을 제공합니다.',
-    badge: '준비중',
-    link: '/workflow'
+    badge: '준비중'
   }
 ]
 

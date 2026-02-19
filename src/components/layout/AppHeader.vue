@@ -14,7 +14,6 @@ const hoveredItem = ref<string | null>(null)
 
 const navItems = [
   { id: 'hero', label: '홈', labelEn: 'Home', href: '#hero' },
-  { id: 'platform', label: '플랫폼', labelEn: 'Platform', href: '/platform' },
   { id: 'services', label: '서비스', labelEn: 'Services', href: '#services' },
   { id: 'projects', label: '프로젝트', labelEn: 'Projects', href: '#projects' },
   { id: 'competitiveness', label: '경쟁력', labelEn: 'Competitiveness', href: '#competitiveness' },
