@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Network, ChartBar, Rocket, Bot } from 'lucide-vue-next'
+import { Network, ChartBar, Rocket } from 'lucide-vue-next'
 import type { ServiceCard } from '@/types'
 
 const services: ServiceCard[] = [
@@ -21,17 +21,10 @@ const services: ServiceCard[] = [
     icon: 'Rocket',
     description: '빠른 MVP 개발 및 운영 대행. 스타트업의 아이디어를 빠르게 검증하고 시장에 진입할 수 있도록 지원합니다.'
   },
-  {
-    id: 'platform',
-    title: 'AWOP Platform',
-    icon: 'Bot',
-    description: 'BackOffice 플랫폼 & AI 워크플로우. 개발 생산성을 3배 향상시키는 AI 기반 플랫폼을 제공합니다.',
-    badge: '준비중'
-  }
 ]
 
 const getIconComponent = (iconName: string) => {
-  const icons = { Network, ChartBar, Rocket, Bot }
+  const icons = { Network, ChartBar, Rocket }
   return icons[iconName as keyof typeof icons]
 }
 </script>
