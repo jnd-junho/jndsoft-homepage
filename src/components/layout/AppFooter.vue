@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { Mail, MapPin } from 'lucide-vue-next'
 
 const currentYear = new Date().getFullYear()
@@ -69,23 +70,26 @@ const currentYear = new Date().getFullYear()
             >
               Tech Blog
             </a>
-            <a
-              href="#contact"
+            <RouterLink
+              to="/contact"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
               Contact
-            </a>
+            </RouterLink>
           </nav>
         </div>
       </div>
-      
+
       <!-- Bottom Bar -->
       <div class="mt-12 pt-8 border-t border-gray-800">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <p>© {{ currentYear }} JnDSOFT Inc. All Rights Reserved</p>
-          <p class="text-xs">
-            사업자등록번호: 757-88-02437
-          </p>
+          <div class="flex items-center gap-4 text-xs">
+            <RouterLink to="/privacy" class="hover:text-primary transition-colors">
+              개인정보 처리방침
+            </RouterLink>
+            <span>사업자등록번호: 757-88-02437</span>
+          </div>
         </div>
       </div>
     </div>

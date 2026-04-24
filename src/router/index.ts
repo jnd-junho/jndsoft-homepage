@@ -41,6 +41,38 @@ const router = createRouter({
         ogDescription: '복잡한 비즈니스 프로세스를 하나의 아름다운 흐름으로 만드는 차세대 워크플로우 자동화 플랫폼.',
         ogUrl: 'https://www.jndsoft.co.kr/workflow'
       }
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('../views/ContactView.vue'),
+      meta: {
+        title: '프로젝트 문의 | 제이앤디소프트',
+        description: 'SI, MVP, 웹앱, 홈페이지 등 프로젝트 문의를 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
+        keywords: '프로젝트 문의, 견적 요청, SI 의뢰, MVP 개발 문의, 제이앤디소프트',
+        ogTitle: '프로젝트 문의 | 제이앤디소프트',
+        ogDescription: 'SI, MVP, 웹앱, 홈페이지 등 프로젝트 문의를 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
+        ogUrl: 'https://www.jndsoft.co.kr/contact'
+      }
+    },
+    {
+      path: '/contact/thanks',
+      name: 'contact-thanks',
+      component: () => import('../views/ContactThanksView.vue'),
+      meta: {
+        title: '문의 접수 완료 | 제이앤디소프트',
+        description: '프로젝트 문의가 접수되었습니다.',
+        robots: 'noindex'
+      }
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import('../views/PrivacyView.vue'),
+      meta: {
+        title: '개인정보 처리방침 | 제이앤디소프트',
+        description: '제이앤디소프트의 개인정보 수집·이용 및 처리에 관한 방침입니다.'
+      }
     }
   ],
   scrollBehavior(to, _from, savedPosition) {
@@ -109,6 +141,9 @@ router.beforeEach((to, _from, next) => {
 
   // Always set og:type to website
   updateOgTag('og:type', 'website')
+
+  // robots (default: index,follow; noindex for thanks page)
+  updateMetaTag('robots', (to.meta.robots as string) || 'index,follow')
 
   next()
 })
