@@ -41,8 +41,15 @@ const crosUrl = 'https://www.cros.or.kr'
 </script>
 
 <template>
-  <section id="foundation" class="py-20 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="foundation" class="relative py-20 md:py-32 bg-white overflow-hidden">
+    <!-- Background Decoration -->
+    <div
+      class="absolute inset-0 opacity-[0.025] pointer-events-none"
+      style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+      aria-hidden="true"
+    />
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
         class="text-center mb-12 md:mb-16"
@@ -50,13 +57,18 @@ const crosUrl = 'https://www.cros.or.kr'
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Foundation
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            Foundation
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          말이 아닌,<br class="sm:hidden" />
+          <span class="text-primary">확인 가능한 자산</span>
         </h2>
-        <p class="text-lg text-gray-600 mb-6">
-          말이 아닌, 확인 가능한 자산
-        </p>
-        <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           저작권·산업 경험·기술 스택은 모두 검증 가능한 형태로 공개합니다.
         </p>
       </div>
@@ -64,103 +76,141 @@ const crosUrl = 'https://www.cros.or.kr'
       <!-- Three Pillars -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         <!-- Software Copyrights -->
-        <div
-          class="bg-gray-50 rounded-2xl p-6 md:p-8"
+        <article
+          class="foundation-card group relative bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600 } }"
         >
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <FileCheck2 :size="22" :stroke-width="1.75" />
+          <!-- Decorative background blob -->
+          <span
+            class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/[0.05] group-hover:bg-primary/[0.08] transition-colors duration-500"
+            aria-hidden="true"
+          />
+          <!-- Decorative top corner badge -->
+          <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <FileCheck2 :size="24" :stroke-width="1.75" />
+              </div>
+              <div>
+                <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 01</p>
+                <h3 class="text-xl font-bold text-gray-900">소프트웨어 저작권</h3>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900">소프트웨어 저작권</h3>
-          </div>
-          <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-            한국저작권위원회에 등록된 자체 보유 소프트웨어입니다.
-          </p>
-          <ul class="space-y-2.5 mb-5">
-            <li
-              v-for="item in copyrights"
-              :key="item.id"
-              class="bg-white rounded-lg p-3 border border-gray-200"
+            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+              한국저작권위원회에 등록된 자체 보유 소프트웨어입니다.
+            </p>
+            <ul class="space-y-2.5 mb-5">
+              <li
+                v-for="item in copyrights"
+                :key="item.id"
+                class="bg-white rounded-lg p-3 border border-gray-200 hover:border-primary/30 transition-colors"
+              >
+                <div class="text-xs font-mono text-primary mb-1 font-semibold">{{ item.number }}</div>
+                <div class="text-sm text-gray-800 leading-snug">{{ item.title }}</div>
+              </li>
+            </ul>
+            <a
+              :href="crosUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group/link inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-semibold transition-colors"
             >
-              <div class="text-xs font-mono text-primary mb-1">{{ item.number }}</div>
-              <div class="text-sm text-gray-800 leading-snug">{{ item.title }}</div>
-            </li>
-          </ul>
-          <a
-            :href="crosUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
-          >
-            CROS 공식 검색에서 검증
-            <ExternalLink :size="14" :stroke-width="2" />
-          </a>
-        </div>
+              CROS 공식 검색에서 검증
+              <ExternalLink :size="14" :stroke-width="2" class="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            </a>
+          </div>
+        </article>
 
         <!-- Industries -->
-        <div
-          class="bg-gray-50 rounded-2xl p-6 md:p-8"
+        <article
+          class="foundation-card group relative bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 120 } }"
         >
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <Layers :size="22" :stroke-width="1.75" />
+          <span
+            class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/[0.05] group-hover:bg-primary/[0.08] transition-colors duration-500"
+            aria-hidden="true"
+          />
+          <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <Layers :size="24" :stroke-width="1.75" />
+              </div>
+              <div>
+                <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 02</p>
+                <h3 class="text-xl font-bold text-gray-900">산업 도메인</h3>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900">산업 도메인</h3>
+            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+              실제 수행한 다양한 산업의 비즈니스 흐름을 학습했습니다.
+            </p>
+            <ul class="space-y-2.5">
+              <li
+                v-for="ind in industries"
+                :key="ind.id"
+                class="bg-white rounded-lg p-3 border border-gray-200 hover:border-primary/30 transition-colors"
+              >
+                <div class="text-sm font-semibold text-gray-900 mb-0.5">{{ ind.name }}</div>
+                <div class="text-xs text-gray-600 leading-snug">{{ ind.description }}</div>
+              </li>
+            </ul>
           </div>
-          <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-            실제 수행한 4개 산업의 비즈니스 흐름을 학습했습니다.
-          </p>
-          <ul class="space-y-2.5">
-            <li
-              v-for="ind in industries"
-              :key="ind.id"
-              class="bg-white rounded-lg p-3 border border-gray-200"
-            >
-              <div class="text-sm font-semibold text-gray-900 mb-0.5">{{ ind.name }}</div>
-              <div class="text-xs text-gray-600 leading-snug">{{ ind.description }}</div>
-            </li>
-          </ul>
-        </div>
+        </article>
 
         <!-- Tech Stack -->
-        <div
-          class="bg-gray-50 rounded-2xl p-6 md:p-8"
+        <article
+          class="foundation-card group relative bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 240 } }"
         >
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <Cpu :size="22" :stroke-width="1.75" />
-            </div>
-            <h3 class="text-xl font-bold text-gray-900">기술 스택</h3>
-          </div>
-          <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-            안정성이 검증된 스택만 사용. 새 기술은 사전 검토 후 도입합니다.
-          </p>
-          <div class="space-y-4">
-            <div v-for="cat in techStack" :key="cat.id">
-              <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                {{ cat.category }}
+          <span
+            class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/[0.05] group-hover:bg-primary/[0.08] transition-colors duration-500"
+            aria-hidden="true"
+          />
+          <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <Cpu :size="24" :stroke-width="1.75" />
               </div>
-              <div class="flex flex-wrap gap-1.5">
-                <span
-                  v-for="item in cat.items"
-                  :key="item"
-                  class="inline-block px-2.5 py-1 text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-md"
-                >
-                  {{ item }}
-                </span>
+              <div>
+                <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 03</p>
+                <h3 class="text-xl font-bold text-gray-900">기술 스택</h3>
               </div>
             </div>
+            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+              안정성이 검증된 스택만 사용. 새 기술은 사전 검토 후 도입합니다.
+            </p>
+            <div class="space-y-4">
+              <div v-for="cat in techStack" :key="cat.id">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="w-1 h-3 rounded-full bg-primary/60" aria-hidden="true" />
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    {{ cat.category }}
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span
+                    v-for="item in cat.items"
+                    :key="item"
+                    class="inline-block px-2.5 py-1 text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-md hover:border-primary/40 hover:text-primary transition-colors"
+                  >
+                    {{ item }}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
 
       <!-- Bottom Note -->
@@ -177,3 +227,9 @@ const crosUrl = 'https://www.cros.or.kr'
     </div>
   </section>
 </template>
+
+<style scoped>
+.foundation-card {
+  will-change: transform, box-shadow;
+}
+</style>

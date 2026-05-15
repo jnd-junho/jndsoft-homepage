@@ -107,11 +107,20 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- Hero -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-gray-50 py-16 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.25em] mb-4">
-          BackOffice Starter Kit
-        </p>
+    <section class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            BackOffice Starter Kit
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight">
           BackOffice 시스템의 <span class="text-primary">UI 공통 기반</span>
         </h1>
@@ -126,17 +135,17 @@ const differentiators = [
             :href="demoUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg"
+            class="group inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
           >
             데모 사이트 열기
-            <ExternalLink :size="18" />
+            <ExternalLink :size="18" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
           <RouterLink
             to="/contact"
-            class="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary transition-all duration-300"
+            class="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
           >
             우리 프로젝트에 적용 문의
-            <ArrowRight :size="18" />
+            <ArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
           </RouterLink>
         </div>
       </div>
@@ -145,11 +154,23 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- 데모 사이트 미리보기 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-white py-20 md:py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative bg-white py-20 md:py-24 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-            직접 보고 판단하세요
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Live Demo
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            직접 보고 <span class="text-primary">판단하세요</span>
           </h2>
           <p class="text-base text-gray-600">
             실제 동작하는 데모입니다. 클릭하며 체험해보실 수 있습니다.
@@ -159,8 +180,9 @@ const differentiators = [
         <!-- iframe (showIframe=true 시) -->
         <div
           v-if="showIframe"
-          class="rounded-2xl overflow-hidden border border-gray-200 shadow-card"
+          class="relative rounded-2xl overflow-hidden border border-gray-200 shadow-card"
         >
+          <span class="absolute top-0 left-0 w-20 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl z-10" aria-hidden="true" />
           <iframe
             :src="demoUrl"
             class="w-full h-[600px] md:h-[700px] bg-white"
@@ -173,10 +195,12 @@ const differentiators = [
         <!-- Fallback: 스크린샷 placeholder + 외부 링크 -->
         <div
           v-else
-          class="rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 p-8 md:p-12 text-center"
+          class="relative rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 p-8 md:p-12 text-center overflow-hidden"
         >
-          <div class="max-w-md mx-auto">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+          <span class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-primary/[0.05]" aria-hidden="true" />
+          <span class="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-primary/[0.04]" aria-hidden="true" />
+          <div class="relative max-w-md mx-auto">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-sm">
               <LayoutDashboard :size="32" :stroke-width="1.5" />
             </div>
             <p class="text-base font-semibold text-gray-900 mb-2">
@@ -194,10 +218,10 @@ const differentiators = [
               :href="demoUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              class="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:shadow-md hover:shadow-primary/30 transition-all"
             >
               새 창에서 데모 열기
-              <ExternalLink :size="16" />
+              <ExternalLink :size="16" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </div>
@@ -207,11 +231,23 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- 제공 모듈 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-gray-50 py-20 md:py-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-            제공 모듈
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Modules
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            <span class="text-primary">제공</span> 모듈
           </h2>
           <p class="text-base text-gray-600 max-w-2xl mx-auto">
             대부분의 백오피스에 공통으로 필요한 화면을 검증된 형태로 제공합니다.
@@ -219,22 +255,32 @@ const differentiators = [
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div
-            v-for="m in modules"
+          <article
+            v-for="(m, idx) in modules"
             :key="m.id"
-            class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-sm transition-all"
+            class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <component :is="m.icon" :size="22" :stroke-width="1.75" />
+            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+            <span
+              class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+              aria-hidden="true"
+            >
+              {{ String(idx + 1).padStart(2, '0') }}
+            </span>
+            <div class="relative">
+              <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <component :is="m.icon" :size="22" :stroke-width="1.75" />
+              </div>
+              <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
             </div>
-            <h3 class="text-base font-semibold text-gray-900 mb-1.5">{{ m.title }}</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
-          </div>
+          </article>
         </div>
 
         <!-- 범위 명확화 (오해 방지) -->
-        <div class="max-w-3xl mx-auto mt-10 bg-white rounded-xl p-5 border border-gray-200">
-          <p class="text-sm text-gray-700 leading-relaxed">
+        <div class="relative max-w-3xl mx-auto mt-10 bg-white rounded-xl p-5 border border-gray-200 overflow-hidden">
+          <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-400 to-gray-200" aria-hidden="true" />
+          <p class="relative text-sm text-gray-700 leading-relaxed">
             <span class="font-semibold text-gray-900">제공 범위에 대해</span> ·
             이 자산은 백오피스 UI의 공통 기반을 제공합니다.
             권한 관리·감사 로그·배치 시스템 등 기능적 모듈은 프로젝트 요구사항에 맞춰 별도로 구현합니다.
@@ -246,11 +292,23 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- 차별점 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-white py-20 md:py-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-            왜 검증된 공통 기반인가
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Differentiators
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            왜 검증된 <span class="text-primary">공통 기반</span>인가
           </h2>
           <p class="text-base text-gray-600">
             처음부터 만들지 않아도 되는 부분과, 처음부터 다듬어 둔 부분.
@@ -258,17 +316,26 @@ const differentiators = [
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div
-            v-for="d in differentiators"
+          <article
+            v-for="(d, idx) in differentiators"
             :key="d.id"
-            class="text-center p-6"
+            class="diff-card group relative bg-gray-50 rounded-xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center overflow-hidden"
           >
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
-              <component :is="d.icon" :size="28" :stroke-width="1.5" />
+            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+            <span
+              class="absolute -bottom-3 -right-1 text-5xl font-black text-gray-200/60 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+              aria-hidden="true"
+            >
+              0{{ idx + 1 }}
+            </span>
+            <div class="relative">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <component :is="d.icon" :size="28" :stroke-width="1.5" />
+              </div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">{{ d.title }}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ d.description }}</p>
             </div>
-            <h3 class="text-base font-semibold text-gray-900 mb-2">{{ d.title }}</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">{{ d.description }}</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -276,11 +343,23 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- 사용 시나리오 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-gray-50 py-20 md:py-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-            어떤 프로젝트에 적합한가
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Use Cases
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            어떤 프로젝트에 <span class="text-primary">적합한가</span>
           </h2>
           <p class="text-base text-gray-600">
             아래 유형의 프로젝트라면 즉시 출발할 수 있습니다.
@@ -288,17 +367,26 @@ const differentiators = [
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          <div
-            v-for="c in useCases"
+          <article
+            v-for="(c, idx) in useCases"
             :key="c.id"
-            class="bg-white rounded-xl p-6 border border-gray-200"
+            class="usecase-card group relative bg-white rounded-xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <div class="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-              <component :is="c.icon" :size="22" :stroke-width="1.75" />
+            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+            <span
+              class="absolute -bottom-3 -right-1 text-5xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+              aria-hidden="true"
+            >
+              0{{ idx + 1 }}
+            </span>
+            <div class="relative">
+              <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <component :is="c.icon" :size="22" :stroke-width="1.75" />
+              </div>
+              <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ c.title }}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ c.description }}</p>
             </div>
-            <h3 class="text-base font-semibold text-gray-900 mb-1.5">{{ c.title }}</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">{{ c.description }}</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -306,10 +394,15 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- CTA -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-white py-20 md:py-24">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-          이 공통 기반 위에<br class="sm:hidden" />
+    <section class="relative bg-white py-20 md:py-24 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+          이 <span class="text-primary">공통 기반</span> 위에<br class="sm:hidden" />
           당신의 비즈니스 로직을 얹어드립니다
         </h2>
         <p class="text-base text-gray-600 mb-8">
@@ -317,12 +410,20 @@ const differentiators = [
         </p>
         <RouterLink
           to="/contact"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg"
+          class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
         >
           프로젝트 문의
-          <ArrowRight :size="20" />
+          <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
     </section>
   </main>
 </template>
+
+<style scoped>
+.module-card,
+.diff-card,
+.usecase-card {
+  will-change: transform, box-shadow;
+}
+</style>

@@ -74,8 +74,15 @@ const setActive = (id: string) => {
 </script>
 
 <template>
-  <section id="pipeline" class="py-20 md:py-32 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="pipeline" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
+    <!-- Background Decoration -->
+    <div
+      class="absolute inset-0 opacity-[0.03] pointer-events-none"
+      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+      aria-hidden="true"
+    />
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
         class="text-center mb-12 md:mb-16"
@@ -83,16 +90,17 @@ const setActive = (id: string) => {
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          How We Work
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            How We Work
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          비즈니스 로직에 집중하는 <span class="text-primary">팀</span>
         </h2>
-        <p class="text-lg text-gray-600 mb-6">
-          무거운 방법론 대신, 짧은 합의 사이클로
-        </p>
-        <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-          비즈니스 로직에 집중하는 팀
-        </h3>
-        <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
           매번 처음부터 만들지 않습니다.<br class="hidden sm:block" />
           검증된 공통 기반 위에 당신의 비즈니스를 빠르게 얹습니다.
         </p>
@@ -100,36 +108,45 @@ const setActive = (id: string) => {
 
       <!-- Pipeline Diagram -->
       <div
-        class="bg-white rounded-2xl p-6 md:p-10 lg:p-12 shadow-card"
+        class="relative bg-white rounded-2xl p-6 md:p-10 lg:p-12 shadow-card"
         v-motion
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600, delay: 200 } }"
       >
         <!-- Customer Sync Line (Desktop) -->
-        <div class="hidden lg:block mb-4">
-          <div class="flex items-center justify-between px-6 mb-2">
-            <span class="text-xs font-medium text-primary uppercase tracking-widest">
-              Customer Sync
-            </span>
-            <span class="text-xs text-gray-500">
+        <div class="hidden lg:block mb-6">
+          <div class="flex items-center justify-between px-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span class="text-xs font-semibold text-primary uppercase tracking-widest">
+                Customer Sync
+              </span>
+            </div>
+            <span class="text-xs text-gray-500 italic">
               미팅 → 정리·재구성 → 재공유 사이클
             </span>
           </div>
-          <div class="relative h-6">
-            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 6" preserveAspectRatio="none">
+          <div class="relative h-8">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 8" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="sync-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.3" />
+                  <stop offset="50%" stop-color="#10b981" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0.3" />
+                </linearGradient>
+              </defs>
               <line
-                x1="0" y1="3" x2="100" y2="3"
-                stroke="currentColor"
-                class="text-primary/60"
+                x1="0" y1="4" x2="100" y2="4"
+                stroke="url(#sync-line-grad)"
                 stroke-width="0.3"
                 stroke-dasharray="1.2 1.2"
               />
             </svg>
-            <div class="absolute inset-0 flex justify-between items-center px-2">
+            <div class="absolute inset-0 flex justify-between items-center px-1">
               <span
                 v-for="i in 9"
                 :key="`dot-${i}`"
-                class="w-1.5 h-1.5 rounded-full bg-primary"
+                class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(16,185,129,0.5)]"
               />
             </div>
           </div>
@@ -150,29 +167,51 @@ const setActive = (id: string) => {
             >
               <button
                 type="button"
-                class="w-full text-left rounded-xl border-2 p-5 lg:p-6 transition-all duration-300 h-full"
+                class="stage-card group relative w-full text-left rounded-xl border-2 p-5 lg:p-6 transition-all duration-300 h-full overflow-hidden"
                 :class="activeStageId === stage.id
-                  ? 'border-primary bg-primary/5 shadow-md'
-                  : 'border-gray-200 bg-white hover:border-primary/40 hover:shadow-sm'"
+                  ? 'border-primary bg-gradient-to-br from-primary/5 to-white shadow-lg shadow-primary/10 -translate-y-1'
+                  : 'border-gray-200 bg-white hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5'"
                 :aria-expanded="activeStageId === stage.id"
                 :aria-controls="`stage-detail-${stage.id}`"
                 @click="setActive(stage.id)"
                 @mouseenter="setActive(stage.id)"
               >
-                <div class="flex items-start gap-3 mb-3">
-                  <span class="text-xs font-mono text-gray-400">{{ stage.index }}</span>
+                <!-- Top accent bar (active state) -->
+                <span
+                  class="absolute top-0 left-0 right-0 h-1 transition-all duration-300"
+                  :class="activeStageId === stage.id ? 'bg-gradient-to-r from-primary to-primary/40 opacity-100' : 'opacity-0'"
+                  aria-hidden="true"
+                />
+
+                <!-- Outline number (background decoration) -->
+                <span
+                  class="absolute -top-3 -right-2 text-6xl lg:text-7xl font-black leading-none select-none transition-colors duration-300"
+                  :class="activeStageId === stage.id ? 'text-primary/10' : 'text-gray-100 group-hover:text-gray-200'"
+                  aria-hidden="true"
+                >
+                  {{ stage.index }}
+                </span>
+
+                <div class="relative">
                   <div
-                    class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
-                    :class="activeStageId === stage.id ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'"
+                    class="w-11 h-11 rounded-lg flex items-center justify-center mb-4 transition-all duration-300"
+                    :class="activeStageId === stage.id
+                      ? 'bg-primary text-white shadow-md shadow-primary/30 scale-105'
+                      : 'bg-gray-100 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary'"
                   >
-                    <component :is="getIconComponent(stage.icon)" :size="20" :stroke-width="1.75" />
+                    <component :is="getIconComponent(stage.icon)" :size="22" :stroke-width="1.75" />
                   </div>
+                  <div class="flex items-baseline gap-2 mb-1.5">
+                    <h4
+                      class="text-lg font-bold transition-colors duration-300"
+                      :class="activeStageId === stage.id ? 'text-primary' : 'text-gray-900'"
+                    >
+                      {{ stage.title }}
+                    </h4>
+                    <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">{{ stage.titleEn }}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 leading-relaxed">{{ stage.headline }}</p>
                 </div>
-                <div class="flex items-baseline gap-2 mb-1">
-                  <h4 class="text-lg font-bold text-gray-900">{{ stage.title }}</h4>
-                  <span class="text-xs font-mono text-gray-400">{{ stage.titleEn }}</span>
-                </div>
-                <p class="text-sm text-gray-600 leading-relaxed">{{ stage.headline }}</p>
               </button>
 
               <!-- Arrow connector (Desktop only, between cards) -->
@@ -181,7 +220,7 @@ const setActive = (id: string) => {
                 class="hidden lg:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10 items-center justify-center w-8 h-8"
                 aria-hidden="true"
               >
-                <svg viewBox="0 0 16 16" class="w-4 h-4 text-gray-300" fill="currentColor">
+                <svg viewBox="0 0 16 16" class="w-5 h-5 text-gray-300" fill="currentColor">
                   <path d="M6 3l5 5-5 5V3z" />
                 </svg>
               </div>
@@ -211,26 +250,38 @@ const setActive = (id: string) => {
             <div
               v-show="activeStageId === stage.id"
               :id="`stage-detail-${stage.id}`"
-              class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start"
+              class="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start"
             >
-              <div class="md:col-span-1">
+              <!-- Detail Background outline number -->
+              <span
+                class="hidden md:block absolute -top-4 -left-2 text-[10rem] font-black text-primary/[0.06] leading-none select-none pointer-events-none"
+                aria-hidden="true"
+              >
+                {{ stage.index }}
+              </span>
+
+              <div class="relative md:col-span-1">
                 <div class="flex items-center gap-3 mb-3">
-                  <span class="text-xs font-mono text-primary">{{ stage.index }}</span>
-                  <div class="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center">
-                    <component :is="getIconComponent(stage.icon)" :size="18" :stroke-width="1.75" />
+                  <span class="text-xs font-mono text-primary font-semibold tracking-wider">{{ stage.index }}</span>
+                  <span class="h-px flex-1 bg-primary/30 max-w-12" />
+                  <div class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center shadow-md shadow-primary/20">
+                    <component :is="getIconComponent(stage.icon)" :size="20" :stroke-width="1.75" />
                   </div>
                 </div>
-                <h5 class="text-xl font-bold text-gray-900 mb-1">{{ stage.title }}</h5>
-                <p class="text-sm font-mono text-gray-400 mb-2">{{ stage.titleEn }}</p>
-                <p class="text-base text-gray-700 font-medium">{{ stage.headline }}</p>
+                <h5 class="text-2xl font-bold text-gray-900 mb-1">{{ stage.title }}</h5>
+                <p class="text-xs font-mono text-gray-400 mb-3 uppercase tracking-wider">{{ stage.titleEn }}</p>
+                <p class="text-base text-primary font-semibold">{{ stage.headline }}</p>
               </div>
-              <ul class="md:col-span-2 space-y-2.5">
+
+              <ul class="md:col-span-2 space-y-3">
                 <li
                   v-for="(point, pIdx) in stage.points"
                   :key="pIdx"
                   class="flex items-start gap-3 text-gray-700"
                 >
-                  <span class="inline-flex shrink-0 w-1.5 h-1.5 rounded-full bg-primary mt-2.5" />
+                  <span class="inline-flex shrink-0 items-center justify-center w-5 h-5 rounded-full bg-primary/10 mt-0.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary" />
+                  </span>
                   <span class="text-sm md:text-base leading-relaxed">{{ point }}</span>
                 </li>
               </ul>
@@ -258,12 +309,18 @@ const setActive = (id: string) => {
         <!-- Platform CTA -->
         <RouterLink
           to="/platform"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary transition-all"
+          class="group inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary hover:shadow-md transition-all"
         >
           개발 단계의 공통 기반 보러가기
-          <ArrowRight :size="16" />
+          <ArrowRight :size="16" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.stage-card {
+  will-change: transform, box-shadow;
+}
+</style>
