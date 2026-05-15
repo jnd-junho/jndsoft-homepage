@@ -5,21 +5,21 @@ import type { ServiceCard } from '@/types'
 const services: ServiceCard[] = [
   {
     id: 'si',
-    title: 'SI & System Integration',
+    title: '시스템 구축 · SI',
     icon: 'Network',
-    description: '기업 맞춤형 시스템 구축 및 통합. 다양한 시스템을 효율적으로 연결하여 업무 프로세스를 최적화합니다.'
+    description: '기업의 업무 흐름을 정리하고, 그에 맞는 시스템을 처음부터 끝까지 함께 만듭니다. 검증된 공통 기반 위에 비즈니스 로직을 빠르게 얹습니다.'
   },
   {
     id: 'consulting',
-    title: 'IT Consulting',
+    title: '기술 컨설팅 · DX',
     icon: 'ChartBar',
-    description: '비즈니스 분석 및 기술 전략 수립. 전문적인 컨설팅으로 성공적인 디지털 전환을 지원합니다.'
+    description: '기술 의사결정과 비즈니스 의사결정을 분리하지 않습니다. 아키텍처 진단, 전환 전략, 단계별 실행 계획까지 함께 설계합니다.'
   },
   {
     id: 'mvp',
-    title: 'Startup MVP 개발',
+    title: 'MVP · 신규 서비스',
     icon: 'Rocket',
-    description: '빠른 MVP 개발 및 운영 대행. 스타트업의 아이디어를 빠르게 검증하고 시장에 진입할 수 있도록 지원합니다.'
+    description: '아이디어를 작동하는 제품으로 옮기는 단계. 짧은 합의 사이클로 가설을 검증하면서 시장에 진입할 수 있는 형태를 함께 다듬습니다.'
   },
 ]
 
@@ -43,7 +43,7 @@ const getIconComponent = (iconName: string) => {
           Services
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          최적의 IT 솔루션으로 비즈니스 혁신을 지원합니다
+          비즈니스와 기술을 함께 다루는 세 가지 방식
         </p>
       </div>
       
