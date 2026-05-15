@@ -30,8 +30,8 @@ const getIconComponent = (iconName: string) => {
 </script>
 
 <template>
-  <section id="services" class="py-20 md:py-32 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="services" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
         class="text-center mb-16"
@@ -39,14 +39,21 @@ const getIconComponent = (iconName: string) => {
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Services
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            Services
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          함께 다루는 <span class="text-primary">세 가지</span> 방식
         </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          비즈니스와 기술을 함께 다루는 세 가지 방식
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          비즈니스와 기술을 분리하지 않고 한 흐름으로 다룹니다.
         </p>
       </div>
-      
+
       <!-- Services Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         <router-link
@@ -56,30 +63,42 @@ const getIconComponent = (iconName: string) => {
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
-          class="group bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-300 cursor-pointer block"
+          class="service-card group relative bg-white rounded-2xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 shadow-card hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer block overflow-hidden"
         >
-          <!-- Icon -->
-          <div class="mb-6 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-            <component :is="getIconComponent(service.icon)" :size="32" :stroke-width="1.5" />
+          <!-- Top accent bar -->
+          <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+          <!-- Index (background) -->
+          <span
+            class="absolute -bottom-4 -right-2 text-7xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+            aria-hidden="true"
+          >
+            0{{ index + 1 }}
+          </span>
+
+          <div class="relative">
+            <!-- Icon -->
+            <div class="mb-5 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+              <component :is="getIconComponent(service.icon)" :size="28" :stroke-width="1.5" />
+            </div>
+
+            <!-- Title with Badge -->
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                {{ service.title }}
+              </h3>
+              <span
+                v-if="service.badge"
+                class="px-2 py-0.5 text-xs font-medium bg-gray-200 text-gray-700 rounded-full"
+              >
+                {{ service.badge }}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+              {{ service.description }}
+            </p>
           </div>
-          
-          <!-- Title with Badge -->
-          <div class="flex items-center gap-2 mb-3">
-            <h3 class="text-xl font-semibold text-gray-900">
-              {{ service.title }}
-            </h3>
-            <span
-              v-if="service.badge"
-              class="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded-full"
-            >
-              {{ service.badge }}
-            </span>
-          </div>
-          
-          <!-- Description -->
-          <p class="text-gray-600 leading-relaxed">
-            {{ service.description }}
-          </p>
         </router-link>
       </div>
     </div>

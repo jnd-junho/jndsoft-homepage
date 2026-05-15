@@ -4,8 +4,15 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section id="contact" class="py-20 md:py-32 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="contact" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
+    <!-- Background Decoration -->
+    <div
+      class="absolute inset-0 opacity-[0.03] pointer-events-none"
+      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+      aria-hidden="true"
+    />
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
         class="text-center mb-16"
@@ -13,13 +20,18 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Contact
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            Contact
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          프로젝트는 <span class="text-primary">신뢰의 이음</span>에서<br class="hidden sm:block" />
+          시작됩니다
         </h2>
-        <p class="text-base md:text-lg text-gray-700 mb-2">
-          프로젝트는 <span class="font-semibold text-primary">신뢰의 이음</span>에서 시작됩니다.
-        </p>
-        <p class="text-sm md:text-base text-gray-500">
+        <p class="text-sm md:text-base text-gray-500 max-w-xl mx-auto">
           작은 미팅부터 시작하세요. 부담 없이 문의주세요.
         </p>
       </div>
