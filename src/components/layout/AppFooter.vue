@@ -13,8 +13,8 @@ const currentYear = new Date().getFullYear()
         <div>
           <h3 class="text-xl font-bold mb-4">제이앤디소프트</h3>
           <p class="text-gray-400 text-sm mb-4">
-            AI와 전문가가 함께하는<br />
-            비즈니스 성공 파트너
+            비즈니스와 기술의 이음.<br />
+            검증된 공통 기반 위에 빠르게.
           </p>
         </div>
         
@@ -45,27 +45,28 @@ const currentYear = new Date().getFullYear()
         <div>
           <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
           <nav class="space-y-2">
-            <a
-              href="#hero"
+            <RouterLink
+              to="/"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
               Home
-            </a>
-            <a
-              href="#services"
+            </RouterLink>
+            <RouterLink
+              to="/platform"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              Services
-            </a>
-            <a
-              href="#projects"
+              BackOffice 공통 기반
+            </RouterLink>
+            <RouterLink
+              to="/about"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              Projects
-            </a>
+              About
+            </RouterLink>
             <a
               href="https://jndsoft-dev.tistory.com"
               target="_blank"
+              rel="noopener noreferrer"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
               Tech Blog
