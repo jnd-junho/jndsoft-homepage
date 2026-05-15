@@ -49,3 +49,31 @@ export interface ProcessStep {
   description: string
   icon: string
 }
+
+export interface PipelineStage {
+  id: string
+  index: string
+  title: string
+  titleEn: string
+  headline: string
+  icon: string
+  points: string[]
+}
+
+export interface CopyrightItem {
+  id: string
+  number: string
+  title: string
+}
+
+export interface IndustryTag {
+  id: string
+  name: string
+  description: string
+}
+
+export interface TechCategory {
+  id: string
+  category: string
+  items: string[]
+}

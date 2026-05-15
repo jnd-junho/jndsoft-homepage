@@ -4,7 +4,7 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
 </script>
 
 <template>
-  <section id="contact" class="py-20 md:py-32 bg-white">
+  <section id="contact" class="py-20 md:py-32 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
@@ -16,8 +16,11 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
           Contact
         </h2>
-        <p class="text-lg text-gray-600">
-          프로젝트 문의는 언제든지 환영합니다
+        <p class="text-base md:text-lg text-gray-700 mb-2">
+          프로젝트는 <span class="font-semibold text-primary">신뢰의 이음</span>에서 시작됩니다.
+        </p>
+        <p class="text-sm md:text-base text-gray-500">
+          작은 미팅부터 시작하세요. 부담 없이 문의주세요.
         </p>
       </div>
 
@@ -65,7 +68,7 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
 
             <RouterLink
               to="/contact"
-              class="mt-auto inline-flex items-center justify-between gap-2 px-5 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-gray-50 transition-colors group"
+              class="mt-auto inline-flex items-center justify-between gap-2 px-5 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-gray-100 transition-colors group"
             >
               <span>문의하기</span>
               <ArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
