@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter, useRoute, RouterLink } from 'vue-router'
 import { Menu, X } from 'lucide-vue-next'
 
 const router = useRouter()
@@ -12,13 +12,15 @@ const activeSection = ref('hero')
 
 const hoveredItem = ref<string | null>(null)
 
+const isHomePage = computed(() => route.path === '/')
+const isSolidHeader = computed(() => isScrolled.value || !isHomePage.value)
+
 const navItems = [
   { id: 'hero', label: '홈', labelEn: 'Home', href: '#hero' },
   { id: 'services', label: '서비스', labelEn: 'Services', href: '#services' },
-  { id: 'projects', label: '프로젝트', labelEn: 'Projects', href: '#projects' },
-  { id: 'competitiveness', label: '경쟁력', labelEn: 'Competitiveness', href: '#competitiveness' },
-  { id: 'culture', label: '조직문화', labelEn: 'Culture', href: '#culture' },
-  { id: 'journey', label: '연혁', labelEn: 'Journey', href: '#journey' },
+  { id: 'pipeline', label: '일하는 방식', labelEn: 'How We Work', href: '#pipeline' },
+  { id: 'platform', label: '표준 자산', labelEn: 'Assets', href: '/platform' },
+  { id: 'about', label: '회사 소개', labelEn: 'About', href: '/about' },
   { id: 'blog', label: '기술블로그', labelEn: 'Tech Blog', href: 'https://jndsoft-dev.tistory.com', external: true },
   { id: 'contact', label: '문의하기', labelEn: 'Contact', href: '/contact' }
 ]
@@ -97,7 +99,7 @@ onUnmounted(() => {
   <header
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-      isScrolled
+      isSolidHeader
         ? 'bg-white/95 backdrop-blur-sm shadow-md'
         : 'bg-transparent'
     ]"
@@ -105,14 +107,13 @@ onUnmounted(() => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
-        <a
-          href="#hero"
+        <RouterLink
+          to="/"
           class="text-2xl font-bold"
-          :class="isScrolled ? 'text-gray-900' : 'text-white'"
-          @click="smoothScroll($event, '#hero')"
+          :class="isSolidHeader ? 'text-gray-900' : 'text-white'"
         >
           제이앤디소프트
-        </a>
+        </RouterLink>
         
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8">
@@ -123,10 +124,10 @@ onUnmounted(() => {
             :class="[
               'text-sm font-medium transition-all duration-300 relative min-w-[60px] text-center',
               activeSection === item.id
-                ? isScrolled
+                ? isSolidHeader
                   ? 'text-primary'
                   : 'text-white'
-                : isScrolled
+                : isSolidHeader
                   ? 'text-gray-600 hover:text-primary'
                   : 'text-white/80 hover:text-white'
             ]"
@@ -145,7 +146,7 @@ onUnmounted(() => {
         <!-- Mobile Menu Button -->
         <button
           class="lg:hidden p-2 rounded-lg transition-colors"
-          :class="isScrolled ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
+          :class="isSolidHeader ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <Menu v-if="!isMobileMenuOpen" :size="24" />

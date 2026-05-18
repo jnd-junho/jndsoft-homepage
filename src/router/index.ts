@@ -8,11 +8,11 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue'),
       meta: {
-        title: '제이앤디소프트 - SI, 컨설팅, MVP 개발 전문',
-        description: 'AI와 전문가가 함께하는 IT 파트너. SI 시스템 구축, IT 컨설팅, 스타트업 MVP 개발, AWOP 플랫폼 제공',
-        keywords: 'SI, 시스템통합, IT컨설팅, MVP개발, 스타트업, AWOP, AI워크플로우, 제이앤디소프트',
-        ogTitle: '제이앤디소프트 - SI, 컨설팅, MVP 개발 전문',
-        ogDescription: 'AI와 전문가가 함께하는 IT 파트너. SI 시스템 구축, IT 컨설팅, 스타트업 MVP 개발, AWOP 플랫폼 제공',
+        title: '제이앤디소프트 — 비즈니스와 기술의 이음',
+        description: '검증된 공통 기반 위에 비즈니스 로직을 빠르게. 시스템 구축·기술 컨설팅·MVP 개발을 함께 다룹니다.',
+        keywords: 'SI, 시스템통합, IT컨설팅, MVP개발, 스타트업, BackOffice, 공통 기반, 제이앤디소프트',
+        ogTitle: '제이앤디소프트 — 비즈니스와 기술의 이음',
+        ogDescription: '검증된 공통 기반 위에 비즈니스 로직을 빠르게. 시스템 구축·기술 컨설팅·MVP 개발을 함께 다룹니다.',
         ogUrl: 'https://www.jndsoft.co.kr/'
       }
     },
@@ -21,12 +21,25 @@ const router = createRouter({
       name: 'platform',
       component: () => import('../views/PlatformPage.vue'),
       meta: {
-        title: '확장형 BackOffice 플랫폼 - 제이앤디소프트',
-        description: '전문가의 경험과 AI 검증이 만드는 엔터프라이즈 품질의 BackOffice 플랫폼. 수백 개의 검증된 컴포넌트와 글로벌 표준 기술 적용.',
-        keywords: '백오피스, 어드민, 관리자페이지, SI, 프레임워크, 컴포넌트, AI검증, 제이앤디소프트',
-        ogTitle: '확장형 BackOffice 플랫폼 - 제이앤디소프트',
-        ogDescription: '전문가의 경험과 AI 검증이 만드는 엔터프라이즈 품질의 BackOffice 플랫폼.',
+        title: '표준 자산 | 제이앤디소프트',
+        description: '재사용 가능한 표준 프레임워크와 BackOffice UI 공통 기반. 비즈니스 로직만 더하면 됩니다.',
+        keywords: '표준 자산, 백오피스, 어드민, 관리자페이지, BackOffice, 공통 기반, UI 프레임워크, 디자인 시스템, 제이앤디소프트',
+        ogTitle: '표준 자산 | 제이앤디소프트',
+        ogDescription: '대시보드·목록·폼·계정 등 백오피스 공통 UI를 검증된 형태로 제공합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/platform'
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/AboutPage.vue'),
+      meta: {
+        title: '회사 소개 | 제이앤디소프트',
+        description: '대표 프로필, 회사 가치, 연혁. 검증된 공통 기반과 실무 경험으로 비즈니스와 기술을 잇는 회사입니다.',
+        keywords: '회사소개, 대표, 연혁, 조직문화, 제이앤디소프트',
+        ogTitle: '회사 소개 | 제이앤디소프트',
+        ogDescription: '대표 프로필, 회사 가치, 연혁.',
+        ogUrl: 'https://www.jndsoft.co.kr/about'
       }
     },
     {

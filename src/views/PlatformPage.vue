@@ -1,330 +1,746 @@
 <script setup lang="ts">
-import { Boxes, Globe, Bot, Zap, ShieldCheck, TrendingUp, Settings, Network, Award, Gauge, Database, ShoppingCart, Briefcase } from 'lucide-vue-next'
+import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import {
+  LayoutDashboard, Table2, FormInput, KeyRound, Menu as MenuIcon,
+  Palette, Smartphone, Accessibility,
+  ShieldCheck, ScrollText, Repeat,
+  Briefcase, BarChart3, Settings, ArrowRight, ExternalLink,
+  Target, Cog, Layers as LayersIcon, Server,
+  TrendingUp, Search, Moon
+} from 'lucide-vue-next'
+
+const demoUrl = 'https://adm.jndsoft.co.kr/demo/crawling'
+
+// 데모 사이트에서 직접 확인할 수 있는 UI 공통 기반 기능
+const demoHighlights = [
+  { icon: LayoutDashboard, title: '대시보드 화면', description: 'KPI 카드·차트·요약 영역 등 모니터링 화면 템플릿' },
+  { icon: Table2, title: '데이터 테이블', description: '검색·정렬·페이지네이션을 갖춘 표준 목록 화면' },
+  { icon: TrendingUp, title: '시계열·분포 차트', description: '추이·카테고리 분포 차트 등 시각화 컴포넌트' },
+  { icon: MenuIcon, title: '메뉴·네비게이션', description: '사이드바·헤더·브레드크럼 등 일관된 네비게이션' },
+  { icon: Search, title: '글로벌 검색 (⌘K)', description: '단축키 기반 즉시 검색창 호출' },
+  { icon: Moon, title: '다크모드 지원', description: '전체 화면 라이트·다크 테마 전환' }
+]
+
+// 제공 모듈 — RAW 레벨 기술 프레임워크 완성, 프로젝트별 추가는 비즈니스 로직뿐
+// A. UI 공통 기반 (6종) + B. 운영 기능 (3종)
+const uiModules = [
+  {
+    id: 'dashboard',
+    icon: LayoutDashboard,
+    title: '대시보드',
+    description: '주요 지표·차트·요약 카드 등 모니터링 화면 템플릿'
+  },
+  {
+    id: 'list',
+    icon: Table2,
+    title: 'CRUD 목록',
+    description: '검색·필터·정렬·페이지네이션을 갖춘 표준 목록 화면'
+  },
+  {
+    id: 'form',
+    icon: FormInput,
+    title: '입력 폼',
+    description: '검증·에러 표시·다단계 입력 등 폼 패턴 일관 적용'
+  },
+  {
+    id: 'account',
+    icon: KeyRound,
+    title: '계정·로그인',
+    description: '로그인·세션·비밀번호 변경 등 인증 UI 화면'
+  },
+  {
+    id: 'menu',
+    icon: MenuIcon,
+    title: '메뉴·네비게이션',
+    description: '사이드바·헤더·브레드크럼 등 일관된 네비게이션 구조'
+  },
+  {
+    id: 'theme',
+    icon: Palette,
+    title: '디자인 시스템',
+    description: '컬러·타이포·여백 토큰화로 시각 일관성 보장'
+  }
+]
+
+const opsModules = [
+  {
+    id: 'permission',
+    icon: ShieldCheck,
+    title: '권한 관리',
+    description: '역할·사용자별 접근 권한을 화면에서 직접 설정·운영'
+  },
+  {
+    id: 'audit',
+    icon: ScrollText,
+    title: '감사 로그',
+    description: '주요 동작·데이터 변경 이력을 자동 수집·조회'
+  },
+  {
+    id: 'batch',
+    icon: Repeat,
+    title: '배치 시스템',
+    description: '정기 작업의 등록·실행·결과 모니터링을 한 화면에서'
+  }
+]
+
+// 아키텍처 레이어 — 비즈니스 톤 (기술 약어·로고 제외)
+interface ArchitectureLayer {
+  id: string
+  icon: typeof Target
+  title: string
+  subtitle: string
+  description: string
+  items: string[]
+  status: 'add' | 'ready'
+  /** 이 레이어를 구성하는 보유 자산 (선택) */
+  asset?: {
+    name: string
+    number: string
+  }
+}
+
+const architectureLayers: ArchitectureLayer[] = [
+  {
+    id: 'business',
+    icon: Target,
+    title: '비즈니스 로직',
+    subtitle: 'Business Layer',
+    description: '프로젝트마다 다르게 정의되는 영역입니다.',
+    items: ['화면 흐름', '데이터 모델', '업무 규칙', '도메인 정책'],
+    status: 'add'
+  },
+  {
+    id: 'operation',
+    icon: Cog,
+    title: '운영 기능',
+    subtitle: 'Operation Layer',
+    description: '관리자가 화면에서 직접 운영할 수 있는 시스템 기능입니다.',
+    items: ['권한 관리', '감사 로그', '배치 시스템'],
+    status: 'ready'
+  },
+  {
+    id: 'ui',
+    icon: LayersIcon,
+    title: 'UI 공통 기반',
+    subtitle: 'User Interface Layer',
+    description: '대부분의 백오피스에서 공통으로 필요한 화면 자산입니다.',
+    items: ['대시보드', 'CRUD 목록', '입력 폼', '계정·로그인', '메뉴', '디자인 시스템'],
+    status: 'ready',
+    asset: { name: 'JND Front UI Platform', number: 'C-2026-022462' }
+  },
+  {
+    id: 'core',
+    icon: Server,
+    title: 'RAW 레벨 기술 프레임워크',
+    subtitle: 'Core Framework',
+    description: '인증·세션·로깅·트랜잭션 등 시스템 동작의 토대입니다.',
+    items: ['인증·세션', '로깅·모니터링', '트랜잭션·예외 처리', '인프라 연동'],
+    status: 'ready',
+    asset: { name: 'JND Core API Platform', number: 'C-2026-021220' }
+  }
+]
+
+const activeLayerId = ref<string>('business')
+const setActiveLayer = (id: string) => { activeLayerId.value = id }
+
+// 사용 시나리오 (어떤 프로젝트에 적합한가)
+const useCases = [
+  {
+    id: 'admin',
+    icon: Briefcase,
+    title: '내부 관리자 시스템',
+    description: '직원·운영자가 사용하는 백오피스. 빠른 화면 제공이 핵심인 경우.'
+  },
+  {
+    id: 'analytics',
+    icon: BarChart3,
+    title: '운영 대시보드',
+    description: '실시간 지표 모니터링·보고서 화면이 필요한 경우.'
+  },
+  {
+    id: 'internal',
+    icon: Settings,
+    title: '사내 업무 도구',
+    description: '특정 업무 흐름을 디지털화하는 사내 전용 시스템.'
+  }
+]
+
+// 차별점
+const differentiators = [
+  {
+    id: 'consistency',
+    icon: Palette,
+    title: '일관된 디자인 시스템',
+    description: '컬러·타이포·여백·컴포넌트가 토큰 기반으로 정의되어 화면 전반의 시각적 일관성을 유지합니다.'
+  },
+  {
+    id: 'responsive',
+    icon: Smartphone,
+    title: '반응형 대응',
+    description: '데스크탑·태블릿·모바일 모두 검토된 레이아웃. 별도 모바일 화면 작업 부담을 줄입니다.'
+  },
+  {
+    id: 'a11y',
+    icon: Accessibility,
+    title: '접근성 고려',
+    description: '키보드 네비게이션·시맨틱 마크업 등 기본 접근성 가이드를 반영한 컴포넌트 구조.'
+  }
+]
 </script>
 
 <template>
-  <main>
-    <!-- Hero Section -->
-    <section class="relative py-32 bg-linear-to-br from-primary to-[#15b862] overflow-hidden">
-      <!-- Wave Animation -->
-      <div class="absolute inset-0 opacity-10">
-        <svg class="absolute bottom-0 w-full h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#ffffff" fill-opacity="0.3" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,122.7C672,128,768,192,864,192C960,192,1056,128,1152,106.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-      </div>
-      
+  <main class="pt-20">
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- Hero -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
       <div
-        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 tracking-tight bg-clip-text text-transparent bg-linear-to-r from-white to-green-200">
-          확장형 BackOffice 플랫폼
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            BackOffice Starter Kit
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+          BackOffice 시스템의 <span class="text-primary">UI 공통 기반</span>
         </h1>
-        <p class="text-xl sm:text-2xl mb-4 font-light opacity-95">
-          전문가의 경험과 AI 검증이 만드는 엔터프라이즈 품질
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+          대시보드·목록·폼·계정·메뉴 등 백오피스에 공통으로 필요한 UI를
+          이미 검증된 형태로 제공합니다.<br class="hidden sm:block" />
+          비즈니스 로직만 더하면 됩니다.
         </p>
-        <p class="text-lg opacity-90 max-w-3xl mx-auto">
-          수백 개의 검증된 컴포넌트, 글로벌 표준 기술, AI 품질 검증이 결합된<br />
-          신뢰할 수 있는 개발 플랫폼
-        </p>
-      </div>
-    </section>
 
-    <!-- Core Strengths Section -->
-    <section class="py-20 md:py-32 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="text-center mb-16"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-        >
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">핵심 역량</h2>
-          <p class="text-lg text-gray-600">완성도와 생산성, 두 마리 토끼를 동시에</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            v-for="(item, index) in coreStrengths"
-            :key="item.id"
-            v-motion
-            :initial="{ opacity: 0, y: 30 }"
-            :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
-            class="group bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-300"
+        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <a
+            :href="demoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
           >
-            <div class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
-              <component :is="item.icon" :size="40" :stroke-width="1.5" />
-            </div>
-            <h4 class="text-xl font-semibold text-gray-900 mb-3">{{ item.title }}</h4>
-            <p class="text-gray-600 leading-relaxed">{{ item.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Workflow Section -->
-    <section class="py-20 md:py-32 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="text-center mb-16"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-        >
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">전문가 + AI 협업 프로세스</h2>
-          <p class="text-lg text-gray-600">각 단계마다 전문가의 판단과 AI 검증이 함께합니다</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div
-            v-for="(step, index) in workflowSteps"
-            :key="step.id"
-            v-motion
-            :initial="{ opacity: 0, x: -30 }"
-            :visible-once="{ opacity: 1, x: 0, transition: { duration: 600, delay: index * 100 } }"
-            class="text-center bg-white rounded-2xl p-8 shadow-card relative"
+            데모 사이트 열기
+            <ExternalLink :size="18" class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+          <RouterLink
+            to="/contact"
+            class="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
           >
-            <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-              {{ index + 1 }}
-            </div>
-            <h4 class="text-xl font-semibold text-gray-900 mb-3">{{ step.title }}</h4>
-            <p class="text-gray-600">{{ step.description }}</p>
-          </div>
-        </div>
-
-        <div
-          class="text-center"
-          v-motion
-          :initial="{ opacity: 0, y: 20 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600, delay: 400 } }"
-        >
-          <p class="text-xl font-semibold text-gray-900">
-            결과: 검증된 품질, 예측 가능한 일정, 안정적인 운영
-          </p>
+            우리 프로젝트에 적용 문의
+            <ArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
+          </RouterLink>
         </div>
       </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="py-20 md:py-32 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="text-center mb-16"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-        >
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Productivity First</h2>
-          <p class="text-lg text-gray-600">고객의 핵심 비즈니스에 집중합니다</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            v-for="(benefit, index) in benefits"
-            :key="benefit.id"
-            v-motion
-            :initial="{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }"
-            :visible-once="{ opacity: 1, x: 0, transition: { duration: 600, delay: index * 100 } }"
-            class="flex items-start gap-4 p-6 bg-gray-50 rounded-xl border-l-4 border-primary"
-          >
-            <div class="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-              <component :is="benefit.icon" :size="24" :stroke-width="1.5" />
-            </div>
-            <div>
-              <h5 class="text-lg font-semibold text-gray-900 mb-2">{{ benefit.title }}</h5>
-              <p class="text-gray-600">{{ benefit.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section class="py-20 md:py-32 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="text-center mb-16"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-        >
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">모든 프로젝트에 완벽 대응</h2>
-          <p class="text-lg text-gray-600">유연한 확장성과 빠른 커스터마이징</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
-            v-for="(useCase, index) in useCases"
-            :key="useCase.id"
-            v-motion
-            :initial="{ opacity: 0, scale: 0.95 }"
-            :visible-once="{ opacity: 1, scale: 1, transition: { duration: 600, delay: index * 80 } }"
-            class="text-center p-8 bg-white border-2 border-gray-200 rounded-xl hover:border-primary hover:-translate-y-1 transition-all"
-          >
-            <component :is="useCase.icon" :size="40" :stroke-width="1.5" class="mx-auto mb-4 text-primary" />
-            <h5 class="text-lg font-semibold text-gray-900 mb-2">{{ useCase.title }}</h5>
-            <p class="text-sm text-gray-600">{{ useCase.description }}</p>
-          </div>
-        </div>
-
-        <div
-          class="text-center mt-12"
-          v-motion
-          :initial="{ opacity: 0, y: 20 }"
-          :visible="{ opacity: 1, y: 0, transition: { duration: 600, delay: 500 } }"
-        >
-          <p class="text-xl font-semibold text-gray-900">
-            어떤 산업, 어떤 규모의 프로젝트든<br />
-            검증된 플랫폼 기반으로 신속하게 구현 가능합니다
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-linear-to-br from-primary to-[#15b862] text-white text-center">
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- 데모 사이트 미리보기 -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-white py-20 md:py-24 overflow-hidden">
       <div
-        class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">프로젝트 시작이 고민이신가요?</h2>
-        <p class="text-xl mb-8 opacity-90">
-          검증된 전문가와 AI가 함께하는 프로젝트를 경험하세요
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Live Demo
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            직접 보고 <span class="text-primary">판단하세요</span>
+          </h2>
+          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            실제 동작하는 백오피스 데모 사이트입니다. UI 공통 기반이 어떻게 구현되는지<br class="hidden sm:block" />
+            데모 화면을 통해 직접 확인하실 수 있습니다.
+          </p>
+        </div>
+
+        <!-- 데모 프리뷰: 브라우저 프레임 + 실제 스크린샷 -->
+        <div class="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-white">
+          <!-- Browser chrome bar -->
+          <div class="flex items-center gap-2 px-4 py-3 bg-gray-100 border-b border-gray-200">
+            <span class="w-3 h-3 rounded-full bg-red-400" aria-hidden="true" />
+            <span class="w-3 h-3 rounded-full bg-yellow-400" aria-hidden="true" />
+            <span class="w-3 h-3 rounded-full bg-green-400" aria-hidden="true" />
+            <div class="flex-1 ml-3 flex items-center gap-2 px-3 py-1.5 bg-white rounded-md border border-gray-200 text-xs text-gray-500 font-mono truncate">
+              <span class="text-gray-400">🔒</span>
+              <span class="truncate">adm.jndsoft.co.kr · BackOffice Demo</span>
+            </div>
+            <a
+              :href="demoUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-md hover:bg-primary/90 transition-colors"
+              aria-label="백오피스 데모 사이트 새 창에서 열기"
+            >
+              <ExternalLink :size="12" />
+              새 창 열기
+            </a>
+          </div>
+          <!-- Screenshot -->
+          <a
+            :href="demoUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative block"
+            aria-label="백오피스 데모 사이트로 이동"
+          >
+            <img
+              src="/images/demo-crawling.png"
+              alt="JnDSOFT 백오피스 데모 사이트의 한 화면 예시 — KPI 카드, 차트, 데이터 테이블로 구성된 화면 구조"
+              class="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.01]"
+              loading="lazy"
+            />
+            <!-- Caption ribbon: 화면은 예시임을 알림 -->
+            <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-900/70 backdrop-blur-sm text-white text-[11px] font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+              화면 예시 · 실제 데모 사이트에서 다양한 화면 확인 가능
+            </span>
+            <span
+              class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/40 transition-all duration-300"
+              aria-hidden="true"
+            >
+              <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 px-5 py-3 bg-white text-gray-900 rounded-lg font-semibold shadow-xl">
+                데모 사이트 열기
+                <ExternalLink :size="16" />
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <!-- 데모 안내: 사이트 소개 + 화면 안내 -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="relative bg-gradient-to-br from-primary/5 to-white rounded-xl p-5 border border-primary/20 overflow-hidden">
+            <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/40" aria-hidden="true" />
+            <p class="text-xs font-mono text-primary uppercase tracking-widest mb-2">Demo Site</p>
+            <p class="text-sm font-semibold text-gray-900 mb-2">백오피스 데모 사이트</p>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              UI 공통 기반 위에 구성된 데모 화면 모음입니다.
+              실제 프로젝트와 동일한 컴포넌트·디자인 시스템으로 동작하며,
+              테스트 계정으로 별도 입력 없이 바로 접속할 수 있습니다.
+            </p>
+          </div>
+
+          <div class="relative bg-gray-50 rounded-xl p-5 border border-gray-200 overflow-hidden">
+            <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-300 to-gray-200" aria-hidden="true" />
+            <p class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">Note</p>
+            <p class="text-sm font-semibold text-gray-900 mb-2">데모 화면 안내</p>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              데모 사이트의 화면·데이터는 UI 공통 기반을 보여주기 위한 예시입니다.
+              실제 프로젝트에서는 고객사 비즈니스에 맞춰 화면이 구성됩니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- 데모에서 확인할 수 있는 기능 -->
+        <div class="mt-10">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-widest shrink-0">What you can try</span>
+            <span class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div
+              v-for="h in demoHighlights"
+              :key="h.title"
+              class="group flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary/40 hover:shadow-md transition-all"
+            >
+              <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                <component :is="h.icon" :size="18" :stroke-width="1.75" />
+              </div>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-gray-900 mb-0.5">{{ h.title }}</p>
+                <p class="text-xs text-gray-600 leading-relaxed">{{ h.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- Architecture (레이어 스택) -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section id="architecture" class="relative bg-gradient-to-b from-white to-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-12 md:mb-16">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Architecture
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            프로젝트마다 만드는 영역은 <span class="text-primary">최상단</span>뿐입니다
+          </h2>
+          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            RAW 레벨 기술부터 운영 기능까지 — 하단 세 레이어는 이미 완성되어 있습니다.<br class="hidden sm:block" />
+            프로젝트에서는 비즈니스 로직만 추가합니다.
+          </p>
+        </div>
+
+        <!-- Architecture Stack -->
+        <div class="space-y-3 md:space-y-4">
+          <article
+            v-for="(layer, idx) in architectureLayers"
+            :key="layer.id"
+            class="arch-layer group relative rounded-2xl border-2 transition-all duration-300 overflow-hidden"
+            :class="[
+              layer.status === 'add'
+                ? 'bg-white border-dashed border-gray-300 hover:border-primary/40'
+                : 'bg-white border-solid border-primary/30 hover:border-primary/60 hover:shadow-lg',
+              activeLayerId === layer.id ? '-translate-y-0.5 shadow-lg' : ''
+            ]"
+            @mouseenter="setActiveLayer(layer.id)"
+            @click="setActiveLayer(layer.id)"
+          >
+            <!-- Status badge bar (top) -->
+            <span
+              class="absolute top-0 left-0 right-0 h-1 transition-opacity"
+              :class="layer.status === 'add'
+                ? 'bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300'
+                : 'bg-gradient-to-r from-primary via-primary/80 to-primary'"
+              aria-hidden="true"
+            />
+            <!-- Outline level number -->
+            <span
+              class="absolute -top-3 -right-2 text-7xl md:text-8xl font-black leading-none select-none transition-colors duration-300"
+              :class="layer.status === 'add' ? 'text-gray-100' : 'text-primary/[0.08]'"
+              aria-hidden="true"
+            >
+              L{{ idx + 1 }}
+            </span>
+
+            <div class="relative p-5 md:p-6 lg:p-7">
+              <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
+                <!-- Left: icon + title -->
+                <div class="md:w-1/3 shrink-0">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div
+                      class="w-11 h-11 rounded-xl flex items-center justify-center shadow-sm transition-all duration-300"
+                      :class="layer.status === 'add'
+                        ? 'bg-gray-100 text-gray-500'
+                        : 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30'"
+                    >
+                      <component :is="layer.icon" :size="22" :stroke-width="1.75" />
+                    </div>
+                    <!-- Status badge -->
+                    <span
+                      class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider"
+                      :class="layer.status === 'add'
+                        ? 'bg-gray-100 text-gray-500 border border-dashed border-gray-300'
+                        : 'bg-primary/10 text-primary'"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full" :class="layer.status === 'add' ? 'bg-gray-400' : 'bg-primary'" />
+                      {{ layer.status === 'add' ? '프로젝트 추가' : '구현 완료' }}
+                    </span>
+                  </div>
+                  <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-1">{{ layer.title }}</h3>
+                  <p class="text-xs font-mono text-gray-400 uppercase tracking-widest">{{ layer.subtitle }}</p>
+                </div>
+
+                <!-- Right: description + items -->
+                <div class="md:flex-1 md:pl-6 md:border-l md:border-gray-200">
+                  <p class="text-sm text-gray-700 mb-3 leading-relaxed">
+                    {{ layer.description }}
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="item in layer.items"
+                      :key="item"
+                      class="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-md border transition-colors"
+                      :class="layer.status === 'add'
+                        ? 'bg-white border-dashed border-gray-300 text-gray-600'
+                        : 'bg-gray-50 border-gray-200 text-gray-700 group-hover:border-primary/30'"
+                    >
+                      {{ item }}
+                    </span>
+                  </div>
+
+                  <!-- Asset footnote (보유 자산 매칭) -->
+                  <p
+                    v-if="layer.asset"
+                    class="mt-3 text-[11px] text-gray-500 leading-snug"
+                  >
+                    <span class="text-gray-400">─ 보유 자산:</span>
+                    <span class="text-gray-700">{{ layer.asset.name }}</span>
+                    <span class="font-mono text-gray-400">({{ layer.asset.number }})</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Bottom message -->
+        <div class="mt-10 text-center max-w-3xl mx-auto">
+          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+            <span class="font-semibold text-gray-900">L2 · L3 · L4</span>는 이미 완성되어 있고,
+            <span class="font-semibold text-primary">L1 비즈니스 로직만</span> 프로젝트 요구사항에 맞춰 추가합니다.
+            그래서 개발 일정·비용이 예측 가능합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- 제공 모듈 -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Modules
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            <span class="text-primary">기술 프레임워크</span>는 이미 완성되어 있습니다
+          </h2>
+          <p class="text-base text-gray-600 max-w-2xl mx-auto">
+            UI부터 운영 기능까지 — RAW 레벨 기술은 구현 완료. 프로젝트에서 추가하는 것은 비즈니스 로직뿐입니다.
+          </p>
+        </div>
+
+        <!-- UI 공통 기반 -->
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-xs font-mono font-bold">A</span>
+            <h3 class="text-base md:text-lg font-bold text-gray-900">UI 공통 기반</h3>
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-widest">User Interface</span>
+            <span class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article
+              v-for="(m, idx) in uiModules"
+              :key="m.id"
+              class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            >
+              <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+              <span
+                class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+                aria-hidden="true"
+              >
+                A{{ idx + 1 }}
+              </span>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                  <component :is="m.icon" :size="22" :stroke-width="1.75" />
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- 운영 기능 (시스템 레벨) -->
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-xs font-mono font-bold">B</span>
+            <h3 class="text-base md:text-lg font-bold text-gray-900">운영 기능</h3>
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-widest">Operation</span>
+            <span class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article
+              v-for="(m, idx) in opsModules"
+              :key="m.id"
+              class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            >
+              <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+              <span
+                class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+                aria-hidden="true"
+              >
+                B{{ idx + 1 }}
+              </span>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                  <component :is="m.icon" :size="22" :stroke-width="1.75" />
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- 핵심 메시지: 추가는 비즈니스 로직뿐 -->
+        <div class="relative max-w-3xl mx-auto mt-10 bg-gradient-to-br from-primary/5 to-white rounded-xl p-5 md:p-6 border border-primary/20 overflow-hidden">
+          <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/40" aria-hidden="true" />
+          <span class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-primary/[0.06]" aria-hidden="true" />
+          <div class="relative">
+            <p class="text-sm font-semibold text-primary mb-2">
+              프로젝트에서 추가하는 것
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              UI·운영 기능 모두 <span class="font-semibold text-gray-900">RAW 레벨 기술 프레임워크가 이미 완성</span>되어 있습니다.
+              프로젝트마다 추가되는 것은 <span class="font-semibold text-gray-900">고객 비즈니스 로직</span>뿐 — 화면 흐름, 데이터 모델, 규칙 정의.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- 차별점 -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Differentiators
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            왜 검증된 <span class="text-primary">공통 기반</span>인가
+          </h2>
+          <p class="text-base text-gray-600">
+            처음부터 만들지 않아도 되는 부분과, 처음부터 다듬어 둔 부분.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <article
+            v-for="(d, idx) in differentiators"
+            :key="d.id"
+            class="diff-card group relative bg-gray-50 rounded-xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center overflow-hidden"
+          >
+            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+            <span
+              class="absolute -bottom-3 -right-1 text-5xl font-black text-gray-200/60 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+              aria-hidden="true"
+            >
+              0{{ idx + 1 }}
+            </span>
+            <div class="relative">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <component :is="d.icon" :size="28" :stroke-width="1.5" />
+              </div>
+              <h3 class="text-base font-bold text-gray-900 mb-2">{{ d.title }}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ d.description }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- 사용 시나리오 -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Use Cases
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+            어떤 프로젝트에 <span class="text-primary">적합한가</span>
+          </h2>
+          <p class="text-base text-gray-600">
+            아래 유형의 프로젝트라면 즉시 출발할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          <article
+            v-for="(c, idx) in useCases"
+            :key="c.id"
+            class="usecase-card group relative bg-white rounded-xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+          >
+            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+            <span
+              class="absolute -bottom-3 -right-1 text-5xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+              aria-hidden="true"
+            >
+              0{{ idx + 1 }}
+            </span>
+            <div class="relative">
+              <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                <component :is="c.icon" :size="22" :stroke-width="1.75" />
+              </div>
+              <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ c.title }}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{{ c.description }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- CTA -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section class="relative bg-white py-20 md:py-24 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+          이 <span class="text-primary">공통 기반</span> 위에<br class="sm:hidden" />
+          당신의 비즈니스 로직을 얹어드립니다
+        </h2>
+        <p class="text-base text-gray-600 mb-8">
+          프로젝트 요구사항을 알려주시면 적용 가능 범위와 일정을 검토해드립니다.
         </p>
-        <router-link
-          to="/#contact"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg"
+        <RouterLink
+          to="/contact"
+          class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
         >
-          지금 문의하기
-          <Award :size="20" />
-        </router-link>
+          프로젝트 문의
+          <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
+        </RouterLink>
       </div>
     </section>
   </main>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      coreStrengths: [
-        {
-          id: 'components',
-          title: '검증된 컴포넌트',
-          description: '200+ 개의 완성도 높은 UI 컴포넌트를 즉시 활용 가능합니다. 처음부터 개발하는 리스크 없이 검증된 기반에서 시작하세요.',
-          icon: Boxes
-        },
-        {
-          id: 'standards',
-          title: '글로벌 표준 기술',
-          description: '국제 표준을 준수하는 기술 스택으로 높은 호환성과 장기적인 유지보수성을 보장합니다.',
-          icon: Globe
-        },
-        {
-          id: 'ai',
-          title: 'AI 품질 검증',
-          description: 'AI가 코드 품질, 보안 취약점, 성능을 자동 검증합니다. 전문가가 놓칠 수 있는 부분까지 AI가 보완합니다.',
-          icon: Bot
-        }
-      ],
-      workflowSteps: [
-        {
-          id: 'analysis',
-          title: '요구사항 분석',
-          description: '전문 컨설턴트가 요구사항을 분석하고, AI가 유사 프로젝트 데이터를 기반으로 리스크를 사전 진단합니다.'
-        },
-        {
-          id: 'design',
-          title: '설계 & 구현',
-          description: '검증된 컴포넌트 기반으로 전문가가 최적 설계합니다. 풍부한 실전 경험이 품질의 차이를 만듭니다.'
-        },
-        {
-          id: 'verification',
-          title: 'AI 검증 & 안정화',
-          description: 'AI가 보안, 성능, 호환성을 자동 검증합니다. 전문가의 코드 리뷰와 결합하여 엔터프라이즈급 안정성을 확보합니다.'
-        }
-      ],
-      benefits: [
-        {
-          id: 'fast',
-          title: '즉시 개발 착수',
-          description: '검증된 플랫폼 기반으로 프로젝트 준비 시간을 최소화하고 바로 핵심 기능 개발에 돌입할 수 있습니다.',
-          icon: Zap
-        },
-        {
-          id: 'risk',
-          title: '리스크 최소화',
-          description: '처음부터 개발하는 불확실성을 제거하고 검증된 컴포넌트로 안정성을 보장합니다.',
-          icon: ShieldCheck
-        },
-        {
-          id: 'productivity',
-          title: '생산성 극대화',
-          description: '검증된 컴포넌트와 AI 품질 검증으로 개발 속도와 안정성을 동시에 확보합니다.',
-          icon: TrendingUp
-        },
-        {
-          id: 'focus',
-          title: '비즈니스 로직 집중',
-          description: 'AI가 품질 검증과 반복 테스트를 수행하는 동안, 전문가는 고객의 핵심 비즈니스 로직 구현에 집중합니다.',
-          icon: Settings
-        },
-        {
-          id: 'maintenance',
-          title: '장기 유지보수 용이',
-          description: '표준 기술 스택과 체계적인 구조로 장기적인 유지보수와 확장이 수월합니다.',
-          icon: Network
-        },
-        {
-          id: 'quality',
-          title: '품질 보증',
-          description: '검증된 컴포넌트와 자동화된 품질 관리로 일관된 고품질을 제공합니다.',
-          icon: Award
-        }
-      ],
-      useCases: [
-        {
-          id: 'dashboard',
-          title: '대시보드',
-          description: '데이터 시각화와 모니터링',
-          icon: Gauge
-        },
-        {
-          id: 'admin',
-          title: '관리자 시스템',
-          description: 'BackOffice 운영 관리',
-          icon: Settings
-        },
-        {
-          id: 'erp',
-          title: 'ERP/CRM',
-          description: '업무 프로세스 통합',
-          icon: Network
-        },
-        {
-          id: 'data',
-          title: '데이터 관리',
-          description: '정보 수집 및 분석',
-          icon: Database
-        },
-        {
-          id: 'ecommerce',
-          title: '전자상거래 관리',
-          description: '상품 및 주문 관리',
-          icon: ShoppingCart
-        },
-        {
-          id: 'internal',
-          title: '내부 업무 시스템',
-          description: '협업 및 업무 자동화',
-          icon: Briefcase
-        }
-      ]
-    }
-  }
+<style scoped>
+.module-card,
+.diff-card,
+.usecase-card {
+  will-change: transform, box-shadow;
 }
-</script>
+</style>

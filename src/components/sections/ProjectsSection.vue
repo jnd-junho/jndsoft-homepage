@@ -1,94 +1,154 @@
 <script setup lang="ts">
-import type { ProjectCard } from '@/types'
+import { Landmark, Factory, FlaskConical, ShoppingBag, ArrowRight } from 'lucide-vue-next'
+import { RouterLink } from 'vue-router'
 
-const projects: ProjectCard[] = [
+interface IndustryItem {
+  id: string
+  icon: typeof Landmark
+  domain: string
+  segment: string
+  context: string
+  insight: string
+}
+
+const industries: IndustryItem[] = [
   {
     id: 'finance-esg',
-    title: '금융그룹 ESG 시스템',
-    description: 'ESG 데이터 관리 및 분석 시스템 구축. 지속 가능한 경영을 위한 종합 관리 플랫폼을 개발했습니다.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
-    category: '금융'
+    icon: Landmark,
+    domain: '금융 ESG',
+    segment: 'B2B · 엔터프라이즈',
+    context: '금융그룹의 ESG 공시·관리 시스템',
+    insight: '규제 변화에 따라 데이터 항목·계산식이 자주 바뀌는 환경. 변경 비용을 낮추는 설계가 핵심입니다.'
   },
   {
     id: 'heavy-lca',
-    title: '중공업 LCA 시스템',
-    description: '전과정평가(Life Cycle Assessment) 시스템 개발. 제품의 전 생애주기에 걸친 환경 영향을 평가합니다.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop',
-    category: '중공업'
+    icon: Factory,
+    domain: '중공업 LCA',
+    segment: 'B2B · 제조',
+    context: '제품 전과정 환경영향 평가 시스템',
+    insight: '공정 단위 데이터의 정합성 확보와 복합 계산 모델의 추적 가능성이 필요한 도메인입니다.'
   },
   {
-    id: 'chemical-esg',
-    title: '화학기업 ESG 시스템',
-    description: '탄소 배출 모니터링 및 관리 시스템. 실시간 데이터 수집과 분석으로 효율적인 탄소 관리를 지원합니다.',
-    image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&auto=format&fit=crop',
-    category: '화학'
+    id: 'chem-esg',
+    icon: FlaskConical,
+    domain: '화학 ESG',
+    segment: 'B2B · 제조',
+    context: '화학 기업 탄소·환경 데이터 관리 시스템',
+    insight: '실시간 데이터 수집과 규제 보고 양식 간의 변환이 일상적으로 일어나는 도메인입니다.'
   },
   {
     id: 'ecommerce',
-    title: '대기업 이커머스몰',
-    description: '대규모 쇼핑몰 운영 및 고도화. 수백만 사용자를 위한 안정적이고 확장 가능한 플랫폼을 구축했습니다.',
-    image: 'https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&auto=format&fit=crop',
-    category: '이커머스'
+    icon: ShoppingBag,
+    domain: '이커머스',
+    segment: 'B2C · 소비자',
+    context: '이커머스몰·커뮤니티 운영과 기획전 시스템',
+    insight: '트래픽이 시점에 따라 급격히 변하는 환경. 운영 측면의 안정성이 곧 매출 안정성입니다.'
   }
 ]
 </script>
 
 <template>
-  <section id="projects" class="py-20 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="industries" class="relative py-20 md:py-32 bg-white overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
-        class="text-center mb-16"
+        class="text-center mb-12 md:mb-16"
         v-motion
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Projects
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            Industries
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          우리가 다뤄온 <span class="text-primary">도메인</span>
         </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          다양한 산업 분야에서 성공적으로 수행한 프로젝트를 소개합니다
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          각 산업의 비즈니스 흐름과 데이터 구조를 현장에서 학습했습니다.<br class="hidden sm:block" />
+          새로운 도메인도 같은 방식으로 빠르게 흡수합니다.
         </p>
       </div>
-      
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div
-          v-for="(project, index) in projects"
-          :key="project.id"
+
+      <!-- Industry Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        <article
+          v-for="(industry, index) in industries"
+          :key="industry.id"
           v-motion
-          :initial="{ opacity: 0, scale: 0.95 }"
-          :visible-once="{ opacity: 1, scale: 1, transition: { duration: 600, delay: index * 150 } }"
-          class="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer"
+          :initial="{ opacity: 0, y: 20 }"
+          :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
+          class="industry-card group relative bg-gray-50 rounded-2xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
         >
-          <!-- Image -->
-          <div class="relative h-64 overflow-hidden">
-            <img
-              :src="project.image"
-              :alt="project.title"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-gray-900/80 via-gray-900/40 to-transparent" />
-            
-            <!-- Category Badge -->
-            <div class="absolute top-4 right-4">
-              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-medium rounded-full">
-                {{ project.category }}
-              </span>
+          <!-- Decorative corner accent -->
+          <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+          <!-- Index number (background) -->
+          <span
+            class="absolute -bottom-4 -right-2 text-7xl font-black text-gray-200/60 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+            aria-hidden="true"
+          >
+            {{ String(index + 1).padStart(2, '0') }}
+          </span>
+
+          <div class="relative flex items-start gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+              <component :is="industry.icon" :size="24" :stroke-width="1.75" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                <h3 class="text-xl font-bold text-gray-900">{{ industry.domain }}</h3>
+                <span class="text-[10px] font-mono font-semibold text-primary uppercase tracking-widest">
+                  {{ industry.segment }}
+                </span>
+              </div>
+              <p class="text-sm text-gray-700 mb-3 leading-relaxed">
+                {{ industry.context }}
+              </p>
+              <div class="bg-white rounded-lg p-3 border border-gray-200 group-hover:border-primary/30 transition-colors">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1 h-3 rounded-full bg-primary" aria-hidden="true" />
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    도메인 인사이트
+                  </p>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                  {{ industry.insight }}
+                </p>
+              </div>
             </div>
           </div>
-          
-          <!-- Content -->
-          <div class="p-6">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors">
-              {{ project.title }}
-            </h3>
-            <p class="text-gray-600 mb-4 leading-relaxed">
-              {{ project.description }}
-            </p>
-          </div>
-        </div>
+        </article>
+      </div>
+
+      <!-- Bottom Note: 새 도메인 흡수 능력 -->
+      <div
+        class="mt-10 md:mt-12 max-w-3xl mx-auto text-center"
+        v-motion
+        :initial="{ opacity: 0, y: 20 }"
+        :visible="{ opacity: 1, y: 0, transition: { duration: 600, delay: 400 } }"
+      >
+        <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-5">
+          여러 산업을 다뤄온 경험은 새로운 도메인을 빠르게 학습하는 능력으로 이어집니다.
+          <span class="font-semibold text-gray-900">초반 1~2주 집중 인터뷰</span>로
+          도메인의 핵심 용어·업무 흐름·데이터 구조를 흡수합니다.
+        </p>
+        <RouterLink
+          to="/contact"
+          class="group inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+        >
+          우리 도메인에서도 가능한지 문의
+          <ArrowRight :size="16" class="transition-transform group-hover:translate-x-1" />
+        </RouterLink>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.industry-card {
+  will-change: transform, box-shadow;
+}
+</style>

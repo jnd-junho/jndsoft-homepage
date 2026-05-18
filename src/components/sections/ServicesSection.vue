@@ -5,21 +5,21 @@ import type { ServiceCard } from '@/types'
 const services: ServiceCard[] = [
   {
     id: 'si',
-    title: 'SI & System Integration',
+    title: '시스템 구축 · SI',
     icon: 'Network',
-    description: '기업 맞춤형 시스템 구축 및 통합. 다양한 시스템을 효율적으로 연결하여 업무 프로세스를 최적화합니다.'
+    description: '기업의 업무 흐름을 정리하고, 그에 맞는 시스템을 처음부터 끝까지 함께 만듭니다. 검증된 공통 기반 위에 비즈니스 로직을 빠르게 얹습니다.'
   },
   {
     id: 'consulting',
-    title: 'IT Consulting',
+    title: '기술 컨설팅 · DX',
     icon: 'ChartBar',
-    description: '비즈니스 분석 및 기술 전략 수립. 전문적인 컨설팅으로 성공적인 디지털 전환을 지원합니다.'
+    description: '기술 의사결정과 비즈니스 의사결정을 분리하지 않습니다. 아키텍처 진단, 전환 전략, 단계별 실행 계획까지 함께 설계합니다.'
   },
   {
     id: 'mvp',
-    title: 'Startup MVP 개발',
+    title: 'MVP · 신규 서비스',
     icon: 'Rocket',
-    description: '빠른 MVP 개발 및 운영 대행. 스타트업의 아이디어를 빠르게 검증하고 시장에 진입할 수 있도록 지원합니다.'
+    description: '아이디어를 작동하는 제품으로 옮기는 단계. 짧은 합의 사이클로 가설을 검증하면서 시장에 진입할 수 있는 형태를 함께 다듬습니다.'
   },
 ]
 
@@ -30,8 +30,8 @@ const getIconComponent = (iconName: string) => {
 </script>
 
 <template>
-  <section id="services" class="py-20 md:py-32 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="services" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
         class="text-center mb-16"
@@ -39,14 +39,21 @@ const getIconComponent = (iconName: string) => {
         :initial="{ opacity: 0, y: 30 }"
         :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
       >
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          Services
+        <div class="inline-flex items-center gap-3 mb-5">
+          <span class="h-px w-8 bg-primary/60" />
+          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+            Services
+          </span>
+          <span class="h-px w-8 bg-primary/60" />
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          함께 다루는 <span class="text-primary">세 가지</span> 방식
         </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          최적의 IT 솔루션으로 비즈니스 혁신을 지원합니다
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          비즈니스와 기술을 분리하지 않고 한 흐름으로 다룹니다.
         </p>
       </div>
-      
+
       <!-- Services Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         <router-link
@@ -56,30 +63,42 @@ const getIconComponent = (iconName: string) => {
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
-          class="group bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover hover:-translate-y-2 transition-all duration-300 cursor-pointer block"
+          class="service-card group relative bg-white rounded-2xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 shadow-card hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer block overflow-hidden"
         >
-          <!-- Icon -->
-          <div class="mb-6 w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-            <component :is="getIconComponent(service.icon)" :size="32" :stroke-width="1.5" />
+          <!-- Top accent bar -->
+          <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
+          <!-- Index (background) -->
+          <span
+            class="absolute -bottom-4 -right-2 text-7xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+            aria-hidden="true"
+          >
+            0{{ index + 1 }}
+          </span>
+
+          <div class="relative">
+            <!-- Icon -->
+            <div class="mb-5 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+              <component :is="getIconComponent(service.icon)" :size="28" :stroke-width="1.5" />
+            </div>
+
+            <!-- Title with Badge -->
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                {{ service.title }}
+              </h3>
+              <span
+                v-if="service.badge"
+                class="px-2 py-0.5 text-xs font-medium bg-gray-200 text-gray-700 rounded-full"
+              >
+                {{ service.badge }}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+              {{ service.description }}
+            </p>
           </div>
-          
-          <!-- Title with Badge -->
-          <div class="flex items-center gap-2 mb-3">
-            <h3 class="text-xl font-semibold text-gray-900">
-              {{ service.title }}
-            </h3>
-            <span
-              v-if="service.badge"
-              class="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded-full"
-            >
-              {{ service.badge }}
-            </span>
-          </div>
-          
-          <!-- Description -->
-          <p class="text-gray-600 leading-relaxed">
-            {{ service.description }}
-          </p>
         </router-link>
       </div>
     </div>
