@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ChevronLeft } from 'lucide-vue-next'
+
+const router = useRouter()
+
+const goBack = () => {
+  if (window.history.state?.back) {
+    router.back()
+  } else {
+    router.push('/')
+  }
+}
 </script>
 
 <template>
   <main class="pt-32 pb-20 bg-white min-h-screen">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <RouterLink
-        to="/"
+      <button
+        type="button"
         class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-primary transition-colors mb-8"
+        @click="goBack"
       >
         <ChevronLeft :size="16" />
-        홈으로
-      </RouterLink>
+        이전으로
+      </button>
 
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
         개인정보 처리방침

@@ -49,7 +49,7 @@ const currentYear = new Date().getFullYear()
               to="/"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              Home
+              홈
             </RouterLink>
             <RouterLink
               to="/platform"
@@ -61,7 +61,7 @@ const currentYear = new Date().getFullYear()
               to="/about"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              About
+              회사 소개
             </RouterLink>
             <a
               href="https://jndsoft-dev.tistory.com"
@@ -69,13 +69,13 @@ const currentYear = new Date().getFullYear()
               rel="noopener noreferrer"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              Tech Blog
+              기술블로그
             </a>
             <RouterLink
               to="/contact"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              Contact
+              문의하기
             </RouterLink>
           </nav>
         </div>
