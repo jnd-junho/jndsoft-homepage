@@ -4,7 +4,9 @@ import { RouterLink } from 'vue-router'
 import {
   LayoutDashboard, Table2, FormInput, KeyRound, Menu as MenuIcon,
   Palette, Smartphone, Accessibility,
-  Briefcase, BarChart3, Settings, ArrowRight, ExternalLink
+  ShieldCheck, ScrollText, Repeat,
+  Briefcase, BarChart3, Settings, ArrowRight, ExternalLink,
+  Target, Cog, Layers as LayersIcon, Server
 } from 'lucide-vue-next'
 
 // ─────────────────────────────────────────────────────
@@ -17,8 +19,9 @@ import {
 const demoUrl = 'https://adm.jndsoft.co.kr'
 const showIframe = ref(false)
 
-// 제공 모듈 — UI 공통 기반 범위 (권한/감사로그/배치는 미포함)
-const modules = [
+// 제공 모듈 — RAW 레벨 기술 프레임워크 완성, 프로젝트별 추가는 비즈니스 로직뿐
+// A. UI 공통 기반 (6종) + B. 운영 기능 (3종)
+const uiModules = [
   {
     id: 'dashboard',
     icon: LayoutDashboard,
@@ -56,6 +59,80 @@ const modules = [
     description: '컬러·타이포·여백 토큰화로 시각 일관성 보장'
   }
 ]
+
+const opsModules = [
+  {
+    id: 'permission',
+    icon: ShieldCheck,
+    title: '권한 관리',
+    description: '역할·사용자별 접근 권한을 화면에서 직접 설정·운영'
+  },
+  {
+    id: 'audit',
+    icon: ScrollText,
+    title: '감사 로그',
+    description: '주요 동작·데이터 변경 이력을 자동 수집·조회'
+  },
+  {
+    id: 'batch',
+    icon: Repeat,
+    title: '배치 시스템',
+    description: '정기 작업의 등록·실행·결과 모니터링을 한 화면에서'
+  }
+]
+
+// 아키텍처 레이어 — 비즈니스 톤 (기술 약어·로고 제외)
+interface ArchitectureLayer {
+  id: string
+  icon: typeof Target
+  title: string
+  subtitle: string
+  description: string
+  items: string[]
+  status: 'add' | 'ready'
+}
+
+const architectureLayers: ArchitectureLayer[] = [
+  {
+    id: 'business',
+    icon: Target,
+    title: '비즈니스 로직',
+    subtitle: 'Business Layer',
+    description: '프로젝트마다 다르게 정의되는 영역입니다.',
+    items: ['화면 흐름', '데이터 모델', '업무 규칙', '도메인 정책'],
+    status: 'add'
+  },
+  {
+    id: 'operation',
+    icon: Cog,
+    title: '운영 기능',
+    subtitle: 'Operation Layer',
+    description: '관리자가 화면에서 직접 운영할 수 있는 시스템 기능입니다.',
+    items: ['권한 관리', '감사 로그', '배치 시스템'],
+    status: 'ready'
+  },
+  {
+    id: 'ui',
+    icon: LayersIcon,
+    title: 'UI 공통 기반',
+    subtitle: 'User Interface Layer',
+    description: '대부분의 백오피스에서 공통으로 필요한 화면 자산입니다.',
+    items: ['대시보드', 'CRUD 목록', '입력 폼', '계정·로그인', '메뉴', '디자인 시스템'],
+    status: 'ready'
+  },
+  {
+    id: 'core',
+    icon: Server,
+    title: 'RAW 레벨 기술 프레임워크',
+    subtitle: 'Core Framework',
+    description: '인증·세션·로깅·트랜잭션 등 시스템 동작의 토대입니다.',
+    items: ['인증·세션', '로깅·모니터링', '트랜잭션·예외 처리', '인프라 연동'],
+    status: 'ready'
+  }
+]
+
+const activeLayerId = ref<string>('business')
+const setActiveLayer = (id: string) => { activeLayerId.value = id }
 
 // 사용 시나리오 (어떤 프로젝트에 적합한가)
 const useCases = [
@@ -229,6 +306,128 @@ const differentiators = [
     </section>
 
     <!-- ─────────────────────────────────────────────── -->
+    <!-- Architecture (레이어 스택) -->
+    <!-- ─────────────────────────────────────────────── -->
+    <section id="architecture" class="relative bg-gradient-to-b from-white to-gray-50 py-20 md:py-28 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
+        aria-hidden="true"
+      />
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-12 md:mb-16">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <span class="h-px w-8 bg-primary/60" />
+            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
+              Architecture
+            </span>
+            <span class="h-px w-8 bg-primary/60" />
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            프로젝트마다 만드는 영역은 <span class="text-primary">최상단</span>뿐입니다
+          </h2>
+          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            RAW 레벨 기술부터 운영 기능까지 — 하단 세 레이어는 이미 완성되어 있습니다.<br class="hidden sm:block" />
+            프로젝트에서는 비즈니스 로직만 추가합니다.
+          </p>
+        </div>
+
+        <!-- Architecture Stack -->
+        <div class="space-y-3 md:space-y-4">
+          <article
+            v-for="(layer, idx) in architectureLayers"
+            :key="layer.id"
+            class="arch-layer group relative rounded-2xl border-2 transition-all duration-300 overflow-hidden"
+            :class="[
+              layer.status === 'add'
+                ? 'bg-white border-dashed border-gray-300 hover:border-primary/40'
+                : 'bg-white border-solid border-primary/30 hover:border-primary/60 hover:shadow-lg',
+              activeLayerId === layer.id ? '-translate-y-0.5 shadow-lg' : ''
+            ]"
+            @mouseenter="setActiveLayer(layer.id)"
+            @click="setActiveLayer(layer.id)"
+          >
+            <!-- Status badge bar (top) -->
+            <span
+              class="absolute top-0 left-0 right-0 h-1 transition-opacity"
+              :class="layer.status === 'add'
+                ? 'bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300'
+                : 'bg-gradient-to-r from-primary via-primary/80 to-primary'"
+              aria-hidden="true"
+            />
+            <!-- Outline level number -->
+            <span
+              class="absolute -top-3 -right-2 text-7xl md:text-8xl font-black leading-none select-none transition-colors duration-300"
+              :class="layer.status === 'add' ? 'text-gray-100' : 'text-primary/[0.08]'"
+              aria-hidden="true"
+            >
+              L{{ idx + 1 }}
+            </span>
+
+            <div class="relative p-5 md:p-6 lg:p-7">
+              <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
+                <!-- Left: icon + title -->
+                <div class="md:w-1/3 shrink-0">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div
+                      class="w-11 h-11 rounded-xl flex items-center justify-center shadow-sm transition-all duration-300"
+                      :class="layer.status === 'add'
+                        ? 'bg-gray-100 text-gray-500'
+                        : 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30'"
+                    >
+                      <component :is="layer.icon" :size="22" :stroke-width="1.75" />
+                    </div>
+                    <!-- Status badge -->
+                    <span
+                      class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider"
+                      :class="layer.status === 'add'
+                        ? 'bg-gray-100 text-gray-500 border border-dashed border-gray-300'
+                        : 'bg-primary/10 text-primary'"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full" :class="layer.status === 'add' ? 'bg-gray-400' : 'bg-primary'" />
+                      {{ layer.status === 'add' ? '프로젝트 추가' : '구현 완료' }}
+                    </span>
+                  </div>
+                  <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-1">{{ layer.title }}</h3>
+                  <p class="text-xs font-mono text-gray-400 uppercase tracking-widest">{{ layer.subtitle }}</p>
+                </div>
+
+                <!-- Right: description + items -->
+                <div class="md:flex-1 md:pl-6 md:border-l md:border-gray-200">
+                  <p class="text-sm text-gray-700 mb-3 leading-relaxed">
+                    {{ layer.description }}
+                  </p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="item in layer.items"
+                      :key="item"
+                      class="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-md border transition-colors"
+                      :class="layer.status === 'add'
+                        ? 'bg-white border-dashed border-gray-300 text-gray-600'
+                        : 'bg-gray-50 border-gray-200 text-gray-700 group-hover:border-primary/30'"
+                    >
+                      {{ item }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Bottom message -->
+        <div class="mt-10 text-center max-w-3xl mx-auto">
+          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+            <span class="font-semibold text-gray-900">L2 · L3 · L4</span>는 이미 완성되어 있고,
+            <span class="font-semibold text-primary">L1 비즈니스 로직만</span> 프로젝트 요구사항에 맞춰 추가합니다.
+            그래서 개발 일정·비용이 예측 가능합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────── -->
     <!-- 제공 모듈 -->
     <!-- ─────────────────────────────────────────────── -->
     <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
@@ -247,44 +446,90 @@ const differentiators = [
             <span class="h-px w-8 bg-primary/60" />
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
-            <span class="text-primary">제공</span> 모듈
+            <span class="text-primary">기술 프레임워크</span>는 이미 완성되어 있습니다
           </h2>
           <p class="text-base text-gray-600 max-w-2xl mx-auto">
-            대부분의 백오피스에 공통으로 필요한 화면을 검증된 형태로 제공합니다.
+            UI부터 운영 기능까지 — RAW 레벨 기술은 구현 완료. 프로젝트에서 추가하는 것은 비즈니스 로직뿐입니다.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <article
-            v-for="(m, idx) in modules"
-            :key="m.id"
-            class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-          >
-            <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
-            <span
-              class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
-              aria-hidden="true"
+        <!-- UI 공통 기반 -->
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-xs font-mono font-bold">A</span>
+            <h3 class="text-base md:text-lg font-bold text-gray-900">UI 공통 기반</h3>
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-widest">User Interface</span>
+            <span class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article
+              v-for="(m, idx) in uiModules"
+              :key="m.id"
+              class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
-              {{ String(idx + 1).padStart(2, '0') }}
-            </span>
-            <div class="relative">
-              <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
-                <component :is="m.icon" :size="22" :stroke-width="1.75" />
+              <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+              <span
+                class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+                aria-hidden="true"
+              >
+                A{{ idx + 1 }}
+              </span>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                  <component :is="m.icon" :size="22" :stroke-width="1.75" />
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
               </div>
-              <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
 
-        <!-- 범위 명확화 (오해 방지) -->
-        <div class="relative max-w-3xl mx-auto mt-10 bg-white rounded-xl p-5 border border-gray-200 overflow-hidden">
-          <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-400 to-gray-200" aria-hidden="true" />
-          <p class="relative text-sm text-gray-700 leading-relaxed">
-            <span class="font-semibold text-gray-900">제공 범위에 대해</span> ·
-            이 자산은 백오피스 UI의 공통 기반을 제공합니다.
-            권한 관리·감사 로그·배치 시스템 등 기능적 모듈은 프로젝트 요구사항에 맞춰 별도로 구현합니다.
-          </p>
+        <!-- 운영 기능 (시스템 레벨) -->
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-xs font-mono font-bold">B</span>
+            <h3 class="text-base md:text-lg font-bold text-gray-900">운영 기능</h3>
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-widest">Operation</span>
+            <span class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <article
+              v-for="(m, idx) in opsModules"
+              :key="m.id"
+              class="module-card group relative bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            >
+              <span class="absolute top-0 left-0 w-10 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-xl" aria-hidden="true" />
+              <span
+                class="absolute -bottom-4 -right-2 text-6xl font-black text-gray-100/80 group-hover:text-primary/10 leading-none select-none transition-colors duration-300"
+                aria-hidden="true"
+              >
+                B{{ idx + 1 }}
+              </span>
+              <div class="relative">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 shadow-sm group-hover:bg-primary group-hover:text-white group-hover:shadow-md group-hover:shadow-primary/30 transition-all duration-300">
+                  <component :is="m.icon" :size="22" :stroke-width="1.75" />
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-1.5">{{ m.title }}</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">{{ m.description }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- 핵심 메시지: 추가는 비즈니스 로직뿐 -->
+        <div class="relative max-w-3xl mx-auto mt-10 bg-gradient-to-br from-primary/5 to-white rounded-xl p-5 md:p-6 border border-primary/20 overflow-hidden">
+          <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/40" aria-hidden="true" />
+          <span class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-primary/[0.06]" aria-hidden="true" />
+          <div class="relative">
+            <p class="text-sm font-semibold text-primary mb-2">
+              프로젝트에서 추가하는 것
+            </p>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              UI·운영 기능 모두 <span class="font-semibold text-gray-900">RAW 레벨 기술 프레임워크가 이미 완성</span>되어 있습니다.
+              프로젝트마다 추가되는 것은 <span class="font-semibold text-gray-900">고객 비즈니스 로직</span>뿐 — 화면 흐름, 데이터 모델, 규칙 정의.
+            </p>
+          </div>
         </div>
       </div>
     </section>
