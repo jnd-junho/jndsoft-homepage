@@ -19,7 +19,7 @@ const navItems = [
   { id: 'hero', label: '홈', labelEn: 'Home', href: '#hero' },
   { id: 'services', label: '서비스', labelEn: 'Services', href: '#services' },
   { id: 'pipeline', label: '일하는 방식', labelEn: 'How We Work', href: '#pipeline' },
-  { id: 'platform', label: 'BackOffice', labelEn: 'BackOffice', href: '/platform' },
+  { id: 'platform', label: '표준 자산', labelEn: 'Assets', href: '/platform' },
   { id: 'about', label: '회사 소개', labelEn: 'About', href: '/about' },
   { id: 'blog', label: '기술블로그', labelEn: 'Tech Blog', href: 'https://jndsoft-dev.tistory.com', external: true },
   { id: 'contact', label: '문의하기', labelEn: 'Contact', href: '/contact' }

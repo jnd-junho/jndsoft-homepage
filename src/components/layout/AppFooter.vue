@@ -55,7 +55,7 @@ const currentYear = new Date().getFullYear()
               to="/platform"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
             >
-              BackOffice 공통 기반
+              표준 자산
             </RouterLink>
             <RouterLink
               to="/about"
