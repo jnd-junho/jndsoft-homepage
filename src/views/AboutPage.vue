@@ -11,10 +11,10 @@ import type { TimelineItem, CultureValue } from '@/types'
 // PLACEHOLDER: 대표 프로필 — 아래 항목을 실제 값으로 교체
 // ─────────────────────────────────────────────────────
 const founder = {
-  name: '[PLACEHOLDER: 대표 이름]',
+  name: '한준호',
   role: '대표이사 · 수석 소프트웨어 아키텍트',
-  // 프로필 사진 경로. 추후 /public/assets/img/founder.jpg 등으로 교체
-  photo: '[PLACEHOLDER: /assets/img/founder.png 경로 또는 실제 이미지]',
+  // TODO: 실제 사진 촬영 후 /public/assets/img/founder.jpg 등으로 교체
+  photo: null as string | null,
   intro:
     '풀스택 엔지니어로 시작해 시스템 아키텍트로, 그리고 대표로 — 점차 더 큰 그림을 설계해왔습니다. 기술 의사결정과 비즈니스 의사결정을 분리하지 않는 것이, 지금까지 다뤄온 모든 프로젝트의 공통 원칙입니다.',
   highlights: [
@@ -172,8 +172,8 @@ const getFounderIcon = (iconName: string) => {
           비즈니스와 기술의 <span class="text-primary">이음</span>
         </h1>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          [PLACEHOLDER: 회사 한 줄 소개. 예) 검증된 공통 기반과 실무 경험으로,
-          고객의 비즈니스와 기술을 잇습니다.]
+          검증된 표준 자산과 도메인 경험을 잇대어,<br class="hidden sm:block" />
+          고객의 비즈니스를 함께 설계합니다.
         </p>
       </div>
     </section>
@@ -266,18 +266,59 @@ const getFounderIcon = (iconName: string) => {
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
-          <!-- Profile Photo -->
+          <!-- Profile Photo (임시: 모노그램 플레이스홀더) -->
           <div class="lg:col-span-4">
-            <div class="relative aspect-[3/4] rounded-2xl bg-gray-100 overflow-hidden border border-gray-200 shadow-md">
+            <div class="relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-gradient-to-br from-gray-900 via-gray-800 to-primary/30">
               <!-- Decorative top accent -->
               <span class="absolute top-0 left-0 w-16 h-1.5 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl z-10" aria-hidden="true" />
-              <!-- Decorative corner blob -->
-              <span class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-primary/[0.06]" aria-hidden="true" />
-              <!-- PLACEHOLDER: 실제 사진 경로로 교체. img 태그로 변경하세요 -->
-              <div class="relative w-full h-full flex items-center justify-center text-gray-400 text-sm text-center p-6">
-                {{ founder.photo }}
+              <!-- Subtle grid pattern -->
+              <div
+                class="absolute inset-0 opacity-[0.08] pointer-events-none"
+                style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 32px 32px;"
+                aria-hidden="true"
+              />
+              <!-- Corner glow -->
+              <span class="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-primary/30 blur-3xl" aria-hidden="true" />
+              <span class="absolute -top-12 -left-12 w-36 h-36 rounded-full bg-white/10 blur-2xl" aria-hidden="true" />
+
+              <!-- Photo (when available) or monogram fallback -->
+              <img
+                v-if="founder.photo"
+                :src="founder.photo"
+                :alt="founder.name"
+                class="relative w-full h-full object-cover"
+              />
+              <div
+                v-else
+                class="relative w-full h-full flex flex-col items-center justify-center text-center p-6"
+                :aria-label="`${founder.name} 프로필 (임시 이미지)`"
+              >
+                <!-- Eyebrow -->
+                <span class="text-[10px] font-mono text-white/50 uppercase tracking-[0.3em] mb-4">
+                  JnDSOFT
+                </span>
+                <!-- Monogram: J & D (Jump and Develop) -->
+                <div class="flex items-baseline gap-2 sm:gap-3 mb-4 leading-none tracking-tight">
+                  <span class="text-7xl sm:text-8xl font-black text-white">J</span>
+                  <span class="text-6xl sm:text-7xl font-black text-primary">&amp;</span>
+                  <span class="text-7xl sm:text-8xl font-black text-white">D</span>
+                </div>
+                <!-- Name -->
+                <div class="text-base font-semibold text-white/90 mb-1">
+                  {{ founder.name }}
+                </div>
+                <div class="text-xs text-white/50">
+                  {{ founder.role }}
+                </div>
               </div>
             </div>
+            <!-- Note (작게, 가독성을 위해 카드 외부에) -->
+            <p
+              v-if="!founder.photo"
+              class="mt-2 text-[11px] text-gray-400 text-center"
+            >
+              * 프로필 사진은 추후 추가될 예정입니다.
+            </p>
           </div>
 
           <!-- Profile Detail -->

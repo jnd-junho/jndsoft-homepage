@@ -21,10 +21,10 @@ const router = createRouter({
       name: 'platform',
       component: () => import('../views/PlatformPage.vue'),
       meta: {
-        title: 'BackOffice 공통 기반 | 제이앤디소프트',
-        description: '대시보드·목록·폼·계정 등 백오피스 공통 UI를 검증된 형태로 제공합니다. 비즈니스 로직만 더하면 됩니다.',
-        keywords: '백오피스, 어드민, 관리자페이지, BackOffice, 공통 기반, UI 프레임워크, 디자인 시스템, 제이앤디소프트',
-        ogTitle: 'BackOffice 공통 기반 | 제이앤디소프트',
+        title: '표준 자산 | 제이앤디소프트',
+        description: '재사용 가능한 표준 프레임워크와 BackOffice UI 공통 기반. 비즈니스 로직만 더하면 됩니다.',
+        keywords: '표준 자산, 백오피스, 어드민, 관리자페이지, BackOffice, 공통 기반, UI 프레임워크, 디자인 시스템, 제이앤디소프트',
+        ogTitle: '표준 자산 | 제이앤디소프트',
         ogDescription: '대시보드·목록·폼·계정 등 백오피스 공통 UI를 검증된 형태로 제공합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/platform'
       }

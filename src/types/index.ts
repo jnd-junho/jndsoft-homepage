@@ -63,7 +63,18 @@ export interface PipelineStage {
 export interface CopyrightItem {
   id: string
   number: string
+  /** 한글 부제 (예: "확장형 표준 API 플랫폼") */
   title: string
+  /** 자산명 영문 (예: "JND Core API Platform") */
+  name?: string
+  /** 자산이 담당하는 역할 한 줄 */
+  role?: string
+  /** 어떻게 활용되는지 한 줄 */
+  usage?: string
+  /** 등록일 (예: "2026.04") */
+  registeredAt?: string
+  /** 카테고리 (대표 자산 그룹화용) */
+  group?: 'core' | 'tool' | 'domain'
 }
 
 export interface IndustryTag {
