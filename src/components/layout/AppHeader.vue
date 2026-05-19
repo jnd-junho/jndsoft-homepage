@@ -18,6 +18,7 @@ const isSolidHeader = computed(() => isScrolled.value || !isHomePage.value)
 const navItems = [
   { id: 'hero', label: '홈', labelEn: 'Home', href: '#hero' },
   { id: 'services', label: '서비스', labelEn: 'Services', href: '#services' },
+  { id: 'automation', label: 'AX', labelEn: 'AX', href: '/automation' },
   { id: 'pipeline', label: '일하는 방식', labelEn: 'How We Work', href: '#pipeline' },
   { id: 'platform', label: '표준 자산', labelEn: 'Assets', href: '/platform' },
   { id: 'about', label: '회사 소개', labelEn: 'About', href: '/about' },

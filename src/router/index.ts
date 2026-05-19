@@ -43,16 +43,16 @@ const router = createRouter({
       }
     },
     {
-      path: '/workflow',
-      name: 'workflow',
-      component: () => import('../views/WorkflowPage.vue'),
+      path: '/automation',
+      name: 'automation',
+      component: () => import('../views/AutomationPage.vue'),
       meta: {
-        title: 'AWOP - A Wave Of Process | 워크플로우 자동화 플랫폼',
-        description: '복잡한 비즈니스 프로세스를 하나의 아름다운 흐름으로 만드는 차세대 워크플로우 자동화 플랫폼. 코딩 없이 드래그 앤 드롭으로 만드는 시각적 워크플로우.',
-        keywords: '워크플로우, 자동화, RPA, 비즈니스 프로세스, 노코드, 로우코드, AWOP, 제이앤디소프트',
-        ogTitle: 'AWOP - A Wave Of Process | 워크플로우 자동화 플랫폼',
-        ogDescription: '복잡한 비즈니스 프로세스를 하나의 아름다운 흐름으로 만드는 차세대 워크플로우 자동화 플랫폼.',
-        ogUrl: 'https://www.jndsoft.co.kr/workflow'
+        title: 'AX & 업무 자동화 | 제이앤디소프트',
+        description: 'AI 도입 진단과 워크플로우 자동화 PoC. 작게 시작해 SI/DX로 확장하는 디지털 전환의 첫 걸음.',
+        keywords: 'AI 도입, 업무 자동화, 워크플로우, AX, 디지털 전환, AI Transformation, 제이앤디소프트',
+        ogTitle: 'AX & 업무 자동화 | 제이앤디소프트',
+        ogDescription: 'AI 도입 진단 + 워크플로우 자동화 PoC. 무료 진단부터 시작하세요.',
+        ogUrl: 'https://www.jndsoft.co.kr/automation'
       }
     },
     {

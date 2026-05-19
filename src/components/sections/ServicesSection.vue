@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Network, ChartBar, Rocket } from 'lucide-vue-next'
+import { Network, ChartBar, Rocket, Sparkles } from 'lucide-vue-next'
 import type { ServiceCard } from '@/types'
 
 const services: ServiceCard[] = [
@@ -21,10 +21,18 @@ const services: ServiceCard[] = [
     icon: 'Rocket',
     description: '아이디어를 작동하는 제품으로 옮기는 단계. 짧은 합의 사이클로 가설을 검증하면서 시장에 진입할 수 있는 형태를 함께 다듬습니다.'
   },
+  {
+    id: 'automation',
+    title: 'AX & 업무 자동화',
+    icon: 'Sparkles',
+    description: 'AI 도입 진단과 워크플로우 자동화 PoC로 반복 업무를 줄입니다. 작게 시작해 SI / DX로 확장하는 디지털 전환의 첫 걸음.',
+    badge: 'NEW',
+    link: '/automation'
+  },
 ]
 
 const getIconComponent = (iconName: string) => {
-  const icons = { Network, ChartBar, Rocket }
+  const icons = { Network, ChartBar, Rocket, Sparkles }
   return icons[iconName as keyof typeof icons]
 }
 </script>
@@ -47,7 +55,7 @@ const getIconComponent = (iconName: string) => {
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          함께 다루는 <span class="text-primary">세 가지</span> 방식
+          비즈니스와 기술을 잇는 <span class="text-primary">네 가지</span> 방식
         </h2>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
           비즈니스와 기술을 분리하지 않고 한 흐름으로 다룹니다.
@@ -55,7 +63,7 @@ const getIconComponent = (iconName: string) => {
       </div>
 
       <!-- Services Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 lg:gap-5">
         <router-link
           v-for="(service, index) in services"
           :key="service.id"
@@ -88,7 +96,7 @@ const getIconComponent = (iconName: string) => {
               </h3>
               <span
                 v-if="service.badge"
-                class="px-2 py-0.5 text-xs font-medium bg-gray-200 text-gray-700 rounded-full"
+                class="px-2 py-0.5 text-xs font-semibold bg-primary text-white rounded-full"
               >
                 {{ service.badge }}
               </span>
