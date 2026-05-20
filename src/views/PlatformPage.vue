@@ -9,6 +9,8 @@ import {
   Target, Cog, Layers as LayersIcon, Server,
   TrendingUp, Search, Moon
 } from 'lucide-vue-next'
+import BaseSection from '@/components/sections/common/BaseSection.vue'
+import SectionHeader from '@/components/sections/common/SectionHeader.vue'
 
 const demoUrl = 'https://adm.jndsoft.co.kr/demo/crawling'
 
@@ -22,7 +24,7 @@ const demoHighlights = [
   { icon: Moon, title: '다크모드 지원', description: '전체 화면 라이트·다크 테마 전환' }
 ]
 
-// 제공 모듈 — RAW 레벨 기술 프레임워크 완성, 프로젝트별 추가는 비즈니스 로직뿐
+// 제공 모듈 — 관리자 페이지 운영 기반 완성, 프로젝트별 업무 규칙 추가
 // A. UI 공통 기반 (6종) + B. 운영 기능 (3종)
 const uiModules = [
   {
@@ -104,9 +106,9 @@ const architectureLayers: ArchitectureLayer[] = [
   {
     id: 'business',
     icon: Target,
-    title: '비즈니스 로직',
+    title: '업무 규칙',
     subtitle: 'Business Layer',
-    description: '프로젝트마다 다르게 정의되는 영역입니다.',
+    description: '프로젝트마다 다르게 정의되는 화면 흐름과 데이터 규칙입니다.',
     items: ['화면 흐름', '데이터 모델', '업무 규칙', '도메인 정책'],
     status: 'add'
   },
@@ -132,9 +134,9 @@ const architectureLayers: ArchitectureLayer[] = [
   {
     id: 'core',
     icon: Server,
-    title: 'RAW 레벨 기술 프레임워크',
+    title: '기술 프레임워크',
     subtitle: 'Core Framework',
-    description: '인증·세션·로깅·트랜잭션 등 시스템 동작의 토대입니다.',
+    description: '인증·세션·로깅·트랜잭션 등 시스템 동작의 안정적인 토대입니다.',
     items: ['인증·세션', '로깅·모니터링', '트랜잭션·예외 처리', '인프라 연동'],
     status: 'ready',
     asset: { name: 'JND Core API Platform', number: 'C-2026-021220' }
@@ -194,27 +196,21 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- Hero -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="platform-hero" variant="grid-gray" padding="compact">
+      <div class="text-center">
         <div class="inline-flex items-center gap-3 mb-5">
           <span class="h-px w-8 bg-primary/60" />
           <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            BackOffice Starter Kit
+            관리자 페이지 표준 기반
           </span>
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-          BackOffice 시스템의 <span class="text-primary">UI 공통 기반</span>
+          관리자 페이지의 <span class="text-primary">표준 운영 기반</span>
         </h1>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
-          대시보드·목록·폼·계정·메뉴 등 백오피스에 공통으로 필요한 UI를
-          이미 검증된 형태로 제공합니다.<br class="hidden sm:block" />
-          비즈니스 로직만 더하면 됩니다.
+          대시보드·목록·폼·계정·메뉴 등 운영 화면에 필요한 기반을 준비해두고,<br class="hidden sm:block" />
+          프로젝트별 업무 규칙·데이터 모델·화면 흐름을 더해 구축합니다.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -236,7 +232,7 @@ const differentiators = [
           </RouterLink>
         </div>
       </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 데모 사이트 미리보기 -->
@@ -390,8 +386,8 @@ const differentiators = [
             프로젝트마다 만드는 영역은 <span class="text-primary">최상단</span>뿐입니다
           </h2>
           <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            RAW 레벨 기술부터 운영 기능까지 — 하단 세 레이어는 이미 완성되어 있습니다.<br class="hidden sm:block" />
-            프로젝트에서는 비즈니스 로직만 추가합니다.
+            인증·세션·로깅 같은 기술 기반부터 운영 기능까지 — 하단 세 레이어는 이미 준비되어 있습니다.<br class="hidden sm:block" />
+            프로젝트에서는 업무 규칙, 데이터 모델, 화면 흐름을 추가합니다.
           </p>
         </div>
 
@@ -492,7 +488,7 @@ const differentiators = [
         <div class="mt-10 text-center max-w-3xl mx-auto">
           <p class="text-sm md:text-base text-gray-600 leading-relaxed">
             <span class="font-semibold text-gray-900">L2 · L3 · L4</span>는 이미 완성되어 있고,
-            <span class="font-semibold text-primary">L1 비즈니스 로직만</span> 프로젝트 요구사항에 맞춰 추가합니다.
+            <span class="font-semibold text-primary">L1 업무 규칙</span>을 프로젝트 요구사항에 맞춰 추가합니다.
             그래서 개발 일정·비용이 예측 가능합니다.
           </p>
         </div>
@@ -502,28 +498,15 @@ const differentiators = [
     <!-- ─────────────────────────────────────────────── -->
     <!-- 제공 모듈 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Modules
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
-            <span class="text-primary">기술 프레임워크</span>는 이미 완성되어 있습니다
-          </h2>
-          <p class="text-base text-gray-600 max-w-2xl mx-auto">
-            UI부터 운영 기능까지 — RAW 레벨 기술은 구현 완료. 프로젝트에서 추가하는 것은 비즈니스 로직뿐입니다.
-          </p>
-        </div>
+    <BaseSection id="modules" variant="grid-gray" padding="compact">
+        <SectionHeader
+          eyebrow="Modules"
+          description="UI부터 운영 기능까지 공통 기반을 준비해두고, 프로젝트에서는 업무 규칙·데이터 모델·화면 흐름을 추가합니다."
+        >
+          <template #title>
+            <span class="text-primary">관리자 페이지 기반</span>은 이미 준비되어 있습니다
+          </template>
+        </SectionHeader>
 
         <!-- UI 공통 기반 -->
         <div class="mb-8">
@@ -589,7 +572,7 @@ const differentiators = [
           </div>
         </div>
 
-        <!-- 핵심 메시지: 추가는 비즈니스 로직뿐 -->
+        <!-- 핵심 메시지: 프로젝트별 추가 범위 -->
         <div class="relative max-w-3xl mx-auto mt-10 bg-gradient-to-br from-primary/5 to-white rounded-xl p-5 md:p-6 border border-primary/20 overflow-hidden">
           <span class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/40" aria-hidden="true" />
           <span class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-primary/[0.06]" aria-hidden="true" />
@@ -598,39 +581,22 @@ const differentiators = [
               프로젝트에서 추가하는 것
             </p>
             <p class="text-sm text-gray-700 leading-relaxed">
-              UI·운영 기능 모두 <span class="font-semibold text-gray-900">RAW 레벨 기술 프레임워크가 이미 완성</span>되어 있습니다.
-              프로젝트마다 추가되는 것은 <span class="font-semibold text-gray-900">고객 비즈니스 로직</span>뿐 — 화면 흐름, 데이터 모델, 규칙 정의.
+              UI·운영 기능과 기술 기반은 <span class="font-semibold text-gray-900">표준 자산으로 준비</span>되어 있습니다.
+              프로젝트마다 추가되는 것은 <span class="font-semibold text-gray-900">업무 규칙, 데이터 모델, 화면 흐름</span>입니다.
             </p>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 차별점 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Differentiators
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="differentiators" variant="white" padding="compact">
+        <SectionHeader eyebrow="Differentiators" description="처음부터 만들지 않아도 되는 부분과, 처음부터 다듬어 둔 부분.">
+          <template #title>
             왜 검증된 <span class="text-primary">공통 기반</span>인가
-          </h2>
-          <p class="text-base text-gray-600">
-            처음부터 만들지 않아도 되는 부분과, 처음부터 다듬어 둔 부분.
-          </p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <article
@@ -654,34 +620,17 @@ const differentiators = [
             </div>
           </article>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 사용 시나리오 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Use Cases
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="use-cases" variant="grid-gray" padding="compact">
+        <SectionHeader eyebrow="Use Cases" description="아래 유형의 프로젝트라면 즉시 출발할 수 있습니다.">
+          <template #title>
             어떤 프로젝트에 <span class="text-primary">적합한가</span>
-          </h2>
-          <p class="text-base text-gray-600">
-            아래 유형의 프로젝트라면 즉시 출발할 수 있습니다.
-          </p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
           <article
@@ -705,22 +654,16 @@ const differentiators = [
             </div>
           </article>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- CTA -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-24 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="platform-cta" variant="white" max-width="4xl" padding="compact">
+      <div class="text-center">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
           이 <span class="text-primary">공통 기반</span> 위에<br class="sm:hidden" />
-          당신의 비즈니스 로직을 얹어드립니다
+          당신의 업무 규칙과 화면 흐름을 얹어드립니다
         </h2>
         <p class="text-base text-gray-600 mb-8">
           프로젝트 요구사항을 알려주시면 적용 가능 범위와 일정을 검토해드립니다.
@@ -733,7 +676,7 @@ const differentiators = [
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
-    </section>
+    </BaseSection>
   </main>
 </template>
 

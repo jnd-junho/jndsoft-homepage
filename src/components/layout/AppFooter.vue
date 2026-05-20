@@ -81,6 +81,7 @@ const currentYear = new Date().getFullYear()
             <RouterLink to="/privacy" class="hover:text-primary transition-colors">
               개인정보 처리방침
             </RouterLink>
+            <span>대표자: 한준호</span>
             <span>사업자등록번호: 757-88-02437</span>
           </div>
         </div>

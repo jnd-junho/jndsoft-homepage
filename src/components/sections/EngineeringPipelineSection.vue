@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { PenTool, Code2, GitBranch, Activity, ArrowRight } from 'lucide-vue-next'
 import type { PipelineStage } from '@/types'
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
 
 const stages: PipelineStage[] = [
   {
@@ -74,37 +76,16 @@ const setActive = (id: string) => {
 </script>
 
 <template>
-  <section id="pipeline" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
-    <!-- Background Decoration -->
-    <div
-      class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-      aria-hidden="true"
-    />
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div
-        class="text-center mb-12 md:mb-16"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            How We Work
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          작게 시작해 운영으로 잇는 <span class="text-primary">방식</span>
-        </h2>
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          큰 개발을 먼저 제안하지 않습니다.<br class="hidden sm:block" />
-          진단 → MVP → 운영 → 확장 순서로 위험을 줄이며 진행합니다.
-        </p>
-      </div>
+  <BaseSection id="pipeline" variant="grid-gray">
+    <SectionHeader eyebrow="How We Work">
+      <template #title>
+        작게 시작해 운영으로 잇는 <span class="text-primary">방식</span>
+      </template>
+      <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        큰 개발을 먼저 제안하지 않습니다.<br class="hidden sm:block" />
+        진단 → MVP → 운영 → 확장 순서로 위험을 줄이며 진행합니다.
+      </p>
+    </SectionHeader>
 
       <!-- Pipeline Diagram -->
       <div
@@ -315,8 +296,7 @@ const setActive = (id: string) => {
           <ArrowRight :size="16" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
-    </div>
-  </section>
+  </BaseSection>
 </template>
 
 <style scoped>

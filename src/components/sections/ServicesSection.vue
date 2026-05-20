@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Network, ChartBar, Rocket, Sparkles } from 'lucide-vue-next'
 import type { ServiceCard } from '@/types'
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
 
 const services: ServiceCard[] = [
   {
@@ -38,48 +40,27 @@ const getIconComponent = (iconName: string) => {
 </script>
 
 <template>
-  <section id="services" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
-    <!-- Background Decoration -->
-    <div
-      class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-      aria-hidden="true"
-    />
+  <BaseSection id="services" variant="grid-gray">
+    <SectionHeader
+      eyebrow="Services"
+      description="큰 개발부터 권하지 않습니다. 현재 업무를 진단하고, 작게 만들고, 운영 가능성이 확인되면 확장합니다."
+    >
+      <template #title>
+        업무를 시스템으로 잇는 <span class="text-primary">네 가지</span> 방식
+      </template>
+    </SectionHeader>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div
-        class="text-center mb-16"
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 lg:gap-5">
+      <router-link
+        v-for="(service, index) in services"
+        :key="service.id"
+        :to="service.link || '#'"
         v-motion
         :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
+        :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
+        class="service-card group relative bg-white rounded-2xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 shadow-card hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer block overflow-hidden"
       >
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            Services
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          업무를 시스템으로 잇는 <span class="text-primary">네 가지</span> 방식
-        </h2>
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-          큰 개발부터 권하지 않습니다. 현재 업무를 진단하고, 작게 만들고, 운영 가능성이 확인되면 확장합니다.
-        </p>
-      </div>
-
-      <!-- Services Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 lg:gap-5">
-        <router-link
-          v-for="(service, index) in services"
-          :key="service.id"
-          :to="service.link || '#'"
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: index * 100 } }"
-          class="service-card group relative bg-white rounded-2xl p-6 md:p-7 border border-gray-200 hover:border-primary/40 shadow-card hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer block overflow-hidden"
-        >
           <!-- Top accent bar -->
           <span class="absolute top-0 left-0 w-12 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
           <!-- Index (background) -->
@@ -114,8 +95,7 @@ const getIconComponent = (iconName: string) => {
               {{ service.description }}
             </p>
           </div>
-        </router-link>
-      </div>
+      </router-link>
     </div>
-  </section>
+  </BaseSection>
 </template>

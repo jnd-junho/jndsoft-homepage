@@ -6,6 +6,8 @@ import {
   GraduationCap, Briefcase, Trophy, ArrowRight
 } from 'lucide-vue-next'
 import type { TimelineItem, CultureValue } from '@/types'
+import BaseSection from '@/components/sections/common/BaseSection.vue'
+import SectionHeader from '@/components/sections/common/SectionHeader.vue'
 
 // ─────────────────────────────────────────────────────
 // PLACEHOLDER: 대표 프로필 — 아래 항목을 실제 값으로 교체
@@ -98,36 +100,36 @@ const companyTimeline: TimelineItem[] = [
   {
     id: 'finance',
     date: '2022년 하반기',
-    title: '금융/중공업 프로젝트',
-    description: '금융그룹사 ESG 시스템 구축 개발 참여\n중공업 LCA 시스템 구축 개발 참여',
+    title: '금융/중공업 업무 시스템 경험',
+    description: 'ESG·LCA 데이터 관리 시스템 구축 참여\n변경되는 데이터 항목, 계산 근거, 보고 흐름을 운영 관점에서 다루는 경험 축적',
     icon: 'Building'
   },
   {
     id: 'chemical',
     date: '2023년 상반기',
-    title: '화학 기업 프로젝트',
-    description: '국내 화학 기업 ESG 시스템 구축 개발 참여',
+    title: '화학 기업 환경 데이터 시스템 경험',
+    description: '탄소·환경 데이터 관리 시스템 구축 참여\n기준값과 업무 규칙을 추적 가능하게 관리하는 설계 관점 강화',
     icon: 'Droplet'
   },
   {
     id: 'ecommerce',
     date: '2023년 하반기 ~ 현재',
-    title: '대기업 이커머스 프로젝트',
-    description: '국내 화장품 전문기업 이커머스몰/커뮤니티 운영\n기획전 파트 시스템 고도화 참여',
+    title: '이커머스 운영 시스템 경험',
+    description: '이커머스몰·커뮤니티 운영 및 기획전 시스템 고도화 참여\n관리자 화면, 콘텐츠 운영, 트래픽 상황에서의 안정적 운영 관점 확보',
     icon: 'ShoppingCart'
   },
   {
     id: 'research',
     date: '2025년 상반기',
-    title: '연구소 설립',
-    description: '기업부설연구소 설립',
+    title: '연구개발전담부서 설립',
+    description: '연구개발전담부서 설립',
     icon: 'LightbulbIcon'
   },
   {
     id: 'ai-platform',
     date: '2025년 10월 ~ 현재',
-    title: 'AI 플랫폼 개발',
-    description: '워크플로우 자동화 플랫폼 서비스 개발 진행 중',
+    title: 'AI 업무 자동화 플랫폼 개발',
+    description: '워크플로우 자동화 플랫폼 서비스 개발 진행 중\n반복 문의, 문서 처리, 업무 기록 자동화를 실제 운영 흐름에 연결하는 방향으로 확장',
     icon: 'Bot'
   }
 ]
@@ -153,14 +155,8 @@ const getFounderIcon = (iconName: string) => {
     <!-- ─────────────────────────────────────────────── -->
     <!-- Hero Section -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
-      <!-- Background grid pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="about-hero" variant="grid-gray" padding="compact">
+      <div class="text-center">
         <div class="inline-flex items-center gap-3 mb-5">
           <span class="h-px w-8 bg-primary/60" />
           <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
@@ -176,7 +172,7 @@ const getFounderIcon = (iconName: string) => {
           고객의 비즈니스를 함께 설계합니다.
         </p>
       </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사명 어원 -->
@@ -243,27 +239,12 @@ const getFounderIcon = (iconName: string) => {
     <!-- ─────────────────────────────────────────────── -->
     <!-- 대표 프로필 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <!-- Background dot pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Founder
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="founder" variant="white" padding="compact">
+        <SectionHeader eyebrow="Founder" description="대표 개인이 아닌 회사 표준">
+          <template #title>
             설계 원칙으로 <span class="text-primary">제도화된</span> 경험
-          </h2>
-          <p class="text-base text-gray-600">대표 개인이 아닌 회사 표준</p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
           <!-- Profile Photo (임시: 모노그램 플레이스홀더) -->
@@ -416,29 +397,20 @@ const getFounderIcon = (iconName: string) => {
             </article>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 이음 철학 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-gray-50 py-20 md:py-28">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Our Philosophy
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="philosophy" variant="grid-gray" max-width="4xl" padding="compact">
+        <SectionHeader
+          eyebrow="Our Philosophy"
+          description="업무 문제를 기술 결과물로 옮기는 과정을 투명하게 공유합니다."
+        >
+          <template #title>
             고객과 함께 만드는 <span class="text-primary">이음</span>입니다
-          </h2>
-          <p class="text-base text-gray-600">
-            업무 문제를 기술 결과물로 옮기는 과정을 투명하게 공유합니다.
-          </p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="relative bg-white rounded-2xl p-8 md:p-10 border border-gray-200 overflow-hidden">
           <span class="absolute top-0 left-0 w-20 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
@@ -469,35 +441,21 @@ const getFounderIcon = (iconName: string) => {
             </li>
           </ul>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사 가치 (Culture) -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Our Culture
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="culture" variant="white" padding="compact">
+        <SectionHeader eyebrow="Our Culture">
+          <template #title>
             고객과 일하는 <span class="text-primary">방식</span>
-          </h2>
+          </template>
           <p class="text-base text-gray-600 max-w-2xl mx-auto">
             추상적인 제안보다 현재 업무를 기준으로 이야기합니다.
             합의한 범위는 문서와 화면으로 다시 확인합니다.
           </p>
-        </div>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           <div
@@ -519,31 +477,17 @@ const getFounderIcon = (iconName: string) => {
             <p class="relative text-sm text-gray-600 leading-relaxed">{{ value.description }}</p>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사 연혁 (Journey) -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Journey
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="journey" variant="grid-gray" padding="compact">
+        <SectionHeader eyebrow="Journey">
+          <template #title>
             함께 성장해온 <span class="text-primary">발자취</span>
-          </h2>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="max-w-4xl mx-auto">
           <div class="relative">
@@ -583,14 +527,13 @@ const getFounderIcon = (iconName: string) => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- CTA -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-white py-20 md:py-24">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="about-cta" variant="white" max-width="4xl" padding="compact">
+      <div class="text-center">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
           업무 시스템화를 함께 검토해보세요
         </h2>
@@ -605,7 +548,7 @@ const getFounderIcon = (iconName: string) => {
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
-    </section>
+    </BaseSection>
   </main>
 </template>
 

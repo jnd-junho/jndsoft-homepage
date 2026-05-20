@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Boxes, Layers, Cpu } from 'lucide-vue-next'
 import type { CopyrightItem, IndustryTag, TechCategory } from '@/types'
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
 
 // 대표 자산 2건 (Foundation 섹션 카드 노출)
 const featuredAssets: CopyrightItem[] = [
@@ -86,30 +88,16 @@ const techStack: TechCategory[] = [
 </script>
 
 <template>
-  <section id="foundation" class="relative py-20 md:py-32 bg-white overflow-hidden">
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div
-        class="text-center mb-12 md:mb-16"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            Foundation
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          빠른 구축을 가능하게 하는<br class="sm:hidden" />
-          <span class="text-primary">운영 기반</span>
-        </h2>
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          매번 처음부터 만들지 않기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다.
-        </p>
-      </div>
+  <BaseSection id="foundation" variant="white">
+    <SectionHeader
+      eyebrow="Foundation"
+      description="매번 처음부터 만들지 않기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다."
+    >
+      <template #title>
+        빠른 구축을 가능하게 하는<br class="sm:hidden" />
+        <span class="text-primary">운영 기반</span>
+      </template>
+    </SectionHeader>
 
       <!-- Three Pillars -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
@@ -257,8 +245,7 @@ const techStack: TechCategory[] = [
           </div>
         </article>
       </div>
-    </div>
-  </section>
+  </BaseSection>
 </template>
 
 <style scoped>

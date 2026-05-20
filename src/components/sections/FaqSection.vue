@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
+
 const faqs = [
   {
     question: '엑셀로 관리하던 업무를 웹 시스템으로 바꿀 수 있나요?',
@@ -20,30 +23,15 @@ const faqs = [
 </script>
 
 <template>
-  <section id="faq" class="relative py-20 md:py-28 bg-gray-50 overflow-hidden">
-    <!-- Background Decoration -->
-    <div
-      class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-      aria-hidden="true"
-    />
-
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            FAQ
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-          자주 묻는 <span class="text-primary">업무 시스템화</span> 질문
-        </h2>
-        <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          엑셀 업무 시스템화, AI 자동화, MVP 구축을 고민할 때 자주 나오는 질문을 정리했습니다.
-        </p>
-      </div>
+  <BaseSection id="faq" variant="grid-gray" max-width="5xl" padding="compact">
+    <SectionHeader
+      eyebrow="FAQ"
+      description="엑셀 업무 시스템화, AI 자동화, MVP 구축을 고민할 때 자주 나오는 질문을 정리했습니다."
+    >
+      <template #title>
+        자주 묻는 <span class="text-primary">업무 시스템화</span> 질문
+      </template>
+    </SectionHeader>
 
       <div class="space-y-4">
         <article
@@ -67,6 +55,5 @@ const faqs = [
           </div>
         </article>
       </div>
-    </div>
-  </section>
+  </BaseSection>
 </template>

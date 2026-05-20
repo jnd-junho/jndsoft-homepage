@@ -1,33 +1,22 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
 </script>
 
 <template>
-  <section id="contact" class="relative py-20 md:py-32 bg-white overflow-hidden">
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div
-        class="text-center mb-16"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            Contact
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          시스템화가 필요한 업무를<br class="hidden sm:block" />
-          먼저 <span class="text-primary">진단</span>해드립니다
-        </h2>
-        <p class="text-sm md:text-base text-gray-500 max-w-xl mx-auto">
-          엑셀, 카톡, 수기 업무가 어디서 막히는지부터 확인하고 MVP·자동화·시스템 구축 방향을 함께 정리합니다.
-        </p>
-      </div>
+  <BaseSection id="contact" variant="white">
+    <SectionHeader
+      eyebrow="Contact"
+      description="엑셀, 카톡, 수기 업무가 어디서 막히는지부터 확인하고 MVP·자동화·시스템 구축 방향을 함께 정리합니다."
+      class="mb-16"
+    >
+      <template #title>
+        시스템화가 필요한 업무를<br class="hidden sm:block" />
+        먼저 <span class="text-primary">진단</span>해드립니다
+      </template>
+    </SectionHeader>
 
       <!-- Map + CTA (2열) -->
       <div
@@ -88,6 +77,5 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
           </div>
         </div>
       </div>
-    </div>
-  </section>
+  </BaseSection>
 </template>
