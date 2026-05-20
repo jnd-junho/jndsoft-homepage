@@ -9,7 +9,7 @@ const services: ServiceCard[] = [
     id: 'business-system',
     title: '업무 시스템 구축',
     icon: 'Network',
-    description: '상담관리, 고객관리, 예약관리, 정산관리처럼 엑셀과 메신저에 흩어진 업무를 운영 가능한 웹 시스템으로 정리합니다.'
+    description: '상담관리, 고객관리, 예약관리, 정산관리처럼 흩어진 업무를 웹 시스템으로 정리하고, 운영 현황을 보는 대시보드까지 설계합니다.'
   },
   {
     id: 'automation',

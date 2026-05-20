@@ -16,7 +16,7 @@ const demoUrl = 'https://adm.jndsoft.co.kr/demo/crawling'
 
 // 데모 사이트에서 직접 확인할 수 있는 UI 공통 기반 기능
 const demoHighlights = [
-  { icon: LayoutDashboard, title: '대시보드 화면', description: 'KPI 카드·차트·요약 영역 등 모니터링 화면 템플릿' },
+  { icon: LayoutDashboard, title: '운영 대시보드', description: '상담, 예약, 정산, 매출 등 핵심 지표를 한눈에 보는 화면 템플릿' },
   { icon: Table2, title: '데이터 테이블', description: '검색·정렬·페이지네이션을 갖춘 표준 목록 화면' },
   { icon: TrendingUp, title: '시계열·분포 차트', description: '추이·카테고리 분포 차트 등 시각화 컴포넌트' },
   { icon: MenuIcon, title: '메뉴·네비게이션', description: '사이드바·헤더·브레드크럼 등 일관된 네비게이션' },
@@ -126,7 +126,7 @@ const architectureLayers: ArchitectureLayer[] = [
     icon: LayersIcon,
     title: 'UI 공통 기반',
     subtitle: 'User Interface Layer',
-    description: '대부분의 백오피스에서 공통으로 필요한 화면 자산입니다.',
+    description: '대부분의 관리자 페이지에서 공통으로 필요한 대시보드와 화면 자산입니다.',
     items: ['대시보드', 'CRUD 목록', '입력 폼', '계정·로그인', '메뉴', '디자인 시스템'],
     status: 'ready',
     asset: { name: 'JND Front UI Platform', number: 'C-2026-022462' }
