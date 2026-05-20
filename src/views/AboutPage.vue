@@ -6,6 +6,8 @@ import {
   GraduationCap, Briefcase, Trophy, ArrowRight
 } from 'lucide-vue-next'
 import type { TimelineItem, CultureValue } from '@/types'
+import BaseSection from '@/components/sections/common/BaseSection.vue'
+import SectionHeader from '@/components/sections/common/SectionHeader.vue'
 
 // ─────────────────────────────────────────────────────
 // PLACEHOLDER: 대표 프로필 — 아래 항목을 실제 값으로 교체
@@ -16,11 +18,11 @@ const founder = {
   // TODO: 실제 사진 촬영 후 /public/assets/img/founder.jpg 등으로 교체
   photo: null as string | null,
   intro:
-    '풀스택 엔지니어로 시작해 시스템 아키텍트로, 그리고 대표로 — 점차 더 큰 그림을 설계해왔습니다. 기술 의사결정과 비즈니스 의사결정을 분리하지 않는 것이, 지금까지 다뤄온 모든 프로젝트의 공통 원칙입니다.',
+    '풀스택 엔지니어와 시스템 아키텍트 경험을 바탕으로, 고객의 업무 언어를 개발 가능한 요구사항으로 옮기는 일을 중요하게 생각합니다. 기술 의사결정은 운영 방식과 분리될 수 없습니다.',
   highlights: [
     { icon: 'GraduationCap', label: '전공', value: '소프트웨어 개발 학과 졸업' },
     { icon: 'Briefcase', label: '실무 경력', value: '약 18년 — 시스템 설계·구축·운영' },
-    { icon: 'Trophy', label: '전문 분야', value: '시스템 설계 · DX 전환 · 대규모 트래픽 운영' }
+    { icon: 'Trophy', label: '전문 분야', value: '업무 시스템 설계 · MVP 구축 · 운영 구조화' }
   ]
 }
 
@@ -31,26 +33,26 @@ const founderExperience = [
   {
     id: 'exp-domain',
     label: '도메인 다양성',
-    title: '여러 산업군의 비즈니스 흐름 학습',
-    description: '금융·중공업·화학·이커머스 등 서로 다른 산업의 시스템을 직접 설계·구축·운영했습니다. 각 도메인의 핵심 규제·업무·데이터 흐름을 현장에서 이해했습니다.'
+    title: '업무 흐름을 먼저 이해',
+    description: '금융·제조·이커머스 등 서로 다른 산업의 시스템 구축과 운영 경험을 바탕으로, 도메인의 용어·데이터·승인 흐름을 먼저 정리합니다.'
   },
   {
     id: 'exp-segment',
     label: 'B2B · B2C 양면 경험',
-    title: '엔터프라이즈와 소비자 서비스 모두',
-    description: '대형 기업의 내부 시스템과 일반 소비자를 대상으로 하는 이커머스 서비스를 함께 다뤘습니다. 사용자 유형에 따라 달라지는 우선순위와 의사결정 구조를 알고 있습니다.'
+    title: '관리자와 사용자를 함께 고려',
+    description: '내부 운영자가 쓰는 관리자 화면과 외부 사용자가 쓰는 서비스 화면은 우선순위가 다릅니다. 두 흐름을 분리해 필요한 범위를 정합니다.'
   },
   {
     id: 'exp-scale',
-    label: '대규모 운영',
-    title: '실시간 트래픽과 장애 대응',
-    description: '이커머스 환경에서 트래픽이 몰리는 시점의 운영과 빠른 장애 인지·대응을 경험했습니다. 만드는 단계와 운영하는 단계의 간극을 줄이는 설계 원칙이 여기서 정리되었습니다.'
+    label: '운영 경험',
+    title: '만든 뒤 운영까지 고려',
+    description: '시스템은 오픈 후에 더 많은 예외를 만납니다. 데이터 수정, 권한, 알림, 장애 확인처럼 운영자가 실제로 마주할 일을 설계에 포함합니다.'
   },
   {
     id: 'exp-role',
     label: '역할 폭',
-    title: '실무 개발부터 기술 리더까지',
-    description: '코드를 직접 작성하는 실무자에서, 여러 팀이 협업하는 DX 전환 프로젝트의 기술 리더까지 다양한 위치에서 일했습니다. 미팅 현장에서 즉시 설계 제안이 나오는 배경입니다.'
+    title: '작은 범위부터 실행',
+    description: '처음부터 큰 시스템을 전제하지 않습니다. 진단, MVP, 자동화 PoC처럼 확인 가능한 단위로 시작하고 필요한 만큼 확장합니다.'
   }
 ]
 
@@ -60,26 +62,26 @@ const founderExperience = [
 const cultureValues: CultureValue[] = [
   {
     id: 'improvement',
-    title: '현실적 개선',
-    description: '무리한 변화보다 현실적인 개선을 선택합니다',
+    title: '현실적 진단',
+    description: '지금 바꿀 수 있는 업무와 나중에 확장할 업무를 구분합니다',
     icon: 'RotateCw'
   },
   {
     id: 'flexibility',
-    title: '유연한 사고',
-    description: '정답을 강요하지 않고 유연하게 사고합니다',
+    title: '명확한 번역',
+    description: '고객의 업무 언어를 화면, 데이터, 규칙으로 풀어 설명합니다',
     icon: 'Lightbulb'
   },
   {
     id: 'execution',
-    title: '실행 중심',
-    description: '실행을 통해 증명되는 효율을 중시합니다',
+    title: 'MVP 우선',
+    description: '큰 구축보다 먼저 확인 가능한 작은 결과물을 만듭니다',
     icon: 'TrendingUp'
   },
   {
     id: 'start',
-    title: '작은 시작',
-    description: '바꿀 수 있는 것부터 시작하는 실천을 중요하게 생각합니다',
+    title: '운영 지속성',
+    description: '개발 완료보다 실제 운영과 유지보수 가능성을 우선합니다',
     icon: 'Play'
   }
 ]
@@ -98,36 +100,36 @@ const companyTimeline: TimelineItem[] = [
   {
     id: 'finance',
     date: '2022년 하반기',
-    title: '금융/중공업 프로젝트',
-    description: '금융그룹사 ESG 시스템 구축 개발 참여\n중공업 LCA 시스템 구축 개발 참여',
+    title: '금융/중공업 업무 시스템 경험',
+    description: 'ESG·LCA 데이터 관리 시스템 구축 참여\n변경되는 데이터 항목, 계산 근거, 보고 흐름을 운영 관점에서 다루는 경험 축적',
     icon: 'Building'
   },
   {
     id: 'chemical',
     date: '2023년 상반기',
-    title: '화학 기업 프로젝트',
-    description: '국내 화학 기업 ESG 시스템 구축 개발 참여',
+    title: '화학 기업 환경 데이터 시스템 경험',
+    description: '탄소·환경 데이터 관리 시스템 구축 참여\n기준값과 업무 규칙을 추적 가능하게 관리하는 설계 관점 강화',
     icon: 'Droplet'
   },
   {
     id: 'ecommerce',
     date: '2023년 하반기 ~ 현재',
-    title: '대기업 이커머스 프로젝트',
-    description: '국내 화장품 전문기업 이커머스몰/커뮤니티 운영\n기획전 파트 시스템 고도화 참여',
+    title: '이커머스 운영 시스템 경험',
+    description: '이커머스몰·커뮤니티 운영 및 기획전 시스템 고도화 참여\n관리자 화면, 콘텐츠 운영, 트래픽 상황에서의 안정적 운영 관점 확보',
     icon: 'ShoppingCart'
   },
   {
     id: 'research',
     date: '2025년 상반기',
-    title: '연구소 설립',
-    description: '기업부설연구소 설립',
+    title: '연구개발전담부서 설립',
+    description: '연구개발전담부서 설립',
     icon: 'LightbulbIcon'
   },
   {
     id: 'ai-platform',
     date: '2025년 10월 ~ 현재',
-    title: 'AI 플랫폼 개발',
-    description: '워크플로우 자동화 플랫폼 서비스 개발 진행 중',
+    title: 'AI 업무 자동화 플랫폼 개발',
+    description: '워크플로우 자동화 플랫폼 서비스 개발 진행 중\n반복 문의, 문서 처리, 업무 기록 자동화를 실제 운영 흐름에 연결하는 방향으로 확장',
     icon: 'Bot'
   }
 ]
@@ -153,14 +155,8 @@ const getFounderIcon = (iconName: string) => {
     <!-- ─────────────────────────────────────────────── -->
     <!-- Hero Section -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-16 md:py-24 overflow-hidden">
-      <!-- Background grid pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="about-hero" variant="grid-gray" padding="compact">
+      <div class="text-center">
         <div class="inline-flex items-center gap-3 mb-5">
           <span class="h-px w-8 bg-primary/60" />
           <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
@@ -176,7 +172,7 @@ const getFounderIcon = (iconName: string) => {
           고객의 비즈니스를 함께 설계합니다.
         </p>
       </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사명 어원 -->
@@ -243,27 +239,12 @@ const getFounderIcon = (iconName: string) => {
     <!-- ─────────────────────────────────────────────── -->
     <!-- 대표 프로필 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <!-- Background dot pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Founder
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="founder" variant="white" padding="compact">
+        <SectionHeader eyebrow="Founder" description="대표 개인이 아닌 회사 표준">
+          <template #title>
             설계 원칙으로 <span class="text-primary">제도화된</span> 경험
-          </h2>
-          <p class="text-base text-gray-600">대표 개인이 아닌 회사 표준</p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
           <!-- Profile Photo (임시: 모노그램 플레이스홀더) -->
@@ -416,29 +397,20 @@ const getFounderIcon = (iconName: string) => {
             </article>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 이음 철학 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-gray-50 py-20 md:py-28">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Our Philosophy
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
-            우리가 만드는 것은 <span class="text-primary">이음</span>입니다
-          </h2>
-          <p class="text-base text-gray-600">
-            모든 프로젝트는 결국, 무언가를 잇는 일이라고 믿습니다.
-          </p>
-        </div>
+    <BaseSection id="philosophy" variant="grid-gray" max-width="4xl" padding="compact">
+        <SectionHeader
+          eyebrow="Our Philosophy"
+          description="업무 문제를 기술 결과물로 옮기는 과정을 투명하게 공유합니다."
+        >
+          <template #title>
+            고객과 함께 만드는 <span class="text-primary">이음</span>입니다
+          </template>
+        </SectionHeader>
 
         <div class="relative bg-white rounded-2xl p-8 md:p-10 border border-gray-200 overflow-hidden">
           <span class="absolute top-0 left-0 w-20 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-tl-2xl" aria-hidden="true" />
@@ -447,10 +419,10 @@ const getFounderIcon = (iconName: string) => {
           <ul class="relative space-y-5">
             <li
               v-for="(philo, idx) in [
-                { title: '비즈니스와 기술의', desc: '도메인을 깊이 이해한 사람이 직접 설계합니다. 기술이 비즈니스의 언어가 되도록.' },
-                { title: '고객과 우리, 신뢰의', desc: '짧은 합의 사이클로 누적된 오해를 차단합니다. 끝나고 보여주지 않고, 만들어가며 함께 결정합니다.' },
-                { title: '미팅과 결과물의', desc: '말로 끝나는 미팅이 아닌, 정리·재구성·재공유의 사이클이 결과물로 이어집니다.' },
-                { title: '설계와 운영의', desc: '만들고 끝이 아닙니다. 빠른 장애 인지·대응 체계까지 함께 설계합니다.' }
+                { title: '업무와 화면의', desc: '상담관리, 정산관리, 예약관리처럼 실제 업무가 어떤 화면과 데이터로 바뀌는지 함께 확인합니다.' },
+                { title: '고객 언어와 개발 언어의', desc: '요구사항을 기술 용어로 덮지 않고, 결정해야 할 범위와 기준을 이해하기 쉬운 말로 정리합니다.' },
+                { title: '아이디어와 MVP의', desc: '검증되지 않은 아이디어는 작게 만들고 빠르게 확인합니다. 필요한 기능과 미뤄도 되는 기능을 분리합니다.' },
+                { title: '설계와 운영의', desc: '만들고 끝내지 않습니다. 운영자가 수정하고 확인해야 할 데이터와 권한까지 함께 설계합니다.' }
               ]"
               :key="idx"
               class="group flex items-start gap-4 p-4 rounded-xl hover:bg-primary/[0.03] transition-colors"
@@ -469,35 +441,21 @@ const getFounderIcon = (iconName: string) => {
             </li>
           </ul>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사 가치 (Culture) -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Our Culture
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
-            함께 일하기 <span class="text-primary">좋은 팀</span>
-          </h2>
+    <BaseSection id="culture" variant="white" padding="compact">
+        <SectionHeader eyebrow="Our Culture">
+          <template #title>
+            고객과 일하는 <span class="text-primary">방식</span>
+          </template>
           <p class="text-base text-gray-600 max-w-2xl mx-auto">
-            누군가를 가르치려 들지 않습니다. 더 나은 방향을 함께 찾고,
-            스스로 납득한 방식으로 움직입니다.
+            추상적인 제안보다 현재 업무를 기준으로 이야기합니다.
+            합의한 범위는 문서와 화면으로 다시 확인합니다.
           </p>
-        </div>
+        </SectionHeader>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           <div
@@ -519,31 +477,17 @@ const getFounderIcon = (iconName: string) => {
             <p class="relative text-sm text-gray-600 leading-relaxed">{{ value.description }}</p>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- 회사 연혁 (Journey) -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Journey
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="journey" variant="grid-gray" padding="compact">
+        <SectionHeader eyebrow="Journey">
+          <template #title>
             함께 성장해온 <span class="text-primary">발자취</span>
-          </h2>
-        </div>
+          </template>
+        </SectionHeader>
 
         <div class="max-w-4xl mx-auto">
           <div class="relative">
@@ -583,29 +527,28 @@ const getFounderIcon = (iconName: string) => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- CTA -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="bg-white py-20 md:py-24">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="about-cta" variant="white" max-width="4xl" padding="compact">
+      <div class="text-center">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-          비즈니스를 함께 만들 준비가 되어 있습니다
+          업무 시스템화를 함께 검토해보세요
         </h2>
         <p class="text-base text-gray-600 mb-8">
-          작은 미팅부터 시작합니다. 부담 없이 문의하세요.
+          현재 업무 흐름을 기준으로 MVP, 자동화, 시스템 구축 가능성을 먼저 진단합니다.
         </p>
         <RouterLink
           to="/contact"
           class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
         >
-          프로젝트 문의
+          무료 진단 문의하기
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
-    </section>
+    </BaseSection>
   </main>
 </template>
 

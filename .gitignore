@@ -37,6 +37,7 @@ dist-ssr
 
 # Misc
 .kombai
+AGENTS.md
 
 # Dot directories (tools, caches)
 .*/

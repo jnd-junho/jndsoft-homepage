@@ -63,14 +63,6 @@ const currentYear = new Date().getFullYear()
             >
               회사 소개
             </RouterLink>
-            <a
-              href="https://jndsoft-dev.tistory.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block text-sm text-gray-400 hover:text-primary transition-colors"
-            >
-              기술블로그
-            </a>
             <RouterLink
               to="/contact"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"
@@ -89,6 +81,7 @@ const currentYear = new Date().getFullYear()
             <RouterLink to="/privacy" class="hover:text-primary transition-colors">
               개인정보 처리방침
             </RouterLink>
+            <span>대표자: 한준호</span>
             <span>사업자등록번호: 757-88-02437</span>
           </div>
         </div>

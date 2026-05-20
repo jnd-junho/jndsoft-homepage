@@ -50,11 +50,11 @@ const retryLockSeconds = ref(0)
 let retryTimerId: number | undefined
 
 const projectTypeOptions: { value: ProjectType; label: string }[] = [
-  { value: 'si', label: 'SI 시스템 구축' },
-  { value: 'mvp', label: 'MVP / 스타트업 프로토타입' },
-  { value: 'webapp', label: '웹 애플리케이션' },
-  { value: 'homepage', label: '회사/서비스 홈페이지' },
-  { value: 'simple', label: '간단한 유지보수/개선' },
+  { value: 'si', label: '업무 시스템 구축' },
+  { value: 'mvp', label: 'MVP 빠른 구축' },
+  { value: 'webapp', label: 'AI 업무 자동화' },
+  { value: 'homepage', label: 'SaaS 전환 상담' },
+  { value: 'simple', label: '기존 시스템 개선' },
   { value: 'other', label: '기타' },
 ]
 
@@ -183,10 +183,10 @@ async function handleSubmit() {
       <!-- Header -->
       <div class="text-center mb-12">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          프로젝트 문의
+          무료 진단 문의
         </h1>
         <p class="text-lg text-gray-600">
-          요구사항을 남겨주시면 영업일 기준 24시간 이내에 회신드립니다.
+          엑셀·카톡·수기 업무, 반복 문의, MVP 아이디어를 남겨주시면 시스템화 방향을 검토해드립니다.
         </p>
       </div>
 
@@ -199,7 +199,7 @@ async function handleSubmit() {
                 <Mail :size="20" :stroke-width="1.5" />
               </div>
               <div>
-                <p class="text-sm text-gray-500 mb-1">Email</p>
+                <p class="text-sm text-gray-500 mb-1">문의 메일</p>
                 <a
                   href="mailto:business@jndsoft.co.kr"
                   class="text-gray-900 font-medium hover:text-primary transition-colors"
@@ -229,6 +229,14 @@ async function handleSubmit() {
                 </p>
               </div>
             </div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="text-sm font-semibold text-gray-900 mb-3">이렇게 적어주시면 좋습니다</p>
+            <ul class="space-y-2 text-sm text-gray-600 leading-relaxed">
+              <li>현재 어떤 업무를 엑셀, 카톡, 수기로 처리하는지</li>
+              <li>반복해서 생기는 오류나 지연이 무엇인지</li>
+              <li>MVP, 자동화, 관리자 시스템 중 어느 방향을 고민 중인지</li>
+            </ul>
           </div>
         </aside>
 
@@ -324,7 +332,7 @@ async function handleSubmit() {
             <!-- Project type -->
             <div>
               <label for="project_type" class="block text-sm font-medium text-gray-700 mb-1.5">
-                프로젝트 유형 <span class="text-gray-400 text-xs">(선택)</span>
+                상담 유형 <span class="text-gray-400 text-xs">(선택)</span>
               </label>
               <select
                 id="project_type"
@@ -375,13 +383,13 @@ async function handleSubmit() {
             <!-- Requirement body (required) -->
             <div class="md:col-span-2">
               <label for="requirement_body" class="block text-sm font-medium text-gray-700 mb-1.5">
-                요구사항 <span class="text-red-500">*</span>
+                현재 업무 문제와 기대 결과 <span class="text-red-500">*</span>
               </label>
               <textarea
                 id="requirement_body"
                 v-model="form.requirementBody"
                 rows="10"
-                placeholder="해결하고 싶은 문제, 기대하는 결과, 참고 자료 등을 자유롭게 작성해주세요."
+                placeholder="현재 엑셀·카톡·수기로 처리하는 업무, 반복되는 문제, 기대하는 결과 등을 자유롭게 작성해주세요."
                 :maxlength="FIELD_LIMITS.requirementBody"
                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition resize-y"
                 :class="{ 'border-red-400': errors.requirement_body }"
@@ -438,7 +446,7 @@ async function handleSubmit() {
             <span v-else-if="retryLockSeconds > 0">{{ retryLockSeconds }}초 후 다시 시도</span>
             <template v-else>
               <Send :size="18" />
-              <span>문의 접수하기</span>
+              <span>무료 진단 문의하기</span>
             </template>
           </button>
         </form>

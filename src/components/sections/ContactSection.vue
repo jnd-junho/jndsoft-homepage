@@ -1,40 +1,22 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
+import BaseSection from './common/BaseSection.vue'
+import SectionHeader from './common/SectionHeader.vue'
 </script>
 
 <template>
-  <section id="contact" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
-    <!-- Background Decoration -->
-    <div
-      class="absolute inset-0 opacity-[0.03] pointer-events-none"
-      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-      aria-hidden="true"
-    />
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div
-        class="text-center mb-16"
-        v-motion
-        :initial="{ opacity: 0, y: 30 }"
-        :visible="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-      >
-        <div class="inline-flex items-center gap-3 mb-5">
-          <span class="h-px w-8 bg-primary/60" />
-          <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            Contact
-          </span>
-          <span class="h-px w-8 bg-primary/60" />
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          프로젝트는 <span class="text-primary">신뢰의 이음</span>에서<br class="hidden sm:block" />
-          시작됩니다
-        </h2>
-        <p class="text-sm md:text-base text-gray-500 max-w-xl mx-auto">
-          작은 미팅부터 시작하세요. 부담 없이 문의주세요.
-        </p>
-      </div>
+  <BaseSection id="contact" variant="white">
+    <SectionHeader
+      eyebrow="Contact"
+      description="엑셀, 카톡, 수기 업무가 어디서 막히는지부터 확인하고 MVP·자동화·시스템 구축 방향을 함께 정리합니다."
+      class="mb-16"
+    >
+      <template #title>
+        시스템화가 필요한 업무를<br class="hidden sm:block" />
+        먼저 <span class="text-primary">진단</span>해드립니다
+      </template>
+    </SectionHeader>
 
       <!-- Map + CTA (2열) -->
       <div
@@ -61,10 +43,10 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
         <div class="lg:col-span-1 order-1 lg:order-2">
           <div class="h-full bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-white flex flex-col">
             <h3 class="text-2xl font-bold mb-3 leading-tight">
-              프로젝트를<br />시작하세요
+              무료 진단으로<br />시작하세요
             </h3>
             <p class="text-sm text-white/90 mb-6 leading-relaxed">
-              요구사항을 남겨주시면 영업일 기준 24시간 이내 담당자가 회신드립니다.
+              지금 겪는 업무 문제를 남겨주시면 영업일 기준 24시간 이내 적용 가능한 방향을 회신드립니다.
             </p>
 
             <ul class="space-y-2 mb-8 text-sm text-white/90">
@@ -74,7 +56,7 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
               </li>
               <li class="flex items-center gap-2">
                 <Mail :size="16" :stroke-width="2" />
-                <span>무료 견적 상담</span>
+                <span>업무 시스템화 상담</span>
               </li>
             </ul>
 
@@ -82,7 +64,7 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
               to="/contact"
               class="mt-auto inline-flex items-center justify-between gap-2 px-5 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-gray-100 transition-colors group"
             >
-              <span>문의하기</span>
+              <span>무료 진단 문의하기</span>
               <ArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
             </RouterLink>
 
@@ -95,6 +77,5 @@ import { Mail, ArrowRight, Clock } from 'lucide-vue-next'
           </div>
         </div>
       </div>
-    </div>
-  </section>
+  </BaseSection>
 </template>

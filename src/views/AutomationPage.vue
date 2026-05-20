@@ -5,6 +5,8 @@ import {
   ArrowRight, Wrench, CircleDot,
   Mail, Bot, GitBranch, MessageSquare, Sheet
 } from 'lucide-vue-next'
+import BaseSection from '@/components/sections/common/BaseSection.vue'
+import SectionHeader from '@/components/sections/common/SectionHeader.vue'
 
 // Track 2: 워크플로우 노드 (고객 문의 자동 분류·기록)
 const workflowNodes = [
@@ -52,33 +54,27 @@ const tools = ['n8n', 'Zapier', 'Make', '기타 검증된 워크플로우 플랫
     <!-- ─────────────────────────────────────────────── -->
     <!-- Hero Section -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <!-- Background grid pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="automation-hero" variant="grid-gray" padding="compact">
+      <div class="text-center">
         <!-- Eyebrow -->
         <div class="inline-flex items-center gap-3 mb-5">
           <span class="h-px w-8 bg-primary/60" />
           <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            AI Transformation  ·  Entry Point
+            AI 업무 자동화  ·  Entry Point
           </span>
           <span class="h-px w-8 bg-primary/60" />
         </div>
 
         <!-- Headline -->
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-          AX & <br class="sm:hidden" />
-          <span class="text-primary">업무 자동화</span>
+          반복 업무를 줄이는<br class="sm:hidden" />
+          <span class="text-primary">AI 업무 자동화</span>
         </h1>
 
         <!-- Sub -->
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
-          복잡한 업무를 노드로 연결하고, AI로 판단합니다.<br class="hidden sm:block" />
-          작게 시작해 SI / DX로 확장하는 디지털 전환의 첫 걸음.
+          반복 문의, 문서 확인, 요약·분류 업무를 작은 PoC로 먼저 검증합니다.<br class="hidden sm:block" />
+          검증된 자동화는 업무 시스템 구축과 운영 확장으로 이어갑니다.
         </p>
 
         <!-- CTA -->
@@ -98,34 +94,20 @@ const tools = ['n8n', 'Zapier', 'Make', '기타 검증된 워크플로우 플랫
           </a>
         </div>
       </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- Track 1 — AI 도입 진단 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section id="diagnostics" class="relative bg-white py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Track 01
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="diagnostics" variant="white" padding="compact">
+        <SectionHeader
+          eyebrow="Track 01"
+          description="현재 업무 프로세스를 함께 분석하고, AI를 적용해 즉시 효과를 낼 수 있는 지점을 발굴합니다."
+        >
+          <template #title>
             <span class="text-primary">AI 도입</span>은 진단부터.
-          </h2>
-          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            현재 업무 프로세스를 함께 분석하고, AI를 적용해 즉시 효과를 낼 수 있는 지점을 발굴합니다.
-          </p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <!-- 4-Step Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-5 lg:gap-4 max-w-7xl mx-auto">
@@ -169,35 +151,20 @@ const tools = ['n8n', 'Zapier', 'Make', '기타 검증된 워크플로우 플랫
             </div>
           </article>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- Track 2 — 워크플로우 자동화 PoC (Placeholder) -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="h-px w-8 bg-primary/60" />
-            <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-              Track 02
-            </span>
-            <span class="h-px w-8 bg-primary/60" />
-          </div>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+    <BaseSection id="automation-poc" variant="grid-gray" padding="compact">
+        <SectionHeader
+          eyebrow="Track 02"
+          description="진단에서 도출된 자동화 후보를 작은 워크플로우로 만들어 효과를 즉시 검증합니다."
+        >
+          <template #title>
             <span class="text-primary">워크플로우 자동화</span> PoC.
-          </h2>
-          <p class="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            진단에서 도출된 자동화 후보를 작은 워크플로우로 만들어 효과를 즉시 검증합니다.
-          </p>
-        </div>
+          </template>
+        </SectionHeader>
 
         <!-- Workflow Diagram Canvas -->
         <div
@@ -338,14 +305,12 @@ const tools = ['n8n', 'Zapier', 'Make', '기타 검증된 워크플로우 플랫
             </p>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
     <!-- Foundation Tools — 도구 중립적 병기 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-white py-16 md:py-20 overflow-hidden">
-      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <BaseSection id="automation-tools" variant="white" max-width="5xl" padding="compact">
         <div
           class="relative bg-gradient-to-br from-primary/5 to-white rounded-2xl p-8 md:p-10 border border-primary/20 overflow-hidden"
           v-motion
@@ -387,44 +352,38 @@ const tools = ['n8n', 'Zapier', 'Make', '기타 검증된 워크플로우 플랫
             </div>
           </div>
         </div>
-      </div>
-    </section>
+    </BaseSection>
 
     <!-- ─────────────────────────────────────────────── -->
-    <!-- CTA — AX는 시작, SI/DX로 확장 -->
+    <!-- CTA — AI 자동화는 시작, 업무 시스템으로 확장 -->
     <!-- ─────────────────────────────────────────────── -->
-    <section class="relative bg-gray-50 py-20 md:py-28 overflow-hidden">
-      <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
-        aria-hidden="true"
-      />
-      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <BaseSection id="automation-cta" variant="grid-gray" max-width="4xl" padding="compact">
+      <div class="text-center">
         <div class="inline-flex items-center gap-3 mb-5">
           <span class="h-px w-8 bg-primary/60" />
           <span class="text-xs sm:text-sm font-medium text-primary uppercase tracking-[0.3em]">
-            Start Small  ·  Scale Naturally
+            Start Small  ·  Expand Operations
           </span>
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-          AX는 시작입니다. <br class="sm:hidden" />
-          <span class="text-primary">SI / DX</span>로 자연스럽게 확장하세요.
+          AI 자동화는 시작입니다. <br class="sm:hidden" />
+          <span class="text-primary">업무 시스템 구축</span>으로 확장하세요.
         </h2>
         <p class="text-base md:text-lg text-gray-600 mb-10 leading-relaxed">
-          작은 자동화 PoC에서 출발해 데이터·프로세스의 빈틈을 발견하고,<br class="hidden sm:block" />
-          전사 시스템 구축과 디지털 전환 컨설팅으로 자연스럽게 이어갑니다.
+          작은 자동화 PoC에서 데이터·프로세스의 빈틈을 확인하고,<br class="hidden sm:block" />
+          관리자 화면, 권한, 기록 체계를 갖춘 운영 시스템으로 확장합니다.
         </p>
 
         <RouterLink
           to="/contact"
           class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/30"
         >
-          무료 진단 신청하기
+          무료 진단 문의하기
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
-    </section>
+    </BaseSection>
   </main>
 </template>
 

@@ -26,22 +26,22 @@ onUnmounted(() => {
 
 const proofs = [
   {
-    id: 'framework',
+    id: 'diagnosis',
     icon: Boxes,
-    title: '검증된 공통 기반',
-    description: 'UI·기능 프레임워크 재사용으로 비즈니스 로직에 집중'
+    title: '업무 진단 먼저',
+    description: '엑셀·카톡·수기 업무의 흐름과 병목을 먼저 정리'
   },
   {
-    id: 'industry',
+    id: 'mvp',
     icon: Layers,
-    title: '다양한 산업 도메인',
-    description: '금융·중공업·화학 ESG, 이커머스 실전 경험'
+    title: '작게 만들고 검증',
+    description: '처음부터 크게 만들지 않고 MVP와 PoC로 위험을 줄임'
   },
   {
-    id: 'architect',
+    id: 'operation',
     icon: Activity,
-    title: '기술 깊이를 가진 설계',
-    description: '비즈니스 요구를 기술 구조로 즉시 변환하는 아키텍트가 직접 참여'
+    title: '운영 가능한 시스템',
+    description: '관리자 화면, 권한, 데이터 흐름까지 실제 운영 기준으로 설계'
   }
 ]
 </script>
@@ -130,10 +130,10 @@ const proofs = [
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 200 } }"
       >
         <span class="block text-lg sm:text-xl lg:text-2xl font-light text-white/85 mb-4 sm:mb-5 tracking-wide">
-          비즈니스와 기술을 잇는
+          비즈니스와 기술의 이음,
         </span>
         <span class="hero-brand block font-black leading-[0.95]">
-          제이앤디소프트
+          운영되는 시스템으로
         </span>
       </h1>
 
@@ -144,7 +144,7 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 320 } }"
       >
-        비즈니스와 기술의 <span class="font-semibold text-primary">이음</span>
+        JnDSOFT는 아이디어와 실행의 <span class="font-semibold text-primary">이음</span>을 만듭니다
       </p>
 
       <!-- Subheadline -->
@@ -154,8 +154,8 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 400 } }"
       >
-        검증된 공통 기반 위에 당신의 차별화를 빠르게.<br class="hidden sm:block" />
-        비즈니스와 기술 사이의 거리를 좁힙니다.
+        중소기업·소상공인·스타트업의 엑셀, 카톡, 수기 업무를<br class="hidden sm:block" />
+        웹 시스템, AI 자동화, MVP 서비스로 전환하는 IT 구축 파트너입니다.
       </p>
 
       <!-- Proof Cards (3 evidences) -->
@@ -200,14 +200,14 @@ const proofs = [
           to="/contact"
           class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/30"
         >
-          프로젝트 문의
+          무료 진단 문의하기
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
         <a
-          href="#pipeline"
+          href="#services"
           class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold border-2 border-white/30 hover:bg-white/20 hover:border-white/50 hover:scale-105 transition-all duration-300"
         >
-          어떻게 일하는가
+          서비스 살펴보기
         </a>
       </div>
     </div>
