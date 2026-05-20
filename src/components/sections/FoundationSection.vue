@@ -87,13 +87,6 @@ const techStack: TechCategory[] = [
 
 <template>
   <section id="foundation" class="relative py-20 md:py-32 bg-white overflow-hidden">
-    <!-- Background Decoration -->
-    <div
-      class="absolute inset-0 opacity-[0.025] pointer-events-none"
-      style="background-image: radial-gradient(circle, rgba(0,0,0,1) 1px, transparent 1px); background-size: 28px 28px;"
-      aria-hidden="true"
-    />
-
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
@@ -110,11 +103,11 @@ const techStack: TechCategory[] = [
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          말이 아닌,<br class="sm:hidden" />
-          <span class="text-primary">확인 가능한 자산</span>
+          빠른 구축을 가능하게 하는<br class="sm:hidden" />
+          <span class="text-primary">운영 기반</span>
         </h2>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          재사용 가능한 표준 자산·산업 경험·기술 스택을 함께 공개합니다.
+          매번 처음부터 만들지 않기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다.
         </p>
       </div>
 
@@ -141,11 +134,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 01</p>
-                <h3 class="text-xl font-bold text-gray-900">표준 자산</h3>
+                <h3 class="text-xl font-bold text-gray-900">재사용 기반</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              실제 프로젝트에 재사용되는 표준 프레임워크입니다.
+              로그인, 메뉴, 관리자 API처럼 반복되는 기반을 표준화해 핵심 업무 구현에 더 집중합니다.
             </p>
 
             <!-- 대표 자산 2건 -->
@@ -197,11 +190,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 02</p>
-                <h3 class="text-xl font-bold text-gray-900">산업 도메인</h3>
+                <h3 class="text-xl font-bold text-gray-900">도메인 학습</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              실제 수행한 다양한 산업의 비즈니스 흐름을 학습했습니다.
+              기존 경험을 바탕으로 새 업무의 용어, 데이터, 승인 흐름을 빠르게 구조화합니다.
             </p>
             <ul class="space-y-2.5">
               <li
@@ -236,11 +229,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 03</p>
-                <h3 class="text-xl font-bold text-gray-900">기술 스택</h3>
+                <h3 class="text-xl font-bold text-gray-900">안정적 스택</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              안정성이 검증된 스택만 사용. 새 기술은 사전 검토 후 도입합니다.
+              운영 지속성을 기준으로 검증된 기술을 사용합니다. 새 기술은 필요성과 유지보수성을 먼저 검토합니다.
             </p>
             <div class="space-y-4">
               <div v-for="cat in techStack" :key="cat.id">

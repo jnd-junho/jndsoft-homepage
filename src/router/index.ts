@@ -8,11 +8,11 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue'),
       meta: {
-        title: '제이앤디소프트 — 비즈니스와 기술의 이음',
-        description: '검증된 공통 기반 위에 비즈니스 로직을 빠르게. 시스템 구축·기술 컨설팅·MVP 개발을 함께 다룹니다.',
-        keywords: 'SI, 시스템통합, IT컨설팅, MVP개발, 스타트업, BackOffice, 공통 기반, 제이앤디소프트',
-        ogTitle: '제이앤디소프트 — 비즈니스와 기술의 이음',
-        ogDescription: '검증된 공통 기반 위에 비즈니스 로직을 빠르게. 시스템 구축·기술 컨설팅·MVP 개발을 함께 다룹니다.',
+        title: '제이앤디소프트 — 업무 시스템 구축, AI 자동화, MVP 빠른 구축',
+        description: '중소기업·소상공인·스타트업의 엑셀, 카톡, 수기 업무를 웹 시스템, AI 자동화, MVP 서비스로 전환합니다.',
+        keywords: '업무 시스템 구축, AI 업무 자동화, MVP 빠른 구축, SaaS 전환, 엑셀 업무 시스템화, 카톡 업무 자동화, 관리자 페이지, 제이앤디소프트',
+        ogTitle: '제이앤디소프트 — 업무 시스템 구축, AI 자동화, MVP 빠른 구축',
+        ogDescription: '엑셀, 카톡, 수기 업무를 웹 시스템, AI 자동화, MVP 서비스로 전환하는 IT 구축 파트너입니다.',
         ogUrl: 'https://www.jndsoft.co.kr/'
       }
     },
@@ -21,11 +21,11 @@ const router = createRouter({
       name: 'platform',
       component: () => import('../views/PlatformPage.vue'),
       meta: {
-        title: '표준 자산 | 제이앤디소프트',
-        description: '재사용 가능한 표준 프레임워크와 BackOffice UI 공통 기반. 비즈니스 로직만 더하면 됩니다.',
-        keywords: '표준 자산, 백오피스, 어드민, 관리자페이지, BackOffice, 공통 기반, UI 프레임워크, 디자인 시스템, 제이앤디소프트',
-        ogTitle: '표준 자산 | 제이앤디소프트',
-        ogDescription: '대시보드·목록·폼·계정 등 백오피스 공통 UI를 검증된 형태로 제공합니다.',
+        title: '관리자 페이지 표준 자산 | 제이앤디소프트',
+        description: '업무 시스템 구축에 필요한 관리자 페이지, 권한, 메뉴, 목록, 입력 폼, 운영 기능을 빠르게 구성할 수 있는 표준 자산입니다.',
+        keywords: '관리자 페이지, 백오피스, 업무 시스템 구축, 권한 관리, 감사 로그, 표준 자산, 제이앤디소프트',
+        ogTitle: '관리자 페이지 표준 자산 | 제이앤디소프트',
+        ogDescription: '업무 시스템 구축에 필요한 관리자 화면과 운영 기능을 표준 자산 기반으로 구성합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/platform'
       }
     },
@@ -35,10 +35,10 @@ const router = createRouter({
       component: () => import('../views/AboutPage.vue'),
       meta: {
         title: '회사 소개 | 제이앤디소프트',
-        description: '대표 프로필, 회사 가치, 연혁. 검증된 공통 기반과 실무 경험으로 비즈니스와 기술을 잇는 회사입니다.',
-        keywords: '회사소개, 대표, 연혁, 조직문화, 제이앤디소프트',
+        description: '고객의 업무 언어를 개발 가능한 요구사항으로 번역하고, 진단부터 MVP와 운영 확장까지 함께 설계하는 IT 구축 파트너입니다.',
+        keywords: '회사소개, 업무 시스템 구축, MVP 구축, AI 자동화, 조직문화, 제이앤디소프트',
         ogTitle: '회사 소개 | 제이앤디소프트',
-        ogDescription: '대표 프로필, 회사 가치, 연혁.',
+        ogDescription: '업무 문제를 기술 결과물로 옮기는 방식과 제이앤디소프트의 일하는 원칙을 소개합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/about'
       }
     },
@@ -47,11 +47,11 @@ const router = createRouter({
       name: 'automation',
       component: () => import('../views/AutomationPage.vue'),
       meta: {
-        title: 'AX & 업무 자동화 | 제이앤디소프트',
-        description: 'AI 도입 진단과 워크플로우 자동화 PoC. 작게 시작해 SI/DX로 확장하는 디지털 전환의 첫 걸음.',
-        keywords: 'AI 도입, 업무 자동화, 워크플로우, AX, 디지털 전환, AI Transformation, 제이앤디소프트',
-        ogTitle: 'AX & 업무 자동화 | 제이앤디소프트',
-        ogDescription: 'AI 도입 진단 + 워크플로우 자동화 PoC. 무료 진단부터 시작하세요.',
+        title: 'AI 업무 자동화 | 제이앤디소프트',
+        description: '반복 문의, 문서 확인, 요약·분류, 자동 리포트 생성 업무를 작은 자동화 PoC로 검증하고 실제 업무 흐름에 연결합니다.',
+        keywords: 'AI 업무 자동화, 반복 문의 자동화, 문서 요약, 문서 분류, 자동 리포트, 업무 자동화 PoC, 제이앤디소프트',
+        ogTitle: 'AI 업무 자동화 | 제이앤디소프트',
+        ogDescription: '반복 문의, 문서 확인, 요약·분류, 리포트 생성부터 작게 검증하는 AI 업무 자동화.',
         ogUrl: 'https://www.jndsoft.co.kr/automation'
       }
     },
@@ -60,11 +60,11 @@ const router = createRouter({
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
       meta: {
-        title: '프로젝트 문의 | 제이앤디소프트',
-        description: 'SI, MVP, 웹앱, 홈페이지 등 프로젝트 문의를 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
-        keywords: '프로젝트 문의, 견적 요청, SI 의뢰, MVP 개발 문의, 제이앤디소프트',
-        ogTitle: '프로젝트 문의 | 제이앤디소프트',
-        ogDescription: 'SI, MVP, 웹앱, 홈페이지 등 프로젝트 문의를 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
+        title: '무료 진단 문의 | 제이앤디소프트',
+        description: '업무 시스템 구축, AI 자동화, MVP 빠른 구축, SaaS 전환 상담을 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
+        keywords: '무료 진단 문의, 업무 시스템 상담, AI 자동화 상담, MVP 구축 상담, SaaS 전환 상담, 제이앤디소프트',
+        ogTitle: '무료 진단 문의 | 제이앤디소프트',
+        ogDescription: '현재 업무 문제를 남겨주시면 시스템화, 자동화, MVP 구축 방향을 검토해드립니다.',
         ogUrl: 'https://www.jndsoft.co.kr/contact'
       }
     },
@@ -128,7 +128,7 @@ const updateOgTag = (property: string, content: string) => {
 // Update document title and meta tags on route change
 router.beforeEach((to, _from, next) => {
   // Update Title
-  const title = (to.meta.title as string) || '제이앤디소프트 - SI, 컨설팅, MVP 개발 전문'
+  const title = (to.meta.title as string) || '제이앤디소프트 - 업무 시스템 구축, AI 자동화, MVP 개발'
   document.title = title
 
   // Update Meta Description

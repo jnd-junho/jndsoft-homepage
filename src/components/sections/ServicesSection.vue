@@ -4,30 +4,30 @@ import type { ServiceCard } from '@/types'
 
 const services: ServiceCard[] = [
   {
-    id: 'si',
-    title: '시스템 구축 · SI',
+    id: 'business-system',
+    title: '업무 시스템 구축',
     icon: 'Network',
-    description: '기업의 업무 흐름을 정리하고, 그에 맞는 시스템을 처음부터 끝까지 함께 만듭니다. 검증된 공통 기반 위에 비즈니스 로직을 빠르게 얹습니다.'
-  },
-  {
-    id: 'consulting',
-    title: '기술 컨설팅 · DX',
-    icon: 'ChartBar',
-    description: '기술 의사결정과 비즈니스 의사결정을 분리하지 않습니다. 아키텍처 진단, 전환 전략, 단계별 실행 계획까지 함께 설계합니다.'
-  },
-  {
-    id: 'mvp',
-    title: 'MVP · 신규 서비스',
-    icon: 'Rocket',
-    description: '아이디어를 작동하는 제품으로 옮기는 단계. 짧은 합의 사이클로 가설을 검증하면서 시장에 진입할 수 있는 형태를 함께 다듬습니다.'
+    description: '상담관리, 고객관리, 예약관리, 정산관리처럼 엑셀과 메신저에 흩어진 업무를 운영 가능한 웹 시스템으로 정리합니다.'
   },
   {
     id: 'automation',
-    title: 'AX & 업무 자동화',
+    title: 'AI 업무 자동화',
     icon: 'Sparkles',
-    description: 'AI 도입 진단과 워크플로우 자동화 PoC로 반복 업무를 줄입니다. 작게 시작해 SI / DX로 확장하는 디지털 전환의 첫 걸음.',
+    description: '반복 문의, 문서 확인, 요약·분류·리포트 생성을 작은 자동화 PoC로 검증하고 실제 업무 흐름에 연결합니다.',
     badge: 'NEW',
     link: '/automation'
+  },
+  {
+    id: 'mvp',
+    title: 'MVP 빠른 구축',
+    icon: 'Rocket',
+    description: '스타트업, 정부지원사업, 신규 플랫폼 검증에 필요한 핵심 기능과 관리자 화면을 우선 구축해 빠르게 시장 반응을 확인합니다.'
+  },
+  {
+    id: 'saas-transition',
+    title: 'SaaS 전환 컨설팅',
+    icon: 'ChartBar',
+    description: '반복되는 커스텀 업무의 공통 기능을 도출하고, 내부 시스템을 업종형 SaaS로 확장할 수 있는 구조를 함께 검토합니다.'
   },
 ]
 
@@ -39,6 +39,13 @@ const getIconComponent = (iconName: string) => {
 
 <template>
   <section id="services" class="relative py-20 md:py-32 bg-gray-50 overflow-hidden">
+    <!-- Background Decoration -->
+    <div
+      class="absolute inset-0 opacity-[0.03] pointer-events-none"
+      style="background-image: linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px); background-size: 60px 60px;"
+      aria-hidden="true"
+    />
+
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div
@@ -55,10 +62,10 @@ const getIconComponent = (iconName: string) => {
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          비즈니스와 기술을 잇는 <span class="text-primary">네 가지</span> 방식
+          업무를 시스템으로 잇는 <span class="text-primary">네 가지</span> 방식
         </h2>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-          비즈니스와 기술을 분리하지 않고 한 흐름으로 다룹니다.
+          큰 개발부터 권하지 않습니다. 현재 업무를 진단하고, 작게 만들고, 운영 가능성이 확인되면 확장합니다.
         </p>
       </div>
 

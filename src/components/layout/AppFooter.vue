@@ -63,14 +63,6 @@ const currentYear = new Date().getFullYear()
             >
               회사 소개
             </RouterLink>
-            <a
-              href="https://jndsoft-dev.tistory.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block text-sm text-gray-400 hover:text-primary transition-colors"
-            >
-              기술블로그
-            </a>
             <RouterLink
               to="/contact"
               class="block text-sm text-gray-400 hover:text-primary transition-colors"

@@ -10,13 +10,13 @@ const stages: PipelineStage[] = [
     index: '01',
     title: '설계',
     titleEn: 'Design',
-    headline: '검증된 설계 원칙·즉시 제안',
+    headline: '업무 흐름부터 정리',
     icon: 'PenTool',
     points: [
-      '18년 실무 경험이 팀 표준으로 제도화',
-      '미팅 현장에서 기술·기획 옵션 동시 제안',
-      '초반 1~2주 집중 인터뷰로 도메인 흡수',
-      'AI 보조로 엣지 케이스 사전 검토'
+      '현재 쓰는 엑셀·카톡·수기 업무 흐름 확인',
+      '사용자, 관리자, 데이터 출처를 먼저 분리',
+      '처음 만들 범위와 나중에 확장할 범위 구분',
+      '요구사항을 개발 언어로 번역해 공유'
     ]
   },
   {
@@ -24,13 +24,13 @@ const stages: PipelineStage[] = [
     index: '02',
     title: '개발',
     titleEn: 'Build',
-    headline: '비즈니스 로직에만 집중',
+    headline: '작게 만들고 확인',
     icon: 'Code2',
     points: [
-      'UI 프레임워크 + 기능 모듈 보유',
-      '인증·세션·메뉴 등 공통 기능 재사용',
-      '팀은 비즈니스 로직 구현에 시간 투입',
-      'AI 보조 + 내부 코드 리뷰 체크리스트'
+      'MVP에 필요한 핵심 화면과 관리자 기능 우선',
+      '인증·메뉴·권한 등 반복 기반은 표준 자산 활용',
+      '업무 규칙은 한곳에서 관리되도록 구현',
+      '짧은 확인 주기로 오해와 재작업을 줄임'
     ]
   },
   {
@@ -38,12 +38,12 @@ const stages: PipelineStage[] = [
     index: '03',
     title: '배포',
     titleEn: 'Deploy',
-    headline: '자동화 파이프라인',
+    headline: '운영 전환 준비',
     icon: 'GitBranch',
     points: [
-      'CI/CD 파이프라인 표준 구성',
-      '자동화된 빌드·테스트·배포',
-      '휴먼 에러 차단·일관된 릴리스'
+      '테스트·배포 절차를 반복 가능하게 정리',
+      '관리자가 확인해야 할 화면과 데이터를 점검',
+      '운영 중 바뀔 수 있는 설정과 기준값 분리'
     ]
   },
   {
@@ -51,12 +51,12 @@ const stages: PipelineStage[] = [
     index: '04',
     title: '운영',
     titleEn: 'Operate',
-    headline: '빠른 장애 인지·신속 대응',
+    headline: '확장 가능한 운영',
     icon: 'Activity',
     points: [
-      '모니터링·알림 체계 구성',
-      '이커머스 대규모 트래픽 운영 노하우',
-      '검증된 장애 대응 프로세스'
+      '실제 사용 후 발견되는 예외 업무 반영',
+      'MVP 검증 결과에 따라 기능 확장',
+      '반복되는 요구를 SaaS 전환 후보로 검토'
     ]
   }
 ]
@@ -98,11 +98,11 @@ const setActive = (id: string) => {
           <span class="h-px w-8 bg-primary/60" />
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-          비즈니스 로직에 집중하는 <span class="text-primary">팀</span>
+          작게 시작해 운영으로 잇는 <span class="text-primary">방식</span>
         </h2>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          매번 처음부터 만들지 않습니다.<br class="hidden sm:block" />
-          검증된 공통 기반 위에 당신의 비즈니스를 빠르게 얹습니다.
+          큰 개발을 먼저 제안하지 않습니다.<br class="hidden sm:block" />
+          진단 → MVP → 운영 → 확장 순서로 위험을 줄이며 진행합니다.
         </p>
       </div>
 
@@ -123,7 +123,7 @@ const setActive = (id: string) => {
               </span>
             </div>
             <span class="text-xs text-gray-500 italic">
-              미팅 → 정리·재구성 → 재공유 사이클
+              진단 → 범위 합의 → 구현 → 운영 확인
             </span>
           </div>
           <div class="relative h-8">
@@ -151,7 +151,7 @@ const setActive = (id: string) => {
             </div>
           </div>
           <p class="text-xs text-gray-500 italic mt-3 text-center">
-            단계마다 고객과 동기화. 끝나고 보여주는 게 아니라, 만들어가며 함께 결정합니다.
+            단계마다 고객과 동기화합니다. 말로 끝내지 않고, 정리된 범위와 화면으로 다시 확인합니다.
           </p>
         </div>
 
@@ -299,11 +299,11 @@ const setActive = (id: string) => {
       >
         <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-3">
           각 단계는 <span class="font-semibold text-primary">이음</span>입니다 —
-          미팅과 코드, 설계와 운영, 비즈니스와 기술.
+          문제와 화면, 데이터와 운영, 아이디어와 실행.
         </p>
         <p class="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-8">
-          각 단계는 <span class="font-medium text-gray-700">회사 표준으로 제도화</span>되어 있습니다.
-          특정 개인의 역량에 의존하지 않습니다.
+          업무 규칙은 한곳에서 관리하고, 반복되는 기반은 재사용합니다.
+          단기 구현보다 유지보수 가능한 운영 구조를 우선합니다.
         </p>
 
         <!-- Platform CTA -->
@@ -311,7 +311,7 @@ const setActive = (id: string) => {
           to="/platform"
           class="group inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold border border-gray-300 hover:border-primary hover:text-primary hover:shadow-md transition-all"
         >
-          개발 단계의 공통 기반 보러가기
+          표준 자산 살펴보기
           <ArrowRight :size="16" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
       </div>
