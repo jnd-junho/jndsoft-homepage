@@ -27,7 +27,7 @@
 | 환경 | Base URL | 비고 |
 |---|---|---|
 | Staging | `https://pm-staging.jndsoft.co.kr/api/v1` | 개발 연동 기본값. OpenAPI 문서: `https://pm-staging.jndsoft.co.kr/api/v1/docs` |
-| Production | `https://pm.jndsoft.co.kr/api/v1` | 운영 배포 시 사용. `/docs` 는 비활성화됨 |
+| Production | `https://hub.jndsoft.co.kr/api/v1` | 운영 배포 시 사용. `/docs` 는 비활성화됨 |
 
 **호출 엔드포인트**: `POST {Base URL}/public/inquiries`
 
