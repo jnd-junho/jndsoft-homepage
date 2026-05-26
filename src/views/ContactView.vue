@@ -51,9 +51,9 @@ let retryTimerId: number | undefined
 
 const projectTypeOptions: { value: ProjectType; label: string }[] = [
   { value: 'si', label: '업무 시스템 구축' },
-  { value: 'mvp', label: 'MVP 빠른 구축' },
+  { value: 'mvp', label: 'SaaS·MVP 확장' },
   { value: 'webapp', label: 'AI 업무 자동화' },
-  { value: 'homepage', label: 'SaaS 전환 상담' },
+  { value: 'homepage', label: '고객 유입 화면 설계' },
   { value: 'simple', label: '기존 시스템 개선' },
   { value: 'other', label: '기타' },
 ]
@@ -186,7 +186,7 @@ async function handleSubmit() {
           무료 진단 문의
         </h1>
         <p class="text-lg text-gray-600">
-          엑셀·카톡·수기 업무, 반복 문의, MVP 아이디어를 남겨주시면 시스템화 방향을 검토해드립니다.
+          업무 시스템, AI 자동화, SaaS·MVP 확장, 고객 유입 화면 설계 중 필요한 소프트웨어 구축 방향을 검토해드립니다.
         </p>
       </div>
 
@@ -233,9 +233,9 @@ async function handleSubmit() {
           <div class="bg-white rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-semibold text-gray-900 mb-3">이렇게 적어주시면 좋습니다</p>
             <ul class="space-y-2 text-sm text-gray-600 leading-relaxed">
-              <li>현재 어떤 업무를 엑셀, 카톡, 수기로 처리하는지</li>
-              <li>반복해서 생기는 오류나 지연이 무엇인지</li>
-              <li>MVP, 자동화, 관리자 시스템 중 어느 방향을 고민 중인지</li>
+              <li>현재 어떤 업무나 고객 유입 흐름이 막혀 있는지</li>
+              <li>관리자, 상담관리, 예약관리, 자동화 중 필요한 범위가 무엇인지</li>
+              <li>SaaS·MVP 확장까지 염두에 두고 있는지</li>
             </ul>
           </div>
         </aside>
@@ -389,7 +389,7 @@ async function handleSubmit() {
                 id="requirement_body"
                 v-model="form.requirementBody"
                 rows="10"
-                placeholder="현재 엑셀·카톡·수기로 처리하는 업무, 반복되는 문제, 기대하는 결과 등을 자유롭게 작성해주세요."
+                placeholder="현재 고객 유입 흐름, 운영 업무, 반복되는 문제, 만들고 싶은 시스템이나 자동화 방향을 자유롭게 작성해주세요."
                 :maxlength="FIELD_LIMITS.requirementBody"
                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition resize-y"
                 :class="{ 'border-red-400': errors.requirement_body }"

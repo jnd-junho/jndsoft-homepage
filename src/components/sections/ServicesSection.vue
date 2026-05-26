@@ -6,30 +6,30 @@ import SectionHeader from './common/SectionHeader.vue'
 
 const services: ServiceCard[] = [
   {
+    id: 'acquisition',
+    title: '고객 유입 화면 설계',
+    icon: 'Network',
+    description: '홈페이지 UI/UX, 랜딩페이지, 상품 상세페이지를 단순 제작물이 아니라 문의와 상담으로 이어지는 앞단 흐름으로 설계합니다.'
+  },
+  {
     id: 'business-system',
     title: '업무 시스템 구축',
-    icon: 'Network',
-    description: '상담관리, 고객관리, 예약관리, 정산관리처럼 흩어진 업무를 웹 시스템으로 정리하고, 운영 현황을 보는 대시보드까지 설계합니다.'
+    icon: 'ChartBar',
+    description: '상담관리, 고객관리, 예약관리, 정산관리, 관리자 페이지처럼 실제 운영에 필요한 화면과 데이터 구조를 구축합니다.'
   },
   {
     id: 'automation',
     title: 'AI 업무 자동화',
     icon: 'Sparkles',
-    description: '반복 문의, 문서 확인, 요약·분류·리포트 생성을 작은 자동화 PoC로 검증하고 실제 업무 흐름에 연결합니다.',
-    badge: 'NEW',
+    description: '반복 문의, 상담 기록 정리, 문서 확인, 리포트 생성을 작은 PoC로 검증하고 실제 업무 흐름에 연결합니다.',
+    badge: 'AX',
     link: '/automation'
   },
   {
-    id: 'mvp',
-    title: 'MVP 빠른 구축',
+    id: 'saas-mvp',
+    title: 'SaaS·MVP 확장',
     icon: 'Rocket',
-    description: '스타트업, 정부지원사업, 신규 플랫폼 검증에 필요한 핵심 기능과 관리자 화면을 우선 구축해 빠르게 시장 반응을 확인합니다.'
-  },
-  {
-    id: 'saas-transition',
-    title: 'SaaS 전환 컨설팅',
-    icon: 'ChartBar',
-    description: '반복되는 커스텀 업무의 공통 기능을 도출하고, 내부 시스템을 업종형 SaaS로 확장할 수 있는 구조를 함께 검토합니다.'
+    description: '검증된 업무 흐름을 MVP, 정부지원사업용 서비스, 업종형 SaaS 모델로 확장할 수 있는 구조로 정리합니다.'
   },
 ]
 
@@ -43,10 +43,10 @@ const getIconComponent = (iconName: string) => {
   <BaseSection id="services" variant="grid-gray">
     <SectionHeader
       eyebrow="Services"
-      description="큰 개발부터 권하지 않습니다. 현재 업무를 진단하고, 작게 만들고, 운영 가능성이 확인되면 확장합니다."
+      description="홈페이지 제작을 따로 떼어 팔기보다, 고객 유입 화면에서 업무 시스템과 자동화로 이어지는 소프트웨어 구축 흐름을 설계합니다."
     >
       <template #title>
-        업무를 시스템으로 잇는 <span class="text-primary">네 가지</span> 방식
+        고객 유입부터 운영 자동화까지 잇는 <span class="text-primary">네 가지</span> 흐름
       </template>
     </SectionHeader>
 

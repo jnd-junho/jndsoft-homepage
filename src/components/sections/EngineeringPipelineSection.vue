@@ -12,13 +12,13 @@ const stages: PipelineStage[] = [
     index: '01',
     title: '설계',
     titleEn: 'Design',
-    headline: '업무 흐름부터 정리',
+    headline: '비즈니스 언어를 기술 구조로',
     icon: 'PenTool',
     points: [
-      '현재 쓰는 엑셀·카톡·수기 업무 흐름 확인',
-      '사용자, 관리자, 데이터 출처를 먼저 분리',
-      '처음 만들 범위와 나중에 확장할 범위 구분',
-      '요구사항을 개발 언어로 번역해 공유'
+      '대표 겸 수석 아키텍트가 업무 병목과 수익 구조를 함께 확인',
+      '고객 유입 화면, 관리자, 데이터 출처를 먼저 분리',
+      '디자인 파트너와 화면 경험과 운영 구조를 함께 검토',
+      '처음 만들 범위와 SaaS·자동화로 확장할 범위를 구분'
     ]
   },
   {
@@ -26,13 +26,13 @@ const stages: PipelineStage[] = [
     index: '02',
     title: '개발',
     titleEn: 'Build',
-    headline: '작게 만들고 확인',
+    headline: '운영 가능한 소프트웨어 구현',
     icon: 'Code2',
     points: [
-      'MVP에 필요한 핵심 화면과 관리자 기능 우선',
+      '업무 시스템에 필요한 핵심 화면과 관리자 기능 우선',
       '인증·메뉴·권한 등 반복 기반은 표준 자산 활용',
       '업무 규칙은 한곳에서 관리되도록 구현',
-      '짧은 확인 주기로 오해와 재작업을 줄임'
+      '고객 유입 화면은 문의·상담 데이터와 연결되도록 구현'
     ]
   },
   {
@@ -40,12 +40,12 @@ const stages: PipelineStage[] = [
     index: '03',
     title: '배포',
     titleEn: 'Deploy',
-    headline: '운영 전환 준비',
+    headline: 'DX·AX 운영 전환 준비',
     icon: 'GitBranch',
     points: [
       '테스트·배포 절차를 반복 가능하게 정리',
       '관리자가 확인해야 할 화면과 데이터를 점검',
-      '운영 중 바뀔 수 있는 설정과 기준값 분리'
+      '운영 중 바뀔 수 있는 설정, 기준값, 자동화 조건 분리'
     ]
   },
   {
@@ -53,12 +53,12 @@ const stages: PipelineStage[] = [
     index: '04',
     title: '운영',
     titleEn: 'Operate',
-    headline: '확장 가능한 운영',
+    headline: 'SaaS 모델로 확장 검토',
     icon: 'Activity',
     points: [
       '실제 사용 후 발견되는 예외 업무 반영',
-      'MVP 검증 결과에 따라 기능 확장',
-      '반복되는 요구를 SaaS 전환 후보로 검토'
+      'PoC·MVP 검증 결과에 따라 기능 확장',
+      '반복되는 요구와 공통 기능을 SaaS 전환 후보로 검토'
     ]
   }
 ]
@@ -79,11 +79,11 @@ const setActive = (id: string) => {
   <BaseSection id="pipeline" variant="grid-gray">
     <SectionHeader eyebrow="How We Work">
       <template #title>
-        작게 시작해 운영으로 잇는 <span class="text-primary">방식</span>
+        아키텍트가 이끄는 <span class="text-primary">소프트웨어 구축 방식</span>
       </template>
       <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        큰 개발을 먼저 제안하지 않습니다.<br class="hidden sm:block" />
-        진단 → MVP → 운영 → 확장 순서로 위험을 줄이며 진행합니다.
+        고객 유입 화면은 앞단 퍼널로, 핵심은 운영되는 업무 시스템입니다.<br class="hidden sm:block" />
+        진단 → 설계 → 구현 → 운영 → SaaS·AX 확장 순서로 진행합니다.
       </p>
     </SectionHeader>
 
@@ -104,7 +104,7 @@ const setActive = (id: string) => {
               </span>
             </div>
             <span class="text-xs text-gray-500 italic">
-              진단 → 범위 합의 → 구현 → 운영 확인
+              진단 → 범위 합의 → 구현 → 운영 → 확장
             </span>
           </div>
           <div class="relative h-8">
@@ -132,7 +132,7 @@ const setActive = (id: string) => {
             </div>
           </div>
           <p class="text-xs text-gray-500 italic mt-3 text-center">
-            단계마다 고객과 동기화합니다. 말로 끝내지 않고, 정리된 범위와 화면으로 다시 확인합니다.
+            기획·디자인·개발이 따로 움직이지 않도록, 정리된 범위와 화면으로 단계마다 다시 확인합니다.
           </p>
         </div>
 
@@ -280,11 +280,11 @@ const setActive = (id: string) => {
       >
         <p class="text-base md:text-lg text-gray-700 max-w-3xl mx-auto mb-3">
           각 단계는 <span class="font-semibold text-primary">이음</span>입니다 —
-          문제와 화면, 데이터와 운영, 아이디어와 실행.
+          고객 유입과 운영, 디자인과 시스템, 비즈니스 언어와 개발 언어.
         </p>
         <p class="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-8">
-          업무 규칙은 한곳에서 관리하고, 반복되는 기반은 재사용합니다.
-          단기 구현보다 유지보수 가능한 운영 구조를 우선합니다.
+          단기 화면 제작보다 운영 가능한 소프트웨어 구조를 우선합니다.
+          반복되는 기반은 재사용하고, 확장 가능한 SaaS·AX 모델을 함께 검토합니다.
         </p>
 
         <!-- Platform CTA -->

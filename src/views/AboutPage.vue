@@ -18,11 +18,11 @@ const founder = {
   // TODO: 실제 사진 촬영 후 /public/assets/img/founder.jpg 등으로 교체
   photo: null as string | null,
   intro:
-    '풀스택 엔지니어와 시스템 아키텍트 경험을 바탕으로, 고객의 업무 언어를 개발 가능한 요구사항으로 옮기는 일을 중요하게 생각합니다. 기술 의사결정은 운영 방식과 분리될 수 없습니다.',
+    '풀스택 엔지니어와 시스템 아키텍트 경험을 바탕으로, 고객의 업무 언어를 개발 가능한 소프트웨어 구조로 옮기는 일을 중요하게 생각합니다. 기술 의사결정은 운영 방식과 수익 모델에서 분리될 수 없습니다.',
   highlights: [
     { icon: 'GraduationCap', label: '전공', value: '소프트웨어 개발 학과 졸업' },
     { icon: 'Briefcase', label: '실무 경력', value: '약 18년 — 시스템 설계·구축·운영' },
-    { icon: 'Trophy', label: '전문 분야', value: '업무 시스템 설계 · MVP 구축 · 운영 구조화' }
+    { icon: 'Trophy', label: '전문 분야', value: 'SI·DX·AX 설계 · SaaS/MVP 구축 · 운영 구조화' }
   ]
 }
 
@@ -51,8 +51,8 @@ const founderExperience = [
   {
     id: 'exp-role',
     label: '역할 폭',
-    title: '작은 범위부터 실행',
-    description: '처음부터 큰 시스템을 전제하지 않습니다. 진단, MVP, 자동화 PoC처럼 확인 가능한 단위로 시작하고 필요한 만큼 확장합니다.'
+    title: '소프트웨어 확장까지 고려',
+    description: '고객 유입 화면은 앞단 흐름으로 보고, 핵심 업무 시스템과 자동화 PoC를 검증한 뒤 SaaS·MVP 모델로 확장할 수 있는 구조를 검토합니다.'
   }
 ]
 
@@ -168,8 +168,8 @@ const getFounderIcon = (iconName: string) => {
           비즈니스와 기술의 <span class="text-primary">이음</span>
         </h1>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          검증된 표준 자산과 도메인 경험을 잇대어,<br class="hidden sm:block" />
-          고객의 비즈니스를 함께 설계합니다.
+          대표 겸 수석 소프트웨어 아키텍트가<br class="hidden sm:block" />
+          고객의 비즈니스를 운영되는 소프트웨어 구조로 설계합니다.
         </p>
       </div>
     </BaseSection>
@@ -342,7 +342,7 @@ const getFounderIcon = (iconName: string) => {
                   </p>
                   <p class="text-sm text-gray-700 leading-relaxed">
                     미팅 현장에서 비즈니스 요구를 듣고, 기술적 실현 가능성과 트레이드오프까지 즉시 설명합니다.
-                    '영업이 듣고 개발이 다시 듣는' 단절이 발생하지 않습니다.
+                    고객 유입, 운영 시스템, 자동화, SaaS 확장 사이의 단절을 줄입니다.
                   </p>
                 </div>
               </div>
@@ -355,7 +355,7 @@ const getFounderIcon = (iconName: string) => {
                   </p>
                   <p class="text-sm text-gray-700 leading-relaxed">
                     18년의 경험은 설계 원칙·코드 리뷰 체크리스트·운영 프로세스로 제도화되어 있습니다.
-                    특정 개인의 가용성에 프로젝트가 의존하지 않습니다.
+                    단기 제작보다 유지보수 가능한 소프트웨어 구조를 우선합니다.
                   </p>
                 </div>
               </div>
@@ -419,9 +419,9 @@ const getFounderIcon = (iconName: string) => {
           <ul class="relative space-y-5">
             <li
               v-for="(philo, idx) in [
-                { title: '업무와 화면의', desc: '상담관리, 정산관리, 예약관리처럼 실제 업무가 어떤 화면과 데이터로 바뀌는지 함께 확인합니다.' },
+                { title: '고객 유입과 운영의', desc: '홈페이지·랜딩페이지·상세페이지는 문의와 상담으로 이어지는 앞단 흐름으로 보고, 실제 운영 시스템과 연결합니다.' },
                 { title: '고객 언어와 개발 언어의', desc: '요구사항을 기술 용어로 덮지 않고, 결정해야 할 범위와 기준을 이해하기 쉬운 말로 정리합니다.' },
-                { title: '아이디어와 MVP의', desc: '검증되지 않은 아이디어는 작게 만들고 빠르게 확인합니다. 필요한 기능과 미뤄도 되는 기능을 분리합니다.' },
+                { title: '아이디어와 SaaS 모델의', desc: '검증되지 않은 아이디어는 작게 만들고 빠르게 확인합니다. 반복되는 기능은 SaaS 확장 가능성까지 검토합니다.' },
                 { title: '설계와 운영의', desc: '만들고 끝내지 않습니다. 운영자가 수정하고 확인해야 할 데이터와 권한까지 함께 설계합니다.' }
               ]"
               :key="idx"
@@ -535,10 +535,10 @@ const getFounderIcon = (iconName: string) => {
     <BaseSection id="about-cta" variant="white" max-width="4xl" padding="compact">
       <div class="text-center">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-          업무 시스템화를 함께 검토해보세요
+          소프트웨어 구축 방향을 함께 검토해보세요
         </h2>
         <p class="text-base text-gray-600 mb-8">
-          현재 업무 흐름을 기준으로 MVP, 자동화, 시스템 구축 가능성을 먼저 진단합니다.
+          현재 업무 흐름을 기준으로 SI·DX·AX, SaaS·MVP 확장 가능성을 먼저 진단합니다.
         </p>
         <RouterLink
           to="/contact"

@@ -91,11 +91,11 @@ const techStack: TechCategory[] = [
   <BaseSection id="foundation" variant="white">
     <SectionHeader
       eyebrow="Foundation"
-      description="매번 처음부터 만들지 않기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다."
+      description="단순 화면 제작이 아니라 운영되는 소프트웨어를 만들기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다."
     >
       <template #title>
-        빠른 구축을 가능하게 하는<br class="sm:hidden" />
-        <span class="text-primary">운영 기반</span>
+        SI·DX·AX 구축을 가능하게 하는<br class="sm:hidden" />
+        <span class="text-primary">소프트웨어 기반</span>
       </template>
     </SectionHeader>
 
@@ -122,11 +122,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 01</p>
-                <h3 class="text-xl font-bold text-gray-900">재사용 기반</h3>
+                <h3 class="text-xl font-bold text-gray-900">표준 소프트웨어 기반</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              로그인, 메뉴, 관리자 API처럼 반복되는 기반을 표준화해 핵심 업무 구현에 더 집중합니다.
+              로그인, 메뉴, 관리자 API처럼 반복되는 기반을 표준화해 고객사의 핵심 업무와 자동화 구현에 더 집중합니다.
             </p>
 
             <!-- 대표 자산 2건 -->
@@ -178,11 +178,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 02</p>
-                <h3 class="text-xl font-bold text-gray-900">도메인 학습</h3>
+                <h3 class="text-xl font-bold text-gray-900">업무 구조화</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              기존 경험을 바탕으로 새 업무의 용어, 데이터, 승인 흐름을 빠르게 구조화합니다.
+              대기업·기업 시스템 경험을 중소기업 현실에 맞춰 필요한 만큼만 적용하고, 용어·데이터·승인 흐름을 빠르게 구조화합니다.
             </p>
             <ul class="space-y-2.5">
               <li
@@ -217,11 +217,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 03</p>
-                <h3 class="text-xl font-bold text-gray-900">안정적 스택</h3>
+                <h3 class="text-xl font-bold text-gray-900">확장 가능한 스택</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              운영 지속성을 기준으로 검증된 기술을 사용합니다. 새 기술은 필요성과 유지보수성을 먼저 검토합니다.
+              운영 지속성을 기준으로 검증된 기술을 사용합니다. 디자인 파트너와 협업하더라도 화면 품질과 개발 유지보수성을 함께 검토합니다.
             </p>
             <div class="space-y-4">
               <div v-for="cat in techStack" :key="cat.id">

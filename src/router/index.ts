@@ -8,11 +8,11 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue'),
       meta: {
-        title: '제이앤디소프트 — 업무 시스템 구축, AI 자동화, MVP 빠른 구축',
-        description: '중소기업·소상공인·스타트업의 엑셀, 카톡, 수기 업무를 웹 시스템, AI 자동화, MVP 서비스로 전환합니다.',
-        keywords: '업무 시스템 구축, AI 업무 자동화, MVP 빠른 구축, SaaS 전환, 엑셀 업무 시스템화, 카톡 업무 자동화, 관리자 페이지, 제이앤디소프트',
-        ogTitle: '제이앤디소프트 — 업무 시스템 구축, AI 자동화, MVP 빠른 구축',
-        ogDescription: '엑셀, 카톡, 수기 업무를 웹 시스템, AI 자동화, MVP 서비스로 전환하는 IT 구축 파트너입니다.',
+        title: '제이앤디소프트 — SI·DX·AX 소프트웨어 구축 파트너',
+        description: '고객 유입 화면부터 업무 시스템, AI 자동화, SaaS 확장까지 대표 겸 수석 소프트웨어 아키텍트가 연결해 설계합니다.',
+        keywords: 'SI 구축, DX 구축, AX 구축, 업무 시스템 구축, AI 업무 자동화, SaaS 전환, MVP 구축, 관리자 페이지, 제이앤디소프트',
+        ogTitle: '제이앤디소프트 — SI·DX·AX 소프트웨어 구축 파트너',
+        ogDescription: '고객 유입부터 운영 시스템, AI 자동화, SaaS 확장까지 연결하는 소프트웨어 구축 파트너입니다.',
         ogUrl: 'https://www.jndsoft.co.kr/'
       }
     },
@@ -35,10 +35,10 @@ const router = createRouter({
       component: () => import('../views/AboutPage.vue'),
       meta: {
         title: '회사 소개 | 제이앤디소프트',
-        description: '고객의 업무 언어를 개발 가능한 요구사항으로 번역하고, 진단부터 MVP와 운영 확장까지 함께 설계하는 IT 구축 파트너입니다.',
-        keywords: '회사소개, 업무 시스템 구축, MVP 구축, AI 자동화, 조직문화, 제이앤디소프트',
+        description: '대표 겸 수석 소프트웨어 아키텍트가 고객의 업무 언어를 개발 가능한 소프트웨어 구조로 번역하고, SI·DX·AX와 SaaS 확장까지 설계합니다.',
+        keywords: '회사소개, 소프트웨어 아키텍트, SI 구축, DX 구축, AX 구축, SaaS 전환, 제이앤디소프트',
         ogTitle: '회사 소개 | 제이앤디소프트',
-        ogDescription: '업무 문제를 기술 결과물로 옮기는 방식과 제이앤디소프트의 일하는 원칙을 소개합니다.',
+        ogDescription: '업무 문제를 운영되는 소프트웨어 구조로 옮기는 방식과 제이앤디소프트의 일하는 원칙을 소개합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/about'
       }
     },
@@ -61,10 +61,10 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue'),
       meta: {
         title: '무료 진단 문의 | 제이앤디소프트',
-        description: '업무 시스템 구축, AI 자동화, MVP 빠른 구축, SaaS 전환 상담을 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
-        keywords: '무료 진단 문의, 업무 시스템 상담, AI 자동화 상담, MVP 구축 상담, SaaS 전환 상담, 제이앤디소프트',
+        description: '업무 시스템 구축, AI 자동화, SaaS·MVP 확장, 고객 유입 화면 설계 상담을 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
+        keywords: '무료 진단 문의, SI 상담, DX 상담, AX 상담, 업무 시스템 상담, AI 자동화 상담, SaaS 전환 상담, 제이앤디소프트',
         ogTitle: '무료 진단 문의 | 제이앤디소프트',
-        ogDescription: '현재 업무 문제를 남겨주시면 시스템화, 자동화, MVP 구축 방향을 검토해드립니다.',
+        ogDescription: '현재 업무 문제를 남겨주시면 SI·DX·AX, SaaS·MVP 확장 방향을 검토해드립니다.',
         ogUrl: 'https://www.jndsoft.co.kr/contact'
       }
     },

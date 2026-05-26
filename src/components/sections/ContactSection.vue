@@ -9,11 +9,11 @@ import SectionHeader from './common/SectionHeader.vue'
   <BaseSection id="contact" variant="white">
     <SectionHeader
       eyebrow="Contact"
-      description="엑셀, 카톡, 수기 업무가 어디서 막히는지부터 확인하고 MVP·자동화·시스템 구축 방향을 함께 정리합니다."
+      description="고객 유입 화면, 업무 시스템, AI 자동화, SaaS 확장 중 어디서부터 시작할지 업무 구조를 먼저 확인합니다."
       class="mb-16"
     >
       <template #title>
-        시스템화가 필요한 업무를<br class="hidden sm:block" />
+        소프트웨어 구축이 필요한 업무를<br class="hidden sm:block" />
         먼저 <span class="text-primary">진단</span>해드립니다
       </template>
     </SectionHeader>
@@ -43,10 +43,10 @@ import SectionHeader from './common/SectionHeader.vue'
         <div class="lg:col-span-1 order-1 lg:order-2">
           <div class="h-full bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-8 text-white flex flex-col">
             <h3 class="text-2xl font-bold mb-3 leading-tight">
-              무료 진단으로<br />시작하세요
+              구조 진단으로<br />시작하세요
             </h3>
             <p class="text-sm text-white/90 mb-6 leading-relaxed">
-              지금 겪는 업무 문제를 남겨주시면 영업일 기준 24시간 이내 적용 가능한 방향을 회신드립니다.
+              지금 겪는 업무 문제와 만들고 싶은 소프트웨어 방향을 남겨주시면 영업일 기준 24시간 이내 검토해드립니다.
             </p>
 
             <ul class="space-y-2 mb-8 text-sm text-white/90">
@@ -56,7 +56,7 @@ import SectionHeader from './common/SectionHeader.vue'
               </li>
               <li class="flex items-center gap-2">
                 <Mail :size="16" :stroke-width="2" />
-                <span>업무 시스템화 상담</span>
+                <span>SI·DX·AX 구축 상담</span>
               </li>
             </ul>
 

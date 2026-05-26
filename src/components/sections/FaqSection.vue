@@ -4,8 +4,8 @@ import SectionHeader from './common/SectionHeader.vue'
 
 const faqs = [
   {
-    question: '엑셀로 관리하던 업무를 웹 시스템으로 바꿀 수 있나요?',
-    answer: '가능합니다. 상담관리, 고객관리, 예약관리, 정산관리처럼 반복되는 엑셀·카톡·수기 업무를 먼저 진단하고, 데이터 구조와 관리자 화면을 정리해 웹 시스템으로 전환합니다.'
+    question: '홈페이지나 랜딩페이지도 의뢰할 수 있나요?',
+    answer: '가능합니다. 다만 단순 제작물보다 고객 유입 화면으로 보고, 문의·상담·예약·고객관리 같은 운영 흐름과 연결 가능한 구조를 우선 검토합니다.'
   },
   {
     question: 'MVP는 어느 범위부터 시작하는 것이 좋나요?',
@@ -26,10 +26,10 @@ const faqs = [
   <BaseSection id="faq" variant="grid-gray" max-width="5xl" padding="compact">
     <SectionHeader
       eyebrow="FAQ"
-      description="엑셀 업무 시스템화, AI 자동화, MVP 구축을 고민할 때 자주 나오는 질문을 정리했습니다."
+      description="고객 유입 화면, 업무 시스템 구축, AI 자동화, SaaS·MVP 확장을 고민할 때 자주 나오는 질문을 정리했습니다."
     >
       <template #title>
-        자주 묻는 <span class="text-primary">업무 시스템화</span> 질문
+        자주 묻는 <span class="text-primary">소프트웨어 구축</span> 질문
       </template>
     </SectionHeader>
 

@@ -28,20 +28,20 @@ const proofs = [
   {
     id: 'diagnosis',
     icon: Boxes,
-    title: '업무 진단 먼저',
-    description: '엑셀·카톡·수기 업무의 흐름과 병목을 먼저 정리'
+    title: '아키텍트 주도 진단',
+    description: '대표 겸 수석 아키텍트가 업무 구조와 기술 범위를 함께 정리'
   },
   {
-    id: 'mvp',
+    id: 'software',
     icon: Layers,
-    title: '작게 만들고 검증',
-    description: '처음부터 크게 만들지 않고 MVP와 PoC로 위험을 줄임'
+    title: '운영되는 소프트웨어',
+    description: '관리자 화면, 데이터, 권한, 자동화 흐름까지 운영 기준으로 설계'
   },
   {
-    id: 'operation',
+    id: 'growth',
     icon: Activity,
-    title: '운영 가능한 시스템',
-    description: '관리자 화면, 권한, 데이터 흐름까지 실제 운영 기준으로 설계'
+    title: 'SaaS·AX 확장',
+    description: '작게 검증한 업무 흐름을 SaaS 모델과 AI 자동화로 확장'
   }
 ]
 </script>
@@ -133,7 +133,7 @@ const proofs = [
           비즈니스와 기술의 이음,
         </span>
         <span class="hero-brand block font-black leading-[0.95]">
-          운영되는 시스템으로
+          운영되는 소프트웨어로
         </span>
       </h1>
 
@@ -144,7 +144,7 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 320 } }"
       >
-        JnDSOFT는 아이디어와 실행의 <span class="font-semibold text-primary">이음</span>을 만듭니다
+        JnDSOFT는 고객 언어와 개발 언어의 <span class="font-semibold text-primary">이음</span>을 만듭니다
       </p>
 
       <!-- Subheadline -->
@@ -154,8 +154,8 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 400 } }"
       >
-        중소기업·소상공인·스타트업의 엑셀, 카톡, 수기 업무를<br class="hidden sm:block" />
-        웹 시스템, AI 자동화, MVP 서비스로 전환하는 IT 구축 파트너입니다.
+        대표 겸 수석 소프트웨어 아키텍트가 업무 구조를 진단하고,<br class="hidden sm:block" />
+        고객 유입 화면부터 업무 시스템, AI 자동화, SaaS 확장까지 연결해 설계합니다.
       </p>
 
       <!-- Proof Cards (3 evidences) -->

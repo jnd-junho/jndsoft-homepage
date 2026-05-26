@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear()
           <h3 class="text-xl font-bold mb-4">제이앤디소프트</h3>
           <p class="text-gray-400 text-sm mb-4">
             비즈니스와 기술의 이음.<br />
-            검증된 공통 기반 위에 빠르게.
+            운영되는 소프트웨어 구조로.
           </p>
         </div>
         

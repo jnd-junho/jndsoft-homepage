@@ -41,10 +41,10 @@ const industries: IndustryItem[] = [
   {
     id: 'ecommerce',
     icon: ShoppingBag,
-    domain: '이커머스 운영 시스템',
+    domain: '고객 유입·운영 시스템',
     segment: '익명 사례 · B2C',
-    context: '상품, 기획전, 커뮤니티, 운영 데이터를 관리자가 반복적으로 다루는 서비스 운영 유형입니다.',
-    insight: '운영 화면이 불편하면 작은 변경도 병목이 됩니다. 관리자 업무 흐름과 운영 현황 대시보드를 함께 설계해야 합니다.'
+    context: '상품 상세, 기획전, 커뮤니티, 문의 흐름과 운영 데이터를 관리자가 반복적으로 다루는 서비스 운영 유형입니다.',
+    insight: '고객 유입 화면과 운영 관리가 분리되면 작은 변경도 병목이 됩니다. 전환 화면과 관리자 업무 흐름을 함께 설계해야 합니다.'
   }
 ]
 </script>
@@ -57,7 +57,7 @@ const industries: IndustryItem[] = [
       </template>
       <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
         고객명과 수치 성과를 앞세우기보다, 공개 가능한 범위 안에서<br class="hidden sm:block" />
-        어떤 업무 문제를 어떤 시스템 구조로 다뤘는지 설명합니다.
+        어떤 업무 문제를 어떤 소프트웨어 구조로 다뤘는지 설명합니다.
       </p>
     </SectionHeader>
 
@@ -121,7 +121,7 @@ const industries: IndustryItem[] = [
       <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-5">
         포트폴리오보다 중요한 것은 현재 업무의 병목을 정확히 파악하는 일입니다.
         <span class="font-semibold text-gray-900">초기 진단</span>에서
-        업무 흐름, 데이터 출처, 관리자 역할, 확장 가능성을 함께 확인합니다.
+        고객 유입 흐름, 데이터 출처, 관리자 역할, 자동화·SaaS 확장 가능성을 함께 확인합니다.
       </p>
       <RouterLink
         to="/contact"
