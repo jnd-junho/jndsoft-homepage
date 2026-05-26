@@ -8,11 +8,11 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomePage.vue'),
       meta: {
-        title: '제이앤디소프트 — SI·DX·AX 소프트웨어 구축 파트너',
-        description: '고객 유입 화면부터 업무 시스템, AI 자동화, SaaS 확장까지 대표 겸 수석 소프트웨어 아키텍트가 연결해 설계합니다.',
-        keywords: 'SI 구축, DX 구축, AX 구축, 업무 시스템 구축, AI 업무 자동화, SaaS 전환, MVP 구축, 관리자 페이지, 제이앤디소프트',
-        ogTitle: '제이앤디소프트 — SI·DX·AX 소프트웨어 구축 파트너',
-        ogDescription: '고객 유입부터 운영 시스템, AI 자동화, SaaS 확장까지 연결하는 소프트웨어 구축 파트너입니다.',
+        title: '제이앤디소프트 — 업무 시스템·MVP·AI 자동화 구축 파트너',
+        description: '비즈니스 문제를 실행 가능한 업무 시스템, MVP, AI 자동화로 연결하는 IT 구축 파트너입니다.',
+        keywords: '업무 시스템 구축, AI 업무 자동화, MVP 구축, SaaS 전환, 관리자 페이지, 업무 진단, 제이앤디소프트',
+        ogTitle: '제이앤디소프트 — 업무 시스템·MVP·AI 자동화 구축 파트너',
+        ogDescription: '엑셀, 메신저, 수기 업무를 운영 가능한 시스템과 자동화로 연결합니다.',
         ogUrl: 'https://www.jndsoft.co.kr/'
       }
     },
@@ -60,11 +60,11 @@ const router = createRouter({
       name: 'contact',
       component: () => import('../views/ContactView.vue'),
       meta: {
-        title: '무료 진단 문의 | 제이앤디소프트',
-        description: '업무 시스템 구축, AI 자동화, SaaS·MVP 확장, 고객 유입 화면 설계 상담을 남겨주세요. 영업일 기준 24시간 이내 회신드립니다.',
-        keywords: '무료 진단 문의, SI 상담, DX 상담, AX 상담, 업무 시스템 상담, AI 자동화 상담, SaaS 전환 상담, 제이앤디소프트',
-        ogTitle: '무료 진단 문의 | 제이앤디소프트',
-        ogDescription: '현재 업무 문제를 남겨주시면 SI·DX·AX, SaaS·MVP 확장 방향을 검토해드립니다.',
+        title: '업무 진단 요청 | 제이앤디소프트',
+        description: '현재 업무 문제를 남겨주시면 업무 시스템, MVP, AI 자동화 중 실행 가능한 첫 범위를 검토해드립니다.',
+        keywords: '업무 진단 요청, 업무 시스템 상담, AI 자동화 상담, MVP 구축 상담, SaaS 전환 상담, 제이앤디소프트',
+        ogTitle: '업무 진단 요청 | 제이앤디소프트',
+        ogDescription: '현재 업무 문제를 남겨주시면 가능한 구축 방향과 첫 범위를 검토해드립니다.',
         ogUrl: 'https://www.jndsoft.co.kr/contact'
       }
     },

@@ -5,8 +5,10 @@ import { Mail, Send, AlertCircle, MapPin, Phone } from 'lucide-vue-next'
 import {
   submitInquiry,
   type BudgetRange,
+  type CurrentTool,
+  type CustomerType,
+  type InquiryGoal,
   type InquiryPayload,
-  type ProjectType,
 } from '../lib/inquiryApi'
 import {
   FIELD_LIMITS,
@@ -22,10 +24,13 @@ interface FormState {
   companyName: string
   contactName: string
   phone: string
-  projectType: ProjectType | ''
+  customerType: CustomerType | ''
+  inquiryGoal: InquiryGoal[]
+  currentTools: CurrentTool[]
   budgetRange: BudgetRange | ''
   desiredSchedule: string
-  requirementBody: string
+  problemSummary: string
+  expectedOutcome: string
   privacyConsent: boolean
   website: string
 }
@@ -35,10 +40,13 @@ const form = reactive<FormState>({
   companyName: '',
   contactName: '',
   phone: '',
-  projectType: '',
+  customerType: '',
+  inquiryGoal: [],
+  currentTools: [],
   budgetRange: '',
   desiredSchedule: '',
-  requirementBody: '',
+  problemSummary: '',
+  expectedOutcome: '',
   privacyConsent: false,
   website: '',
 })
@@ -49,12 +57,31 @@ const submitError = ref<string | null>(null)
 const retryLockSeconds = ref(0)
 let retryTimerId: number | undefined
 
-const projectTypeOptions: { value: ProjectType; label: string }[] = [
-  { value: 'si', label: '업무 시스템 구축' },
-  { value: 'mvp', label: 'SaaS·MVP 확장' },
-  { value: 'webapp', label: 'AI 업무 자동화' },
-  { value: 'homepage', label: '고객 유입 화면 설계' },
-  { value: 'simple', label: '기존 시스템 개선' },
+const customerTypeOptions: { value: CustomerType; label: string }[] = [
+  { value: 'sme', label: '중소기업·소상공인' },
+  { value: 'startup', label: '스타트업' },
+  { value: 'gov_supported', label: '정부지원사업 선정 기업' },
+  { value: 'enterprise', label: '중견·대기업' },
+  { value: 'other', label: '기타' },
+]
+
+const inquiryGoalOptions: { value: InquiryGoal; label: string }[] = [
+  { value: 'business_system', label: '업무 시스템 구축' },
+  { value: 'mvp_poc', label: 'MVP/PoC 빠른 구축' },
+  { value: 'gov_project', label: '정부지원사업 산출물 구현' },
+  { value: 'ai_automation', label: 'AI 업무 자동화' },
+  { value: 'homepage_landing', label: '홈페이지·랜딩페이지' },
+  { value: 'system_improvement', label: '기존 시스템 개선' },
+  { value: 'other', label: '기타' },
+]
+
+const currentToolOptions: { value: CurrentTool; label: string }[] = [
+  { value: 'excel', label: '엑셀' },
+  { value: 'messenger', label: '메신저' },
+  { value: 'email', label: '이메일' },
+  { value: 'paper', label: '수기·종이 문서' },
+  { value: 'legacy_system', label: '기존 시스템' },
+  { value: 'none', label: '아직 없음' },
   { value: 'other', label: '기타' },
 ]
 
@@ -73,7 +100,9 @@ const isSubmittable = computed(() => {
     retryLockSeconds.value === 0 &&
     form.email.trim().length > 0 &&
     form.companyName.trim().length > 0 &&
-    form.requirementBody.trim().length > 0 &&
+    form.customerType.length > 0 &&
+    form.inquiryGoal.length > 0 &&
+    form.problemSummary.trim().length > 0 &&
     form.privacyConsent
   )
 })
@@ -83,14 +112,18 @@ function validate(): boolean {
 
   errors.email = validateEmail(form.email) ?? undefined
   errors.company_name = validateRequired(form.companyName, '회사 또는 소속', FIELD_LIMITS.companyName) ?? undefined
-  errors.requirement_body =
-    validateRequired(form.requirementBody, '요구사항', FIELD_LIMITS.requirementBody) ?? undefined
+  errors.problem_summary =
+    validateRequired(form.problemSummary, '현재 문제 요약', FIELD_LIMITS.problemSummary) ?? undefined
+  errors.expected_outcome =
+    validateOptional(form.expectedOutcome, '기대 결과', FIELD_LIMITS.expectedOutcome) ?? undefined
   errors.contact_name =
     validateOptional(form.contactName, '담당자명', FIELD_LIMITS.contactName) ?? undefined
   errors.phone = validateOptional(form.phone, '연락처', FIELD_LIMITS.phone) ?? undefined
   errors.desired_schedule =
     validateOptional(form.desiredSchedule, '희망 일정', FIELD_LIMITS.desiredSchedule) ?? undefined
 
+  if (!form.customerType) errors.customer_type = '고객 유형을 선택해주세요.'
+  if (form.inquiryGoal.length === 0) errors.inquiry_goal = '필요한 지원 범위를 하나 이상 선택해주세요.'
   if (!form.privacyConsent) errors.privacy_consent = '개인정보 수집 동의가 필요합니다.'
 
   return Object.values(errors).every((v) => !v)
@@ -121,12 +154,15 @@ async function handleSubmit() {
   const payload: InquiryPayload = {
     email: form.email.trim(),
     company_name: form.companyName.trim(),
-    requirement_body: form.requirementBody.trim(),
     privacy_consent: true,
     source: 'homepage_contact',
+    customer_type: form.customerType as CustomerType,
+    inquiry_goal: [...form.inquiryGoal],
+    problem_summary: form.problemSummary.trim(),
     contact_name: form.contactName.trim() || null,
     phone: form.phone.trim() || null,
-    project_type: form.projectType || null,
+    current_tools: form.currentTools.length > 0 ? [...form.currentTools] : null,
+    expected_outcome: form.expectedOutcome.trim() || null,
     budget_range: form.budgetRange || null,
     desired_schedule: form.desiredSchedule.trim() || null,
   }
@@ -137,7 +173,7 @@ async function handleSubmit() {
   if (result.ok) {
     await router.push({
       path: '/contact/thanks',
-      state: { inquiryId: result.id, message: result.message ?? null },
+      state: { message: result.message ?? null },
     })
     return
   }
@@ -183,10 +219,10 @@ async function handleSubmit() {
       <!-- Header -->
       <div class="text-center mb-12">
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-          무료 진단 문의
+          업무 진단 요청
         </h1>
         <p class="text-lg text-gray-600">
-          업무 시스템, AI 자동화, SaaS·MVP 확장, 고객 유입 화면 설계 중 필요한 소프트웨어 구축 방향을 검토해드립니다.
+          현재 업무 문제를 남겨주시면 가능한 구축 방향과 실행 가능한 첫 범위를 검토해드립니다.
         </p>
       </div>
 
@@ -233,9 +269,9 @@ async function handleSubmit() {
           <div class="bg-white rounded-2xl p-6 shadow-sm">
             <p class="text-sm font-semibold text-gray-900 mb-3">이렇게 적어주시면 좋습니다</p>
             <ul class="space-y-2 text-sm text-gray-600 leading-relaxed">
-              <li>현재 어떤 업무나 고객 유입 흐름이 막혀 있는지</li>
-              <li>관리자, 상담관리, 예약관리, 자동화 중 필요한 범위가 무엇인지</li>
-              <li>SaaS·MVP 확장까지 염두에 두고 있는지</li>
+              <li>현재 어떤 도구와 방식으로 운영 중인지</li>
+              <li>엑셀, 메신저, 이메일, 수기 업무 중 어디가 막혀 있는지</li>
+              <li>업무 시스템, MVP, AI 자동화 중 어떤 결과가 필요한지</li>
             </ul>
           </div>
         </aside>
@@ -329,21 +365,23 @@ async function handleSubmit() {
               <p v-if="errors.phone" class="mt-1 text-sm text-red-600">{{ errors.phone }}</p>
             </div>
 
-            <!-- Project type -->
+            <!-- Customer type -->
             <div>
-              <label for="project_type" class="block text-sm font-medium text-gray-700 mb-1.5">
-                상담 유형 <span class="text-gray-400 text-xs">(선택)</span>
+              <label for="customer_type" class="block text-sm font-medium text-gray-700 mb-1.5">
+                고객 유형 <span class="text-red-500">*</span>
               </label>
               <select
-                id="project_type"
-                v-model="form.projectType"
-                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition bg-white"
+                id="customer_type"
+                v-model="form.customerType"
+                class="form-select w-full px-4 py-2.5 pr-11 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition bg-white"
+                :class="{ 'border-red-400': errors.customer_type }"
               >
                 <option value="">선택해주세요</option>
-                <option v-for="opt in projectTypeOptions" :key="opt.value" :value="opt.value">
+                <option v-for="opt in customerTypeOptions" :key="opt.value" :value="opt.value">
                   {{ opt.label }}
                 </option>
               </select>
+              <p v-if="errors.customer_type" class="mt-1 text-sm text-red-600">{{ errors.customer_type }}</p>
             </div>
 
             <!-- Budget range -->
@@ -354,13 +392,61 @@ async function handleSubmit() {
               <select
                 id="budget_range"
                 v-model="form.budgetRange"
-                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition bg-white"
+                class="form-select w-full px-4 py-2.5 pr-11 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition bg-white"
               >
                 <option value="">선택해주세요</option>
                 <option v-for="opt in budgetRangeOptions" :key="opt.value" :value="opt.value">
                   {{ opt.label }}
                 </option>
               </select>
+            </div>
+
+            <!-- Inquiry goal -->
+            <div class="md:col-span-2">
+              <p class="block text-sm font-medium text-gray-700 mb-2">
+                필요한 지원 범위 <span class="text-red-500">*</span>
+              </p>
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-lg border border-gray-200 p-3"
+                :class="{ 'border-red-400': errors.inquiry_goal }"
+              >
+                <label
+                  v-for="opt in inquiryGoalOptions"
+                  :key="opt.value"
+                  class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"
+                >
+                  <input
+                    v-model="form.inquiryGoal"
+                    type="checkbox"
+                    :value="opt.value"
+                    class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
+                  />
+                  <span>{{ opt.label }}</span>
+                </label>
+              </div>
+              <p v-if="errors.inquiry_goal" class="mt-1 text-sm text-red-600">{{ errors.inquiry_goal }}</p>
+            </div>
+
+            <!-- Current tools -->
+            <div class="md:col-span-2">
+              <p class="block text-sm font-medium text-gray-700 mb-2">
+                현재 사용 도구 <span class="text-gray-400 text-xs">(선택)</span>
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-lg border border-gray-200 p-3">
+                <label
+                  v-for="opt in currentToolOptions"
+                  :key="opt.value"
+                  class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer"
+                >
+                  <input
+                    v-model="form.currentTools"
+                    type="checkbox"
+                    :value="opt.value"
+                    class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
+                  />
+                  <span>{{ opt.label }}</span>
+                </label>
+              </div>
             </div>
 
             <!-- Desired schedule -->
@@ -380,24 +466,46 @@ async function handleSubmit() {
               <p v-if="errors.desired_schedule" class="mt-1 text-sm text-red-600">{{ errors.desired_schedule }}</p>
             </div>
 
-            <!-- Requirement body (required) -->
+            <!-- Problem summary (required) -->
             <div class="md:col-span-2">
-              <label for="requirement_body" class="block text-sm font-medium text-gray-700 mb-1.5">
-                현재 업무 문제와 기대 결과 <span class="text-red-500">*</span>
+              <label for="problem_summary" class="block text-sm font-medium text-gray-700 mb-1.5">
+                현재 문제 요약 <span class="text-red-500">*</span>
               </label>
               <textarea
-                id="requirement_body"
-                v-model="form.requirementBody"
-                rows="10"
-                placeholder="현재 고객 유입 흐름, 운영 업무, 반복되는 문제, 만들고 싶은 시스템이나 자동화 방향을 자유롭게 작성해주세요."
-                :maxlength="FIELD_LIMITS.requirementBody"
+                id="problem_summary"
+                v-model="form.problemSummary"
+                rows="7"
+                placeholder="현재 어떤 업무가 어떤 도구에 흩어져 있고, 무엇 때문에 운영이 막히는지 작성해주세요."
+                :maxlength="FIELD_LIMITS.problemSummary"
                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition resize-y"
-                :class="{ 'border-red-400': errors.requirement_body }"
+                :class="{ 'border-red-400': errors.problem_summary }"
               />
               <div class="mt-1 flex items-start justify-between gap-2">
-                <p v-if="errors.requirement_body" class="text-sm text-red-600">{{ errors.requirement_body }}</p>
+                <p v-if="errors.problem_summary" class="text-sm text-red-600">{{ errors.problem_summary }}</p>
                 <p class="text-xs text-gray-400 ml-auto shrink-0">
-                  {{ form.requirementBody.length }} / {{ FIELD_LIMITS.requirementBody.toLocaleString() }}
+                  {{ form.problemSummary.length }} / {{ FIELD_LIMITS.problemSummary.toLocaleString() }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Expected outcome -->
+            <div class="md:col-span-2">
+              <label for="expected_outcome" class="block text-sm font-medium text-gray-700 mb-1.5">
+                기대 결과 <span class="text-gray-400 text-xs">(선택)</span>
+              </label>
+              <textarea
+                id="expected_outcome"
+                v-model="form.expectedOutcome"
+                rows="5"
+                placeholder="상담관리 화면, 예약관리, 관리자, MVP 시연, 반복 문의 자동화 등 기대하는 결과가 있다면 적어주세요."
+                :maxlength="FIELD_LIMITS.expectedOutcome"
+                class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition resize-y"
+                :class="{ 'border-red-400': errors.expected_outcome }"
+              />
+              <div class="mt-1 flex items-start justify-between gap-2">
+                <p v-if="errors.expected_outcome" class="text-sm text-red-600">{{ errors.expected_outcome }}</p>
+                <p class="text-xs text-gray-400 ml-auto shrink-0">
+                  {{ form.expectedOutcome.length }} / {{ FIELD_LIMITS.expectedOutcome.toLocaleString() }}
                 </p>
               </div>
             </div>
@@ -446,7 +554,7 @@ async function handleSubmit() {
             <span v-else-if="retryLockSeconds > 0">{{ retryLockSeconds }}초 후 다시 시도</span>
             <template v-else>
               <Send :size="18" />
-              <span>무료 진단 문의하기</span>
+              <span>업무 진단 요청하기</span>
             </template>
           </button>
         </form>
@@ -454,3 +562,14 @@ async function handleSubmit() {
     </div>
   </main>
 </template>
+
+<style scoped>
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23111827' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  line-height: 1.5;
+}
+</style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Landmark, Factory, FlaskConical, ShoppingBag, ArrowRight } from 'lucide-vue-next'
+import { Table2, MessagesSquare, Bot, Rocket, Landmark, ArrowRight } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 import BaseSection from './common/BaseSection.vue'
 import SectionHeader from './common/SectionHeader.vue'
@@ -7,44 +7,46 @@ import SectionHeader from './common/SectionHeader.vue'
 interface IndustryItem {
   id: string
   icon: typeof Landmark
-  domain: string
+  problem: string
+  result: string
   segment: string
-  context: string
-  insight: string
 }
 
 const industries: IndustryItem[] = [
   {
-    id: 'finance-esg',
+    id: 'excel-workflow',
+    icon: Table2,
+    problem: '엑셀로 관리하던 업무가 사람마다 다름',
+    result: '웹 기반 업무 시스템과 관리자 화면으로 정리',
+    segment: '업무 시스템'
+  },
+  {
+    id: 'scattered-inquiry',
+    icon: MessagesSquare,
+    problem: '메신저와 이메일에 문의가 흩어짐',
+    result: '상담관리·고객관리 흐름으로 통합',
+    segment: '고객 운영'
+  },
+  {
+    id: 'ai-repeat',
+    icon: Bot,
+    problem: '반복 문의와 문서 확인이 많음',
+    result: 'AI 자동화 PoC로 반복 업무 검증',
+    segment: 'AI 자동화'
+  },
+  {
+    id: 'unclear-mvp',
+    icon: Rocket,
+    problem: '아이디어는 있지만 개발 범위가 불명확함',
+    result: 'MVP 범위 정의 후 빠른 구현',
+    segment: 'MVP/PoC'
+  },
+  {
+    id: 'gov-output',
     icon: Landmark,
-    domain: 'ESG 데이터 관리',
-    segment: '익명 사례 · B2B',
-    context: '여러 부서와 파일에 흩어진 ESG 데이터를 수집·검증·관리하는 업무 시스템 유형입니다.',
-    insight: '핵심은 화려한 화면보다 데이터 항목 변경, 계산식 추적, 보고 양식 변경과 운영 지표 확인에 대응하는 구조입니다.'
-  },
-  {
-    id: 'heavy-lca',
-    icon: Factory,
-    domain: '제조 데이터 계산 업무',
-    segment: '익명 사례 · 제조',
-    context: '공정·제품 단위 데이터를 모아 계산하고, 근거 데이터를 다시 확인해야 하는 업무 유형입니다.',
-    insight: '입력값, 계산 과정, 결과가 분리되면 운영자가 원인을 찾기 어렵습니다. 추적 가능한 데이터 흐름이 중요합니다.'
-  },
-  {
-    id: 'chem-esg',
-    icon: FlaskConical,
-    domain: '환경·탄소 관리 업무',
-    segment: '익명 사례 · 운영',
-    context: '수집된 데이터를 기준에 맞게 정리하고, 내부 관리와 외부 보고에 활용하는 시스템 유형입니다.',
-    insight: '규칙이 바뀌어도 전체를 다시 만들지 않도록, 기준값과 업무 규칙을 한곳에서 관리하는 설계가 필요합니다.'
-  },
-  {
-    id: 'ecommerce',
-    icon: ShoppingBag,
-    domain: '고객 유입·운영 시스템',
-    segment: '익명 사례 · B2C',
-    context: '상품 상세, 기획전, 커뮤니티, 문의 흐름과 운영 데이터를 관리자가 반복적으로 다루는 서비스 운영 유형입니다.',
-    insight: '고객 유입 화면과 운영 관리가 분리되면 작은 변경도 병목이 됩니다. 전환 화면과 관리자 업무 흐름을 함께 설계해야 합니다.'
+    problem: '정부지원사업 결과물이 필요함',
+    result: '사업계획 기반 PoC/시제품 구현',
+    segment: '정부지원사업'
   }
 ]
 </script>
@@ -53,11 +55,11 @@ const industries: IndustryItem[] = [
   <BaseSection id="industries" variant="white">
     <SectionHeader eyebrow="Projects">
       <template #title>
-        실제 업무에서 출발한 <span class="text-primary">프로젝트 유형</span>
+        고객 문제가 시스템으로 바뀌는 <span class="text-primary">방식</span>
       </template>
       <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        고객명과 수치 성과를 앞세우기보다, 공개 가능한 범위 안에서<br class="hidden sm:block" />
-        어떤 업무 문제를 어떤 소프트웨어 구조로 다뤘는지 설명합니다.
+        공개 가능한 범위에서 특정 고객명이나 수치 대신,<br class="hidden sm:block" />
+        방문자가 자기 상황과 연결하기 쉬운 문제와 실행 결과를 보여드립니다.
       </p>
     </SectionHeader>
 
@@ -87,23 +89,20 @@ const industries: IndustryItem[] = [
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                <h3 class="text-xl font-bold text-gray-900">{{ industry.domain }}</h3>
+                <h3 class="text-xl font-bold text-gray-900">{{ industry.problem }}</h3>
                 <span class="text-[10px] font-mono font-semibold text-primary uppercase tracking-widest">
                   {{ industry.segment }}
                 </span>
               </div>
-              <p class="text-sm text-gray-700 mb-3 leading-relaxed">
-                {{ industry.context }}
-              </p>
               <div class="bg-white rounded-lg p-3 border border-gray-200 group-hover:border-primary/30 transition-colors">
                 <div class="flex items-center gap-1.5 mb-1.5">
                   <span class="w-1 h-3 rounded-full bg-primary" aria-hidden="true" />
                   <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    설계 포인트
+                    실행 결과
                   </p>
                 </div>
                 <p class="text-sm text-gray-700 leading-relaxed">
-                  {{ industry.insight }}
+                  {{ industry.result }}
                 </p>
               </div>
             </div>
@@ -121,7 +120,7 @@ const industries: IndustryItem[] = [
       <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-5">
         포트폴리오보다 중요한 것은 현재 업무의 병목을 정확히 파악하는 일입니다.
         <span class="font-semibold text-gray-900">초기 진단</span>에서
-        고객 유입 흐름, 데이터 출처, 관리자 역할, 자동화·SaaS 확장 가능성을 함께 확인합니다.
+        고객 유형, 현재 도구, 막힌 업무, 필요한 첫 결과물을 함께 확인합니다.
       </p>
       <RouterLink
         to="/contact"

@@ -57,10 +57,10 @@ const otherAssets: CopyrightItem[] = [
 ]
 
 const industries: IndustryTag[] = [
-  { id: 'finance-esg', name: '금융 ESG', description: '금융그룹 ESG 공시·관리 시스템' },
-  { id: 'heavy-lca', name: '중공업 LCA', description: '제품 전과정 환경영향 평가' },
-  { id: 'chem-esg', name: '화학 ESG', description: '화학 기업 ESG 데이터 관리' },
-  { id: 'ecommerce', name: '이커머스', description: '대규모 트래픽 운영·기획전 시스템' }
+  { id: 'enterprise-design', name: '대기업 소프트웨어 설계', description: '복잡한 권한, 데이터, 배포 흐름을 다룬 수행 경험' },
+  { id: 'domain-systems', name: '다양한 도메인 시스템', description: 'ESG, 제조, 이커머스 등 업무 규칙이 있는 시스템 구축 경험' },
+  { id: 'planning', name: '고객 언어의 기술 전환', description: '현장 용어와 요구를 화면, 데이터, API 구조로 정리' },
+  { id: 'operation', name: '운영 기준 설계', description: '관리자, 권한, 기준값, 예외 업무를 고려한 현실적 설계' }
 ]
 
 const techStack: TechCategory[] = [
@@ -91,11 +91,11 @@ const techStack: TechCategory[] = [
   <BaseSection id="foundation" variant="white">
     <SectionHeader
       eyebrow="Foundation"
-      description="단순 화면 제작이 아니라 운영되는 소프트웨어를 만들기 위해 표준 자산, 도메인 학습 방식, 안정적인 기술 스택을 준비해둡니다."
+      description="강점의 목적은 자랑이 아니라 고객의 시행착오를 줄이는 것입니다. 필요한 만큼 설계하고 검증 후 확장할 수 있는 기반을 준비합니다."
     >
       <template #title>
-        SI·DX·AX 구축을 가능하게 하는<br class="sm:hidden" />
-        <span class="text-primary">소프트웨어 기반</span>
+        고객 리스크를 줄이는<br class="sm:hidden" />
+        <span class="text-primary">구축 기반</span>
       </template>
     </SectionHeader>
 
@@ -122,11 +122,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 01</p>
-                <h3 class="text-xl font-bold text-gray-900">표준 소프트웨어 기반</h3>
+                <h3 class="text-xl font-bold text-gray-900">빠른 실행 기반</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              로그인, 메뉴, 관리자 API처럼 반복되는 기반을 표준화해 고객사의 핵심 업무와 자동화 구현에 더 집중합니다.
+              로그인, 메뉴, 관리자 API처럼 반복되는 기반을 표준화해 MVP와 PoC를 더 빠르게 시작합니다.
             </p>
 
             <!-- 대표 자산 2건 -->
@@ -178,11 +178,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 02</p>
-                <h3 class="text-xl font-bold text-gray-900">업무 구조화</h3>
+                <h3 class="text-xl font-bold text-gray-900">업무 구조화 역량</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              대기업·기업 시스템 경험을 중소기업 현실에 맞춰 필요한 만큼만 적용하고, 용어·데이터·승인 흐름을 빠르게 구조화합니다.
+              대기업 소프트웨어 설계 경험을 전면에 내세우기보다, 중소기업과 스타트업 현실에 맞춰 필요한 만큼만 적용합니다.
             </p>
             <ul class="space-y-2.5">
               <li
@@ -217,11 +217,11 @@ const techStack: TechCategory[] = [
               </div>
               <div>
                 <p class="text-[10px] font-mono text-primary uppercase tracking-widest mb-0.5">Pillar 03</p>
-                <h3 class="text-xl font-bold text-gray-900">확장 가능한 스택</h3>
+                <h3 class="text-xl font-bold text-gray-900">운영 가능한 스택</h3>
               </div>
             </div>
             <p class="text-sm text-gray-600 mb-5 leading-relaxed">
-              운영 지속성을 기준으로 검증된 기술을 사용합니다. 디자인 파트너와 협업하더라도 화면 품질과 개발 유지보수성을 함께 검토합니다.
+              안정적으로 운영할 수 있는 검증된 기술을 사용합니다. 화면 품질, 개발 유지보수성, 자동화 확장 가능성을 함께 검토합니다.
             </p>
             <div class="space-y-4">
               <div v-for="cat in techStack" :key="cat.id">

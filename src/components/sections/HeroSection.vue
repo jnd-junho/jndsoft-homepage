@@ -28,20 +28,20 @@ const proofs = [
   {
     id: 'diagnosis',
     icon: Boxes,
-    title: '아키텍트 주도 진단',
-    description: '대표 겸 수석 아키텍트가 업무 구조와 기술 범위를 함께 정리'
+    title: '설계 신뢰감',
+    description: '대기업 소프트웨어 설계 및 수행 경험을 필요한 만큼 적용'
   },
   {
     id: 'software',
     icon: Layers,
-    title: '운영되는 소프트웨어',
-    description: '관리자 화면, 데이터, 권한, 자동화 흐름까지 운영 기준으로 설계'
+    title: '작은 시작',
+    description: 'MVP/PoC 범위를 먼저 정하고 빠르게 검증'
   },
   {
     id: 'growth',
     icon: Activity,
-    title: 'SaaS·AX 확장',
-    description: '작게 검증한 업무 흐름을 SaaS 모델과 AI 자동화로 확장'
+    title: '현실적 운영',
+    description: '관리자, 권한, 데이터, 자동화까지 운영 기준으로 연결'
   }
 ]
 </script>
@@ -130,10 +130,10 @@ const proofs = [
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 200 } }"
       >
         <span class="block text-lg sm:text-xl lg:text-2xl font-light text-white/85 mb-4 sm:mb-5 tracking-wide">
-          비즈니스와 기술의 이음,
+          비즈니스 문제를
         </span>
         <span class="hero-brand block font-black leading-[0.95]">
-          운영되는 소프트웨어로
+          실행 가능한 시스템으로
         </span>
       </h1>
 
@@ -144,7 +144,7 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 320 } }"
       >
-        JnDSOFT는 고객 언어와 개발 언어의 <span class="font-semibold text-primary">이음</span>을 만듭니다
+        고객의 언어와 개발 언어를 잇는 <span class="font-semibold text-primary">이음</span>의 기술 파트너
       </p>
 
       <!-- Subheadline -->
@@ -154,8 +154,8 @@ const proofs = [
         :initial="{ opacity: 0, y: 20 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 700, delay: 400 } }"
       >
-        대표 겸 수석 소프트웨어 아키텍트가 업무 구조를 진단하고,<br class="hidden sm:block" />
-        고객 유입 화면부터 업무 시스템, AI 자동화, SaaS 확장까지 연결해 설계합니다.
+        대기업 수준의 설계 경험과 스타트업 수준의 실행 속도로<br class="hidden sm:block" />
+        업무 시스템, MVP, AI 자동화를 작게 시작하고 검증 후 확장합니다.
       </p>
 
       <!-- Proof Cards (3 evidences) -->
@@ -200,7 +200,7 @@ const proofs = [
           to="/contact"
           class="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/30"
         >
-          무료 진단 문의하기
+          업무 진단 요청하기
           <ArrowRight :size="20" class="transition-transform group-hover:translate-x-1" />
         </RouterLink>
         <a

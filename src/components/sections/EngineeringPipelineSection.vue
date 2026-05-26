@@ -1,72 +1,83 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { PenTool, Code2, GitBranch, Activity, ArrowRight } from 'lucide-vue-next'
+import { Search, ListChecks, Code2, MessageSquare, GitBranch, ArrowRight } from 'lucide-vue-next'
 import type { PipelineStage } from '@/types'
 import BaseSection from './common/BaseSection.vue'
 import SectionHeader from './common/SectionHeader.vue'
 
 const stages: PipelineStage[] = [
   {
-    id: 'design',
+    id: 'diagnosis',
     index: '01',
-    title: '설계',
-    titleEn: 'Design',
-    headline: '비즈니스 언어를 기술 구조로',
-    icon: 'PenTool',
+    title: '문제 진단',
+    titleEn: 'Diagnose',
+    headline: '현재 업무와 병목을 먼저 확인',
+    icon: 'Search',
     points: [
-      '대표 겸 수석 아키텍트가 업무 병목과 수익 구조를 함께 확인',
-      '고객 유입 화면, 관리자, 데이터 출처를 먼저 분리',
-      '디자인 파트너와 화면 경험과 운영 구조를 함께 검토',
-      '처음 만들 범위와 SaaS·자동화로 확장할 범위를 구분'
+      '고객 유형과 현재 사용하는 도구를 확인',
+      '엑셀, 메신저, 이메일, 수기 업무 중 병목 지점 정리',
+      '고객 유입, 관리자, 데이터 출처, 반복 업무를 분리'
+    ]
+  },
+  {
+    id: 'scope',
+    index: '02',
+    title: 'MVP/PoC 범위 정의',
+    titleEn: 'Scope',
+    headline: '처음 운영할 만큼만 작게 정의',
+    icon: 'ListChecks',
+    points: [
+      '처음부터 큰 시스템을 전제하지 않음',
+      '핵심 기능, 관리자, 데이터 흐름을 우선순위화',
+      '디자인 파트너와 화면 경험과 운영 구조를 함께 검토'
     ]
   },
   {
     id: 'build',
-    index: '02',
-    title: '개발',
+    index: '03',
+    title: '빠른 구현',
     titleEn: 'Build',
-    headline: '운영 가능한 소프트웨어 구현',
+    headline: '실제로 써볼 수 있는 시스템 구현',
     icon: 'Code2',
     points: [
       '업무 시스템에 필요한 핵심 화면과 관리자 기능 우선',
-      '인증·메뉴·권한 등 반복 기반은 표준 자산 활용',
-      '업무 규칙은 한곳에서 관리되도록 구현',
-      '고객 유입 화면은 문의·상담 데이터와 연결되도록 구현'
+      '인증, 메뉴, 권한 등 반복 기반은 표준 자산 활용',
+      '업무 규칙은 한곳에서 관리되도록 구현'
     ]
   },
   {
-    id: 'deploy',
-    index: '03',
-    title: '배포',
-    titleEn: 'Deploy',
-    headline: 'DX·AX 운영 전환 준비',
-    icon: 'GitBranch',
+    id: 'feedback',
+    index: '04',
+    title: '운영 피드백 반영',
+    titleEn: 'Operate',
+    headline: '실제 사용 후 예외 업무를 반영',
+    icon: 'MessageSquare',
     points: [
-      '테스트·배포 절차를 반복 가능하게 정리',
+      '실제 사용 후 발견되는 예외 업무 반영',
       '관리자가 확인해야 할 화면과 데이터를 점검',
       '운영 중 바뀔 수 있는 설정, 기준값, 자동화 조건 분리'
     ]
   },
   {
-    id: 'operate',
-    index: '04',
-    title: '운영',
-    titleEn: 'Operate',
-    headline: 'SaaS 모델로 확장 검토',
-    icon: 'Activity',
+    id: 'expand',
+    index: '05',
+    title: '확장 개발',
+    titleEn: 'Expand',
+    headline: '검증된 흐름을 확장',
+    icon: 'GitBranch',
     points: [
-      '실제 사용 후 발견되는 예외 업무 반영',
       'PoC·MVP 검증 결과에 따라 기능 확장',
+      'AI 자동화가 가능한 반복 업무를 단계적으로 연결',
       '반복되는 요구와 공통 기능을 SaaS 전환 후보로 검토'
     ]
   }
 ]
 
-const activeStageId = ref<string>('build')
+const activeStageId = ref<string>('scope')
 
 const getIconComponent = (iconName: string) => {
-  const icons = { PenTool, Code2, GitBranch, Activity }
+  const icons = { Search, ListChecks, Code2, MessageSquare, GitBranch }
   return icons[iconName as keyof typeof icons]
 }
 
@@ -79,11 +90,11 @@ const setActive = (id: string) => {
   <BaseSection id="pipeline" variant="grid-gray">
     <SectionHeader eyebrow="How We Work">
       <template #title>
-        아키텍트가 이끄는 <span class="text-primary">소프트웨어 구축 방식</span>
+        작게 시작해 검증 후 확장하는 <span class="text-primary">구축 방식</span>
       </template>
       <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        고객 유입 화면은 앞단 퍼널로, 핵심은 운영되는 업무 시스템입니다.<br class="hidden sm:block" />
-        진단 → 설계 → 구현 → 운영 → SaaS·AX 확장 순서로 진행합니다.
+        처음부터 큰 시스템을 전제하지 않습니다.<br class="hidden sm:block" />
+        실제로 운영 가능한 첫 단계를 정의하고, 검증 후 확장합니다.
       </p>
     </SectionHeader>
 
@@ -104,7 +115,7 @@ const setActive = (id: string) => {
               </span>
             </div>
             <span class="text-xs text-gray-500 italic">
-              진단 → 범위 합의 → 구현 → 운영 → 확장
+              문제 진단 → MVP/PoC 범위 정의 → 빠른 구현 → 운영 피드백 → 확장 개발
             </span>
           </div>
           <div class="relative h-8">
@@ -137,7 +148,7 @@ const setActive = (id: string) => {
         </div>
 
         <!-- Stage Cards (Desktop: Horizontal / Mobile: Vertical) -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-3 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-3 relative">
           <template v-for="(stage, idx) in stages" :key="stage.id">
             <!-- Stage Card -->
             <div
@@ -283,8 +294,7 @@ const setActive = (id: string) => {
           고객 유입과 운영, 디자인과 시스템, 비즈니스 언어와 개발 언어.
         </p>
         <p class="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-8">
-          단기 화면 제작보다 운영 가능한 소프트웨어 구조를 우선합니다.
-          반복되는 기반은 재사용하고, 확장 가능한 SaaS·AX 모델을 함께 검토합니다.
+          필요한 만큼 설계하고 작게 구현한 뒤, 검증된 업무부터 자동화와 SaaS 전환 가능성을 검토합니다.
         </p>
 
         <!-- Platform CTA -->

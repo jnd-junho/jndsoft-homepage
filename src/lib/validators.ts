@@ -6,7 +6,8 @@ export const FIELD_LIMITS = {
   contactName: 100,
   phone: 32,
   desiredSchedule: 200,
-  requirementBody: 10_000,
+  problemSummary: 4_000,
+  expectedOutcome: 4_000,
 } as const
 
 export function validateEmail(value: string): string | null {

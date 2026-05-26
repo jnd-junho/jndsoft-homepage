@@ -1,15 +1,27 @@
-export type ProjectType = 'si' | 'mvp' | 'webapp' | 'homepage' | 'simple' | 'other'
 export type BudgetRange = 'under_10m' | '10m_30m' | '30m_100m' | '100m_300m' | 'over_300m' | 'undecided'
+export type CustomerType = 'sme' | 'startup' | 'gov_supported' | 'enterprise' | 'other'
+export type InquiryGoal =
+  | 'business_system'
+  | 'mvp_poc'
+  | 'gov_project'
+  | 'ai_automation'
+  | 'homepage_landing'
+  | 'system_improvement'
+  | 'other'
+export type CurrentTool = 'excel' | 'messenger' | 'email' | 'paper' | 'legacy_system' | 'none' | 'other'
 
 export interface InquiryPayload {
   email: string
   company_name: string
-  requirement_body: string
   privacy_consent: true
   source: 'homepage_contact'
+  customer_type: CustomerType
+  inquiry_goal: InquiryGoal[]
+  problem_summary: string
   contact_name?: string | null
   phone?: string | null
-  project_type?: ProjectType | null
+  current_tools?: CurrentTool[] | null
+  expected_outcome?: string | null
   budget_range?: BudgetRange | null
   desired_schedule?: string | null
 }

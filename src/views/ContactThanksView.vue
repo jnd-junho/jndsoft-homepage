@@ -3,22 +3,9 @@ import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { CheckCircle2, Mail, Home } from 'lucide-vue-next'
 
-const inquiryId = computed<string | null>(() => {
-  const fromState = (history.state as { inquiryId?: unknown } | null)?.inquiryId
-  if (typeof fromState === 'string' && fromState.length > 0) return fromState
-  const params = new URLSearchParams(window.location.search)
-  return params.get('id')
-})
-
 const serverMessage = computed<string | null>(() => {
   const fromState = (history.state as { message?: unknown } | null)?.message
   return typeof fromState === 'string' && fromState.length > 0 ? fromState : null
-})
-
-const referenceNumber = computed(() => {
-  if (!inquiryId.value) return null
-  const compact = inquiryId.value.replace(/-/g, '').toUpperCase()
-  return compact.slice(0, 8)
 })
 </script>
 
@@ -37,13 +24,6 @@ const referenceNumber = computed(() => {
         <p v-else class="text-gray-600 mb-8">
           영업일 기준 <strong class="text-gray-900">24시간 이내</strong>에 담당자가 회신드리겠습니다.
         </p>
-
-        <div v-if="referenceNumber" class="inline-block bg-gray-50 rounded-lg px-6 py-3 mb-8">
-          <p class="text-xs text-gray-500 mb-1">참조번호</p>
-          <p class="text-lg font-mono font-semibold text-gray-900 tracking-wider">
-            {{ referenceNumber }}
-          </p>
-        </div>
 
         <div class="border-t border-gray-200 pt-6 mb-8">
           <p class="text-sm text-gray-500 mb-3">회신이 지연되거나 추가 문의가 필요하시면</p>

@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import { Network, ChartBar, Rocket, Sparkles } from 'lucide-vue-next'
+import { Building2, Rocket, Landmark, Sparkles } from 'lucide-vue-next'
 import type { ServiceCard } from '@/types'
 import BaseSection from './common/BaseSection.vue'
 import SectionHeader from './common/SectionHeader.vue'
 
 const services: ServiceCard[] = [
   {
-    id: 'acquisition',
-    title: '고객 유입 화면 설계',
-    icon: 'Network',
-    description: '홈페이지 UI/UX, 랜딩페이지, 상품 상세페이지를 단순 제작물이 아니라 문의와 상담으로 이어지는 앞단 흐름으로 설계합니다.'
+    id: 'sme',
+    title: '중소기업·소상공인',
+    icon: 'Building2',
+    description: '엑셀, 메신저, 이메일, 수기 업무를 상담관리·예약관리·정산관리 같은 웹 기반 업무 시스템으로 전환합니다.'
   },
   {
-    id: 'business-system',
-    title: '업무 시스템 구축',
-    icon: 'ChartBar',
-    description: '상담관리, 고객관리, 예약관리, 정산관리, 관리자 페이지처럼 실제 운영에 필요한 화면과 데이터 구조를 구축합니다.'
+    id: 'startup',
+    title: '스타트업',
+    icon: 'Rocket',
+    description: '아이디어를 핵심 기능, 관리자, 초기 서비스 흐름을 갖춘 MVP/PoC로 빠르게 검증합니다.'
   },
   {
-    id: 'automation',
+    id: 'gov-supported',
+    title: '정부지원사업 선정 기업',
+    icon: 'Landmark',
+    description: '사업계획의 결과물을 제한된 기간 안에 PoC, 시제품, 사업화 개발 산출물로 구현합니다.'
+  },
+  {
+    id: 'ai-automation',
     title: 'AI 업무 자동화',
     icon: 'Sparkles',
     description: '반복 문의, 상담 기록 정리, 문서 확인, 리포트 생성을 작은 PoC로 검증하고 실제 업무 흐름에 연결합니다.',
     badge: 'AX',
     link: '/automation'
-  },
-  {
-    id: 'saas-mvp',
-    title: 'SaaS·MVP 확장',
-    icon: 'Rocket',
-    description: '검증된 업무 흐름을 MVP, 정부지원사업용 서비스, 업종형 SaaS 모델로 확장할 수 있는 구조로 정리합니다.'
-  },
+  }
 ]
 
 const getIconComponent = (iconName: string) => {
-  const icons = { Network, ChartBar, Rocket, Sparkles }
+  const icons = { Building2, Rocket, Landmark, Sparkles }
   return icons[iconName as keyof typeof icons]
 }
 </script>
@@ -43,10 +43,10 @@ const getIconComponent = (iconName: string) => {
   <BaseSection id="services" variant="grid-gray">
     <SectionHeader
       eyebrow="Services"
-      description="홈페이지 제작을 따로 떼어 팔기보다, 고객 유입 화면에서 업무 시스템과 자동화로 이어지는 소프트웨어 구축 흐름을 설계합니다."
+      description="고객 유형마다 필요한 첫 단계가 다릅니다. 현재 업무 문제를 먼저 정리하고, 검증 가능한 범위부터 시스템으로 연결합니다."
     >
       <template #title>
-        고객 유입부터 운영 자동화까지 잇는 <span class="text-primary">네 가지</span> 흐름
+        고객 상황에 맞춰 시작하는 <span class="text-primary">시스템 구축</span>
       </template>
     </SectionHeader>
 
